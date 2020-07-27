@@ -4,3 +4,5 @@
 _site
 *.code-workspace
 vendor
+.DS_Store
+.idea
