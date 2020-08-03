@@ -7,4 +7,6 @@
   quote:
     TeamLab researches NLP, Patent Analysis, Data Analysis, etc.
   description: | # this will include new lines to allow paragraphs
+    <pre><code>
     do_something_new = lambda x: x in TEAMLAB
+    </code></pre>
