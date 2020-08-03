@@ -1,9 +1,12 @@
 # Education Template
 - layout: left
-  name: Institution name
-  dates: Date Range (eg. 2016 - 2019)
-  qualification: Qualifications (eg. BA Performing Arts)
+  name: Gachon University, Korea
+  dates: 2017.02 ~ present #Date Range (eg. 2016 - 2019)
+  qualification: Bachelor of Science - BS
   quote: >
-    Short institution or course description (optional)
+    GPA : 4.25/4.5
+    Industrial Management Engineering / Data science
   description: | # this will include new lines to allow paragraphs
-    Description of qualification
+    - [2019.03 ~ present] Reserve Officers’ Training Corps (ROTC)
+    - [2018.03 ~ present] Gachon Honors
+    - [2017.03 ~ 2018.02] Student council member
