@@ -1,7 +1,7 @@
 # Project template
-- layout: left #top-middle
+- layout: top-middle
   name: 빅데이터분석 및 AI 개발을 통한 생산성 향상방안 연구
-  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
+#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
   github: TeamLab/DSME-AI-Smart-Yard #Github page for project (eg. sproogen/modern-resume-theme)(optional)
   quote: >
     - 프로젝트기간 : 2019.12 ~ 2020.06 <br>
