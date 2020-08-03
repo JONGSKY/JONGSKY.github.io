@@ -7,9 +7,9 @@
     - 프로젝트기간 : 2019.12 ~ 2020.06 <br>
     - 지원기관 : <a href="https://www.dsme.co.kr/pub/main/index.do" target="_blank">대우조선해양(주)</a>
   description: | # this will include new lines to allow paragraphs
-    - 대화면 대시보드 구성 및 시각화 - Tableau Desktop, Tableau Server
-    - 데이터 전처리 및 시각화 파이프라인 구축 - Python
-    - 지게차, 고소차, 블록, 화물창, 버스, 소리 대시보드 제작 - Tableau Desktop, Tableau Server
+    - 대화면 대시보드 구성 및 시각화
+    - 데이터 전처리 및 시각화 파이프라인 구축
+    - 지게차, 고소차, 블록, 화물창, 버스, 소리 대시보드 제작
     - 상세기술 :
       - Python
         - 데이터 전처리 및 파이프라인 구축 : Pandas, Numpy, MySQLConnector
@@ -56,6 +56,7 @@
         - 데이터 수집 : Selenium, Beautifulsoup
         - 데이터 처리 : Pandas, Numpy
         - 데이터 시각화 : Matplotlib, Seaborn
+-
 - layout: top-middle
   name: 2020년 연구주제 발굴조사
 #  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
