@@ -10,3 +10,43 @@
     - 대화면 대시보드 구성 및 시각화 - Tableau Desktop, Tableau Server
     - 데이터 전처리 및 시각화 파이프라인 구축 - Python
     - 지게차, 고소차, 블록, 화물창, 버스, 소리 대시보드 제작 - Tableau Desktop, Tableau Server
+
+- layout: top-middle
+  name: 특허 검색 시스템
+  link: http://pamplona.gachon.ac.kr/patent_search #(eg. sproogen.github.io/modern-resume-theme)(optional)
+  github: JONGSKY/patent_search_system #Github page for project (eg. sproogen/modern-resume-theme)(optional)
+  quote: >
+    - 프로젝트기간 : 2019.09 ~ 2019.12 <br>
+    - 지원기관 : <a href="http://theteamlab.io/" target="_blank">TEAMLAB</a>
+  description: | # this will include new lines to allow paragraphs
+    - Front-end & Back-end 개발 - Python, Django, Bootstrap, HTML, CSS, jQuery, Ajax, MySQL
+    - Data visualization - echarts, Datatables, Wordcloud - Python, jQuery, Ajax
+
+- layout: top-middle
+  name: 제설 관련 측정 자료 Big Data 분석 연구
+#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
+  github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
+  quote: >
+    - 프로젝트기간 : 2019.08 ~ 2019.12 <br>
+    - 지원기관 : <a href="http://www.sit.re.kr/home/homeIndex.do" target="_blank">서울기술연구원</a>
+  description: | # this will include new lines to allow paragraphs
+    - 제설, 교통, 기상 데이터 수집 및 정리 - Selenium, Beautifulsoup
+    - 강설 및 기초 데이터 시각화 및 분석 - Pandas, Numpy
+    - 시계열 분석, 상관도 분석, 기초통계 분석 - Matplotlib, Seaborn
+
+- layout: top-middle
+  name: 2020년 연구주제 발굴조사
+#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
+  github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
+  quote: >
+    - 프로젝트기간 : 2019.07 ~ 2019.08 <br>
+    - 지원기관 : <a href="https://www.si.re.kr/" target="_blank">서울연구원</a>
+  description: | # this will include new lines to allow paragraphs
+    - 논문데이터 수집 및 정리
+    - 데이터 기초 분석 및 LDA 분석
+    - 상세기술
+      - Python
+        - 데이터 수집 : Selenium, Beautifulsoup
+        ▷ 데이터 분석 : Pandas, Numpy
+        ▷ 자연어 처리 : TfidfVectorizer, LdaModel, konlpy, nltk, gensim
+        ▷ 데이터 시각화 : Matplotlib, pyLDAvis
