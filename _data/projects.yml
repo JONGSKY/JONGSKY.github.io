@@ -4,7 +4,8 @@
   link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
   github: TeamLab/DSME-AI-Smart-Yard #Github page for project (eg. sproogen/modern-resume-theme)(optional)
   quote: >
-    2019.12 ~ 2020.06
+    - 프로젝트기간 : 2019.12 ~ 2020.06
+    - 지원기관 : <a href="https://www.dsme.co.kr/pub/main/index.do" target="_blank">대우조선해양(주)</a>
   description: | # this will include new lines to allow paragraphs
     - 대화면 대시보드 구성 및 시각화 - Tableau Desktop, Tableau Server
     - 데이터 전처리 및 시각화 파이프라인 구축 - Python
