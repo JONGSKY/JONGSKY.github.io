@@ -1,9 +1,10 @@
 # Experience template
 - layout: left
-  company: TEAMLAB at Gachon University
+  company: TEAMLAB <br>
+           at Gachon University
   link: http://theteamlab.io/ #Link to company (optional)
   job_title: Researcher
-  dates: 2018.07 ~ ㅁ #Date Range (eg. November 2016 - present)
+  dates: 2018.07 ~ present #Date Range (eg. November 2016 - present)
   quote: Data Science Lab
   description: | # this will include new lines to allow paragraphs
     do_something_new = lambda x: x in TEAMLAB
