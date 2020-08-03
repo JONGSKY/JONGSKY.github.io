@@ -30,7 +30,7 @@ linkedin_username: jong-sky
 # Additional icon links
 additional_links:
 - title: Tableau Public
-  icon: chart-pie  #Font Awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
+  icon: fa-bar-chart  #Font Awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
   url: https://public.tableau.com/profile/.19603039#!/
 # - title: another link
 #   icon: font awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
