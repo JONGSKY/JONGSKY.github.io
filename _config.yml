@@ -68,7 +68,7 @@ about_content: | # this will include new lines to allow paragraphs
 #    - <a href="google.com">Links</a>
 #    - Images
 
- Projects Section
+# Projects Section
  projects_title: Projects #(Use this to override about projects section title)
 
 # Experience Section
