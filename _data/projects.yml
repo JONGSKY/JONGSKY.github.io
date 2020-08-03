@@ -3,8 +3,8 @@
   name: 빅데이터분석 및 AI 개발을 통한 생산성 향상방안 연구
   link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
   github: TeamLab/DSME-AI-Smart-Yard #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: > test
-    Short overview of the project (optional)
+  quote: >
+    2019.12 ~ 2020.06
   description: | # this will include new lines to allow paragraphs
     - 대화면 대시보드 구성 및 시각화 - Tableau Desktop, Tableau Server
     - 데이터 전처리 및 시각화 파이프라인 구축 - Python
