@@ -57,19 +57,19 @@
         - 데이터 처리 : Pandas, Numpy
         - 데이터 시각화 : Matplotlib, Seaborn
 -
-- layout: top-middle
-  name: 2020년 연구주제 발굴조사
-#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    - 프로젝트기간 : 2019.07 ~ 2019.08 <br>
-    - 지원기관 : <a href="https://www.si.re.kr/" target="_blank">서울연구원</a>
-  description: | # this will include new lines to allow paragraphs
-    - 논문데이터 수집 및 정리
-    - 데이터 기초 분석 및 LDA 분석
-    - 상세기술
-      - Python
-        - 데이터 수집 : Selenium, Beautifulsoup
-        - 데이터 분석 : Pandas, Numpy
-        - 자연어 처리 : TfidfVectorizer, LdaModel, konlpy, nltk, gensim
-        - 데이터 시각화 : Matplotlib, pyLDAvis
+# - layout: top-middle
+#   name: 2020년 연구주제 발굴조사
+# #  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
+#   github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
+#   quote: >
+#     - 프로젝트기간 : 2019.07 ~ 2019.08 <br>
+#     - 지원기관 : <a href="https://www.si.re.kr/" target="_blank">서울연구원</a>
+#   description: | # this will include new lines to allow paragraphs
+#     - 논문데이터 수집 및 정리
+#     - 데이터 기초 분석 및 LDA 분석
+#     - 상세기술
+#       - Python
+#         - 데이터 수집 : Selenium, Beautifulsoup
+#         - 데이터 분석 : Pandas, Numpy
+#         - 자연어 처리 : TfidfVectorizer, LdaModel, konlpy, nltk, gensim
+#         - 데이터 시각화 : Matplotlib, pyLDAvis
