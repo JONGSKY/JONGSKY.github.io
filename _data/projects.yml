@@ -1,5 +1,26 @@
 # Project template
 - layout: top-middle
+  name: 창의성 계발을 위한 서술형 평가지원 AI 프로그램 개발
+  link: http://wai.best/ #(eg. sproogen.github.io/modern-resume-theme)(optional)
+  github: JONGSKY/WAI-Automated-Scoring #Github page for project (eg. sproogen/modern-resume-theme)(optional)
+  quote: >
+    - 프로젝트기간 : 2020.03 ~ 2020.12 <br>
+    - 지원기관 : <a href="https://lms.kofac.re.kr/front/main/index.do" target="_blank">한국과학창의재단</a>
+  description: | # this will include new lines to allow paragraphs
+    - 개발 프로젝트 매니저
+    - Front-end & Back-end 개발 (담당자부분)
+    - 프로젝트 DB 설계
+    - 화면설계서 및 기능명세서 작성
+    - 상세기술 :
+      - Python
+        - 데이터 처리 : pandas, numpy
+      - Django : Web framework로 이용 & Back-end 개발
+      - Bootstrap, HTML, CSS, jQuery, Ajax : Web Front-end 개발
+      - PostgreSQL : web에 필요한 Database 설계 및 구축
+      - Docker : Docker 기반 시스템 작동 (Web, DB, 채점모델 등)
+      - GCP : GCP 웹 서버 구축
+      
+- layout: top-middle
   name: 빅데이터분석 및 AI 개발을 통한 생산성 향상방안 연구
 #  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
   github: TeamLab/DSME-AI-Smart-Yard #Github page for project (eg. sproogen/modern-resume-theme)(optional)
@@ -22,7 +43,7 @@
 
 - layout: top-middle
   name: 특허 검색 시스템
-  link: http://pamplona.gachon.ac.kr/patent_search #(eg. sproogen.github.io/modern-resume-theme)(optional)
+#   link: http://pamplona.gachon.ac.kr/patent_search #(eg. sproogen.github.io/modern-resume-theme)(optional)
   github: JONGSKY/patent_search_system #Github page for project (eg. sproogen/modern-resume-theme)(optional)
   quote: >
     - 프로젝트기간 : 2019.09 ~ 2019.12 <br>
