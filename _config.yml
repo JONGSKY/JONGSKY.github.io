@@ -48,7 +48,7 @@ about_profile_image: ./assets/images/profile_image.png
 about_content: | # this will include new lines to allow paragraphs
 
    다양한 <mark>Data Engineering</mark> 경험
-    (Python, Tableau, ECharts 등 사용)
+    (Python, Tableau, AWS, GCP 등 사용)
     - 조선업 야드내 IOT row data 기반 데이터 분석 및 대시보드 시각화 경험
     - Echarts 및 Datatables를 이용한 특허 데이터 Clustering 결과 시각화 경험
     - 제설분석을 위한 기상, 교통 등 데이터 수집 및 시각화를 통한 인사이트 도출 경험
