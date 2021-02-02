@@ -1,12 +1,12 @@
 # Education Template
 - layout: left
   name: Gachon University, Korea
-  dates: 2017.02 ~ Present #Date Range (eg. 2016 - 2019)
+  dates: 2017.02 ~ 2021.02 #Date Range (eg. 2016 - 2019)
   qualification: Bachelor of Science - BS
 #  quote: >
   description: | # this will include new lines to allow paragraphs
     Industrial Management Engineering / Data Science <br>
     GPA : 4.25/4.5 <br><br>
-    - [2019.03 ~ Present] Reserve Officers’ Training Corps (ROTC)
-    - [2018.03 ~ Present] Gachon Honors
+    - [2019.03 ~ 2021.02] Reserve Officers’ Training Corps (ROTC)
+    - [2018.03 ~ 2021.02] Gachon Honors - Summa Cum Laude
     - [2017.03 ~ 2018.02] Student council member
