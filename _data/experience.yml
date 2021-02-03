@@ -1,4 +1,15 @@
 # Experience template
+
+- layout: left
+  company: WizLive
+  link: https://wizlive.com #Link to company (optional)
+  job_title: Coding Tutor
+  dates: 2020.11 ~ 2021.02 #Date Range (eg. November 2016 - present)
+  quote:
+    WizLive is the only perfect coding education.
+  description: | # this will include new lines to allow paragraphs
+    As a certified coding education specialist in WIZLIVE, I taught students to improve problem solving and computing thinking through data collection, analysis, and programming.
+    
 - layout: left
   company: TEAMLAB
   link: http://theteamlab.io #Link to company (optional)
@@ -13,12 +24,3 @@
     ```
     # </code></pre>
 
-- layout: left
-  company: WizLive
-  link: https://wizlive.com #Link to company (optional)
-  job_title: Coding Tutor
-  dates: 2020.11 ~ 2021.02 #Date Range (eg. November 2016 - present)
-  quote:
-    WizLive is the only perfect coding education.
-  description: | # this will include new lines to allow paragraphs
-    As a certified coding education specialist in WIZLIVE, I taught students to improve problem solving and computing thinking through data collection, analysis, and programming.
