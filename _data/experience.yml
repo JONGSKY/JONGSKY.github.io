@@ -1,7 +1,7 @@
 # Experience template
 - layout: left
   company: TEAMLAB
-  link: http://theteamlab.io/ #Link to company (optional)
+  link: http://theteamlab.io #Link to company (optional)
   job_title: Researcher
   dates: 2018.07 ~ 2021.02 #Date Range (eg. November 2016 - present)
   quote:
@@ -10,3 +10,15 @@
     <pre><code>
     do_something_new = lambda x: x in TEAMLAB
     </code></pre>
+
+- layout: left
+  company: WizLive
+  link: https://wizlive.com #Link to company (optional)
+  job_title: Coding Tutor
+  dates: 2020.11 ~ 2021.02 #Date Range (eg. November 2016 - present)
+  quote:
+    WizLive is the only perfect coding education.
+  description: | # this will include new lines to allow paragraphs
+    As a certified coding education specialist in WIZLIVE, I taught Python to students.
+
+    As a tutor, I taught students to improve problem solving and computing thinking through data collection, analysis, and programming.
