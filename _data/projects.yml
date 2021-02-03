@@ -1,7 +1,7 @@
 # Project template
 - layout: top-middle
   name: 창의성 계발을 위한 서술형 평가지원 AI 프로그램 개발
-  link: http://wai.best/ #(eg. sproogen.github.io/modern-resume-theme)(optional)
+  link: http://wai.best #(eg. sproogen.github.io/modern-resume-theme)(optional)
   github: JONGSKY/WAI-Automated-Scoring #Github page for project (eg. sproogen/modern-resume-theme)(optional)
   quote: >
     - 프로젝트기간 : 2020.03 ~ 2020.12 <br>
