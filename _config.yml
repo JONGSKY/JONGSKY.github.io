@@ -3,8 +3,8 @@ repository: Git repository where your resume will be hosted, only required if yo
 # favicon: Directory of your favicon (eg. images/favicon.ico)(optional)
 
 # Personal info
-name: Jongho Lee
-title: Data Engineer
+name: JONGHO LEE
+title: Data Analyst
 email: ljhljh0125@gmail.com
 #phone: Your phone number (optional)
 # website: https://www.notion.so/jongsky/Jongho-Lee-40fcd70fb3384dfd923c1b8370522cb0
@@ -47,7 +47,7 @@ additional_links:
 about_profile_image: ./assets/images/profile_image.jpg
 about_content: | # this will include new lines to allow paragraphs
 
-   다양한 <mark>Data Engineering</mark> 경험
+   다양한 <mark>Data Analysis</mark> 경험
     (Python, Tableau, AWS, GCP 등 사용)
     - 조선업 야드내 IOT row data 기반 데이터 분석 및 대시보드 시각화 경험
     - Echarts 및 Datatables를 이용한 특허 데이터 Clustering 결과 시각화 경험
