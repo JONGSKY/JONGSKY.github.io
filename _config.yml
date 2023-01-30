@@ -44,7 +44,7 @@ additional_links:
 
 # About Section
 # about_title: About Me (Use this to override about section title)
-about_profile_image: ./assets/images/profile_image.png
+about_profile_image: ./assets/images/profile_image.jpg
 about_content: | # this will include new lines to allow paragraphs
 
    다양한 <mark>Data Engineering</mark> 경험
