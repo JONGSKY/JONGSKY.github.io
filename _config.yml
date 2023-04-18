@@ -3,9 +3,9 @@ repository: Git repository where your resume will be hosted, only required if yo
 # favicon: Directory of your favicon (eg. images/favicon.ico)(optional)
 
 # Personal info
-name: JONGHO LEE
+# name: JONGHO LEE
 title: Data Analyst
-email: ljhljh0125@gmail.com
+# email: ljhljh0125@gmail.com
 #phone: Your phone number (optional)
 # website: https://www.notion.so/jongsky/Jongho-Lee-40fcd70fb3384dfd923c1b8370522cb0
 
