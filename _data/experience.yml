@@ -2,6 +2,16 @@
 # <pre><code></code></pre>
 
 - layout: left
+  company: TEAMREBOOTT
+  link: https://reboott.ai #Link to company (optional)
+  job_title: AI Engineer
+  dates: 2023.8 ~ present #Date Range (eg. November 2016 - present)
+  quote:
+    Under the vision of 'Return to Busan,' Team Reboot gathers diverse hearts as one, aiming to leap toward a shining future.
+  description: | # this will include new lines to allow paragraphs
+    Team Reboot is committed to strengthening trade standardization through AI algorithms, leading Busan's maritime and trading industry to pave the way for a future where people prosper, experience enduring happiness, and live with freedom.
+
+- layout: left
   company: WizLive
   link: https://wizlive.com #Link to company (optional)
   job_title: Coding Tutor
