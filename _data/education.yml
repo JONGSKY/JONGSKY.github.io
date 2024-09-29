@@ -1,6 +1,6 @@
 # Education Template
 - layout: left
-  name:  Pukyong National University, Korea (국립부경대학교, 대한민국)
+  name:  Pukyong National University, Korea
   dates: 2023.09 ~ present #Date Range (eg. 2016 - 2019)
   qualification: Master of Science - MS (공학 석사)
 #  quote: >
@@ -10,7 +10,7 @@
 
 
 - layout: left
-  name: Gachon University, Korea (가천대학교, 대한민국)
+  name: Gachon University, Korea
   dates: 2017.02 ~ 2021.02 #Date Range (eg. 2016 - 2019)
   qualification: Bachelor of Science - BS (공학 학사)
 #  quote: >
