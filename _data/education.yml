@@ -5,7 +5,9 @@
   qualification: Master of Science - MS
 #  quote: >
   description: | # this will include new lines to allow paragraphs
-    Industrial and Data Engineering 
+    Industrial and Data Engineering <br> 
+    GPA : 4.5/4.5 (Current)
+
 
 - layout: left
   name: Gachon University, Korea
