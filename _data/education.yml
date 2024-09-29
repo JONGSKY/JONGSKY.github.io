@@ -1,22 +1,23 @@
 # Education Template
 - layout: left
-  name:  Pukyong National University, Korea
+  name:  Pukyong National University, Korea (국립부경대학교, 대한민국)
   dates: 2023.09 ~ present #Date Range (eg. 2016 - 2019)
-  qualification: Master of Science - MS
+  qualification: Master of Science - MS (공학 석사)
 #  quote: >
   description: | # this will include new lines to allow paragraphs
-    Industrial and Data Engineering <br> 
-    GPA : 4.5/4.5 (Current)
+    Industrial and Data Engineering (산업 및 데이터 공학) <br> 
+    GPA: 4.5/4.5 (Current) (현재)
 
 
 - layout: left
-  name: Gachon University, Korea
+  name: Gachon University, Korea (가천대학교, 대한민국)
   dates: 2017.02 ~ 2021.02 #Date Range (eg. 2016 - 2019)
-  qualification: Bachelor of Science - BS
+  qualification: Bachelor of Science - BS (공학 학사)
 #  quote: >
   description: | # this will include new lines to allow paragraphs
-    Industrial Management Engineering / Data Science <br>
-    GPA : 4.25/4.5 (Summa Cum Laude) <br><br>
-    - [2019.03 ~ 2021.02] Reserve Officers’ Training Corps (ROTC)
-    - [2018.03 ~ 2021.02] Gachon Departmental Honors
-    - [2017.03 ~ 2018.02] Student council member
+    Industrial Management Engineering (주전공: 산업경영공학) <br>
+    Data Science (연계전공: 데이터과학) <br>
+    GPA: 4.25/4.5 (Summa Cum Laude) (수석 졸업) <br><br>
+    - [2019.03 ~ 2021.02] Reserve Officers’ Training Corps (ROTC) (학군사관후보생) <br>
+    - [2018.03 ~ 2021.02] Gachon Departmental Honors (가천대학교 학과 우수학생) <br>
+    - [2017.03 ~ 2018.02] Student council member (학생회 활동)
