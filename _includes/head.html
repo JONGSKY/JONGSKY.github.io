@@ -2,8 +2,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f4ef">
-  {% assign seo_project = site.data.projects | where: "slug", page.project | first %}
-  <title>{{ seo_project.title | default: page.title | default: site.title }} · {{ site.name }}</title>
+  {% if page.project %}{% assign seo_project = site.data.projects | where: "slug", page.project | first %}{% endif %}
+  <title>{% if seo_project %}{{ seo_project.title }}{% else %}{{ page.title | default: site.title }}{% endif %} · {{ site.name }}</title>
   {%- seo -%}
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
