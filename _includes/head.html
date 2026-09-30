@@ -1,10 +1,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f4ef">
+  <meta name="theme-color" content="#f8f8f5">
   {% if page.project != nil and page.project != "" %}{% assign seo_project = site.data.projects | where: "slug", page.project | first %}{% endif %}
   <title>{% if seo_project %}{{ seo_project.title }}{% else %}{{ page.title | default: site.title }}{% endif %} · {{ site.name }}</title>
   {%- seo -%}
-  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/main.css?v=66f8ed6' | relative_url }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
 </head>
