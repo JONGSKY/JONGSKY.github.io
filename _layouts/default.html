@@ -1,44 +1,40 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
-{%- include head.html -%}
-
-<body class="{% if site.darkmode == true and site.darkmode != 'never' %}dark{% endif %}">
-
-  {%- include header.html -%}
-
-  <main class="page-content" aria-label="Content">
-    <div class="wrapper">
-
-      {%- if jekyll.environment == 'production' and site.gtm -%}
-        {%- include gtm_body.html -%}
-      {%- endif -%}
-
-      {%- include about.html -%}
-
-      {%- if site.data.projects.size > 0 -%}
-        {%- include projects.html -%}
-      {%- endif -%}
-
-      {%- if site.data.experience.size > 0 -%}
-        {%- include experience.html -%}
-      {%- endif -%}
-
-      {%- if site.data.education.size > 0 -%}
-        {%- include education.html -%}
-      {%- endif -%}
-
-      {%- if site.more_content -%}
-        {%- include more.html -%}
-      {%- endif -%}
-
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko' }}">
+  {% include head.html %}
+  <body>
+    <a class="skip-link" href="#content">본문으로 건너뛰기</a>
+    <div class="site-shell">
+      <aside class="site-nav" aria-label="주요 메뉴">
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="홈으로 이동">
+          <span class="brand-mark">JL</span>
+          <span class="brand-name">JONGHO<br>LEE</span>
+        </a>
+        <nav class="nav-links">
+          <a href="{{ '/' | relative_url }}#work">Work</a>
+          <a href="{{ '/' | relative_url }}#experience">Experience</a>
+          <a href="{{ '/' | relative_url }}#research">Research</a>
+          <a href="{{ '/' | relative_url }}#about">About</a>
+        </nav>
+        <div class="nav-bottom">
+          <button class="theme-toggle" type="button" aria-label="색상 모드 전환" data-theme-toggle>
+            <span class="theme-icon">◐</span><span data-theme-label>Dark mode</span>
+          </button>
+          <div class="nav-socials">
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noreferrer">GH</a>
+            <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/" target="_blank" rel="noreferrer">IN</a>
+            <a href="mailto:{{ site.email }}">@</a>
+          </div>
+          <p class="nav-caption">AI / DATA / SYSTEMS<br>Busan · Korea</p>
+        </div>
+      </aside>
+      <main id="content" class="site-main">
+        {{ content }}
+      </main>
     </div>
-  </main>
-
-  {%- include footer.html -%}
-  {% if site.darkmode == false %}
+    <footer class="site-footer">
+      <span>© {{ site.time | date: '%Y' }} JONGHO LEE</span>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </footer>
     <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
-  {% endif %}
-</body>
-
+  </body>
 </html>

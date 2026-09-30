@@ -1,34 +1,28 @@
-# Experience template
-# <pre><code></code></pre>
+- company: Team Reboott
+  role: AI Team · Founding member / Director
+  period: 2023.08 — present
+  location: Busan, Korea
+  summary: 창립 초기부터 네트워크와 서버실 구축, AI 서비스 기획·개발·배포·운영까지 맡고 있습니다.
+  bullets:
+    - 멀티 LLM 채팅·이미지 생성·회의록 요약 서비스 개발
+    - 문서·메일·인보이스를 다루는 B2B 업무 자동화와 고객 환경 배포
+    - Kubernetes·Kafka 기반 요청 처리와 온프레미스 모델 서빙 구성
+    - Prometheus·Grafana·Slack 알림을 연결한 운영 체계 구축
 
-- layout: left
-  company: TEAMREBOOTT
-  link: https://reboott.ai #Link to company (optional)
-  job_title: AI Engineer
-  dates: 2023.8 ~ present #Date Range (eg. November 2016 - present)
-  quote:
-    Under the vision of 'Return to Busan,' Team Reboot gathers diverse hearts as one, aiming to leap toward a shining future.
-  description: | # this will include new lines to allow paragraphs
-    Team Reboot is committed to strengthening trade standardization through AI algorithms, leading Busan's maritime and trading industry to pave the way for a future where people prosper, experience enduring happiness, and live with freedom.
+- company: TEAMLAB
+  role: Undergraduate Researcher
+  period: 2018.07 — 2021.02
+  location: Gachon University
+  summary: 데이터 수집·분석·시각화 연구와 학부 프로젝트를 수행했습니다.
+  bullets:
+    - 조선업 생산 데이터와 특허·논문 데이터 분석
+    - Django 기반 검색 시스템과 Tableau 대시보드 개발
+    - 연구 결과를 발표 자료와 논문으로 정리
 
-- layout: left
-  company: WizLive
-  link: https://wizlive.com #Link to company (optional)
-  job_title: Coding Tutor
-  dates: 2020.11 ~ 2021.02 #Date Range (eg. November 2016 - present)
-  quote:
-    WizLive is the only perfect coding education.
-  description: | # this will include new lines to allow paragraphs
-    As a certified coding education specialist in WIZLIVE, I taught students to improve problem solving and computing thinking through data collection, analysis, and programming.
-    
-- layout: left
-  company: TEAMLAB
-  link: http://theteamlab.io #Link to company (optional)
-  job_title: Researcher
-  dates: 2018.07 ~ 2021.02 #Date Range (eg. November 2016 - present)
-  quote:
-    TeamLab researches NLP, Patent Analysis, Data Analysis, etc.
-  description: | # this will include new lines to allow paragraphs
-    ```python
-    do_something_new = lambda x: x in TEAMLAB
-    ```
+- company: WizLive
+  role: Coding Tutor
+  period: 2020.11 — 2021.02
+  location: Korea
+  summary: 데이터 수집·분석·프로그래밍을 바탕으로 학생의 문제 해결과 컴퓨팅 사고를 가르쳤습니다.
+  bullets:
+    - 학습자의 수준에 맞춘 실습과 문제 해결 피드백

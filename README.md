@@ -1,163 +1,28 @@
-# modern-resume-theme [![Gem Version](https://badge.fury.io/rb/modern-resume-theme.svg)](https://badge.fury.io/rb/modern-resume-theme) [![Build Status](https://travis-ci.com/sproogen/modern-resume-theme.svg?branch=master)](https://travis-ci.com/sproogen/modern-resume-theme)
+# JONGSKY.github.io
 
-*A modern simple static resume template and theme. Powered by Jekyll and GitHub pages.*
-*Host your own resume on GitHub for **free!***
+이종호의 AI Product & Research 포트폴리오입니다. GitHub Pages에서 Jekyll로 빌드되며, 포트폴리오·경력·연구·자격 정보를 한 곳에서 관리합니다.
 
-Now includes **Dark Mode**
+## 구조
 
-[View Demo](https://sproogen.github.io/modern-resume-theme/)
+- `_data/site.yml`: 히어로 문구와 역량 그룹
+- `_data/projects.yml`: 프로젝트 카드와 상세 페이지의 단일 데이터 원천
+- `_data/experience.yml`: 경력
+- `_data/research.yml`, `_data/awards.yml`: 연구와 수상
+- `_data/education.yml`, `_data/credentials.yml`: 학력과 자격
+- `projects/*.md`: 프로젝트 URL을 만드는 얇은 페이지 파일
+- `_includes/home.html`: 홈 화면 섹션
+- `_layouts/project.html`: 모든 프로젝트 상세 화면
+- `assets/main.scss`, `assets/js/index.js`: 스타일과 테마·필터 동작
 
-![img](screenshot.png)
+새 프로젝트를 추가할 때는 `_data/projects.yml`에 데이터를 넣고 `projects/<slug>.md` 파일을 하나 추가합니다. 고객명·내부 링크·비공개 수치는 공개 전 업종 중심 표현으로 바꿉니다.
 
-*Thank you for checking out my resume theme / template. If you have any feedback or suggestions for things I can add please let me know by either by raising an [issue](https://github.com/sproogen/modern-resume-theme/issues/new/choose) or feel free to send me an email to [sprog31@gmail.com](mailto:sprog31@gmail.com), I'm always happy to help.*
+## 로컬 확인
 
-*I always enjoy seeing how people are using my creations and if you would like to say thanks feel free to [buy me a coffee (buymeacoffee.com/vJ6HfLu)](https://buymeacoff.ee/vJ6HfLu).*
+GitHub Pages가 제공하는 Jekyll 버전으로 빌드됩니다. Ruby와 Bundler를 설치한 뒤 다음 명령을 사용합니다.
 
-*If you would like to see how I am using this then you can view my resume [here (jameswgrant.co.uk)](http://www.jameswgrant.co.uk/) and find the code [here (sproogen/jameswgrant)](https://github.com/sproogen/jameswgrant), hopefully this might help you.*
-
-You can view the project [roadmap here](https://github.com/sproogen/modern-resume-theme/projects/1).
-
-## Installation & setup guide
-This template is designed to be hosted using GitHub pages and so that's what these instructions will cover. If you plan on hosting it seperately then there might be some extra steps that we wont cover.
-
-Before starting it might be useful to familiarise yourself with [Jekyll](https://jekyllrb.com/docs/home/), [Markdown](https://www.markdownguide.org/getting-started) and [GitHub pages](https://pages.github.com/).
-
-##### Step 1 - GitHub
-Start by creating an account on [GitHub](https://github.com/join)
-
-##### Step 2 - Create Repository
-Create a repository on GitHub to hold your files and host your resume. You can find out how to do that [here](https://pages.github.com/)
-
-##### Step 3 - Download Resume Template
-Download and extract the following zip into the git repository you have just created. [resume-template.zip](https://github.com/sproogen/modern-resume-theme/archive/gh-pages.zip)
-
-##### Step 4 - Push it
-Commit and push the resume template to github
-```
-$ git add --all
-$ git commit -m "Initial resume setup"
-$ git push -u origin master
-```
-##### Set 5 - See it
-You should now be able to see the demo resume template using this theme at `[your-username].github.io`
-
-## Usage
-
-So now you will be able to see the demo template at your github url. You can can edit the yml files and replace the demo content with your own. Hopefully it will be fairly simple to work out where all the content goes, but here is a quick overview.
-
-##### _config.yml
-This will contain all the of the main configuration for your resume such as your name, email, social media links and about me content. It will also allow you to change the titles of some of the content sections.
-A full example of the _config.yml can be found [here](https://github.com/sproogen/modern-resume-theme/blob/master/_config.yml)
-
-##### Dark Mode
-Dark mode is configured via _config.yml 
-```
-darkmode: true (options: true, false, never)
-```
-When dark mode is `true` the site will show the dark theme for everyone  
-When dark mode is `false` the site will not show the dark theme, but it will still respect the users device preferences  
-When dark mode is `never` the site will never be shown in the dark theme
-
-##### _data/education.yml
-A list of all your education, each education will follow this format
-```
-- layout: left (options: left, right, top, top-right, top-middle)
-  name: Institution name
-  dates: Date Range (eg. 2016 - 2019)
-  qualification: Qualifications (eg. BA Performing Arts)
-  quote: >
-    Short institution or course description (optional)
-  description: | # this will include new lines to allow paragraphs
-    Description of qualification
+```bash
+bundle install
+bundle exec jekyll serve
 ```
 
-##### _data/experience.yml
-A list of all your experience, each experience will follow this format
-```
-- layout: left (options: left, right, top, top-right, top-middle)
-  company: Company name
-  link: Link to company (eg. https://google.com)(optional)
-  job_title: Job title
-  dates: Date Range (eg. November 2016 - present)
-  quote: >
-   Short description of the company (optional)
-  description: | # this will include new lines to allow paragraphs
-    Description of role
-```
-
-If you wish to specify multiple job titles for a single company, use this format
-```
-- layout: left (options: left, right, top, top-right, top-middle)
-  company: Company name
-  link: Link to company (optional)
-  jobs:
-    - title: Job title 1
-      dates: Date Range (eg. November 2016 - present)
-    - title: Job title 2
-      dates: Date Range (eg. January 2015 - November 2016)
-  quote: >
-   Short description of the company (optional)
-  description: | # this will include new lines to allow paragraphs
-    Description of role
-```
-
-##### _data/projects.yml
-A list of all your projects, each project will follow this format
-```
-- layout: left (options: left, right, top, top-right, top-middle)
-  name: Project name
-  link: Link to project (eg. https://sproogen.github.io/modern-resume-theme)(optional)
-  github: Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    Short overview of the project (optional)
-  description: | # this will include new lines to allow paragraphs
-    Description about the work on/with the project
-```
-
-##### assets/main.scss
-Add any css changes or additions you want to make here after the line `@import 'modern-resume-theme';`
-
-## Running locally
-
-Before you start make sure you have *Ruby* and the gems for *Jekyll* installed locally. You can find out how to do that [here](https://jekyllrb.com/docs/installation/).
-
-1. Clone your resume repository locally *(if you haven't already)*
-2. `cd [your-repository-name]`
-3. `bundle install`
-4. `bundle exec jekyll serve`
-5. Open your browser to `http://localhost:4000`
-
-Any changes you make will automatically build and you will be able to see these by refreshing your browser.
-
-*Note: You will need to re-run `bundle exec jekyll serve` to see changes made in `_config.yml`.*
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/sproogen/modern-resume-theme. You can view our full guide to contributing [here](https://github.com/sproogen/modern-resume-theme/blob/master/CONTRIBUTING.md)
-This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Development
-
-### Locally
-
-Before you start make sure you have *Ruby* and the gems for *Jekyll* installed locally. You can find out how to do that [here](https://jekyllrb.com/docs/installation/).
-
-*Note: You will need version `1.15.2` of bundler, as this is the only version that Heroku supports.*
-
-1. Fork and or clone this repository locally
-2. `cd modern-resume-theme`
-3. `bundle install`
-4. `bundle exec jekyll serve`
-5. Open your browser to `http://localhost:4000`
-
-Any changes you make will automatically build and you will be able to see these by refreshing your browser. To find out more about *Jekyll* take a look [here](https://jekyllrb.com/docs/usage/).
-
-*Note: You will need to re-run `bundle exec jekyll serve` to see changes made in `_config.yml`.*
-
-### Docker
-
-If you have docker installed you can simply run `docker-compose up` to launch the site in a container, it will then be hosted at `http://localhost:4000`
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+브라우저에서 `http://localhost:4000`을 열면 됩니다.

@@ -1,0 +1,25 @@
+hero:
+  eyebrow: AI PRODUCT · RESEARCH · SYSTEMS
+  headline: AI 모델을 실제 업무 흐름으로 연결합니다.
+  lead: 서비스의 문제를 이해하고, 모델과 데이터를 조합해 사용자가 계속 쓰는 시스템으로 만듭니다. 연구의 질문을 제품의 언어로 번역하고, API·인프라·운영까지 이어지는 결과를 설계합니다.
+  availability: 2023.08 — present · Team Reboott AI Team
+  primary_cta: Selected work 보기
+  secondary_cta: 이메일 보내기
+
+principles:
+  - label: Understand
+    text: 현장의 문서·데이터·사용자 흐름부터 파악합니다.
+  - label: Build
+    text: 모델을 API와 제품 화면, 배포 환경까지 연결합니다.
+  - label: Prove
+    text: 품질과 운영 신호를 확인하고 다음 개선을 남깁니다.
+
+skill_groups:
+  - name: AI & Research
+    items: LLM, Multimodal AI, RAG, OCR, Prompt Engineering, Fine-tuning, Evaluation
+  - name: Product Engineering
+    items: Python, Django, FastAPI, REST API, PostgreSQL, MySQL, React basics
+  - name: Platform & Operations
+    items: Docker, Kubernetes, Kafka, Redis, Celery, Prometheus, Grafana, AWS, Azure
+  - name: Data & Communication
+    items: Pandas, Tableau, NLP, Data Visualization, Technical Writing, Customer Debugging

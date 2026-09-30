@@ -1,0 +1,76 @@
+{% assign hero = site.data.site.hero %}
+<section id="top" class="hero-section">
+  <div class="hero-copy">
+    <p class="eyebrow">{{ hero.eyebrow }}</p>
+    <h1>{{ hero.headline }}</h1>
+    <p class="hero-lead">{{ hero.lead }}</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#work">{{ hero.primary_cta }} <span>↘</span></a>
+      <a class="button button-ghost" href="mailto:{{ site.email }}">{{ hero.secondary_cta }}</a>
+    </div>
+    <p class="availability"><span class="status-dot"></span>{{ hero.availability }}</p>
+  </div>
+  <div class="hero-visual" aria-label="프로필 요약">
+    <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+    <div class="visual-card">
+      <div class="visual-card-top"><span>JONGHO / 01</span><span>AI ENGINEER</span></div>
+      <div class="profile-frame"><img src="{{ site.about_profile_image | relative_url }}" alt="이종호 프로필 사진"></div>
+      <div class="visual-card-bottom"><strong>Model → Product</strong><span>Research → Reality</span></div>
+    </div>
+    <div class="visual-note note-top">LLM<br>VISION<br>RAG</div>
+    <div class="visual-note note-bottom">BUILD<br>MEASURE<br>OPERATE</div>
+  </div>
+</section>
+
+<section class="signal-strip" aria-label="핵심 방향">
+  {% for principle in site.data.site.principles %}<div><span>0{{ forloop.index }}</span><strong>{{ principle.label }}</strong><p>{{ principle.text }}</p></div>{% endfor %}
+</section>
+
+<section id="work" class="content-section work-section">
+  <div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2>문제를 시스템으로<br><em>바꾼 기록</em></h2></div><p class="section-intro">모델 성능만으로 끝내지 않고, 사용자의 업무와 운영 환경에 닿는 지점까지 기록합니다.</p></div>
+  <div class="work-grid featured-grid">
+    {% assign featured_projects = site.data.projects | where: "featured", true %}
+    {% for project in featured_projects %}
+    <a class="work-card work-card-{{ project.accent }}" href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">
+      <div class="card-top"><span>{{ project.category }}</span><span>{{ project.period }}</span></div>
+      <div class="card-index">0{{ forloop.index }}</div>
+      <h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
+      <div class="card-bottom"><span>{{ project.contribution }}</span><span class="arrow">↗</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="metric-band"><div><strong>2023 — now</strong><span>AI 서비스 개발·운영</span></div><div><strong>5×</strong><span>연구·대회 수상</span></div><div><strong>Model → API → Ops</strong><span>끝까지 연결하는 범위</span></div></section>
+
+<section class="content-section all-work-section">
+  <div class="section-heading compact"><div><p class="eyebrow">02 / EARLIER WORK</p><h2>시작점이 된 프로젝트</h2></div><p class="section-intro">데이터 수집, 웹 개발, NLP, 시각화에서 지금의 제품 개발 방식이 시작됐습니다.</p></div>
+  <div class="filter-row" role="tablist" aria-label="프로젝트 분류"><button class="filter-button is-active" data-filter="all">All</button><button class="filter-button" data-filter="Earlier-Work">Earlier work</button><button class="filter-button" data-filter="Research">Research</button><button class="filter-button" data-filter="Enterprise-AI">Enterprise AI</button></div>
+  <div class="work-grid archive-grid">
+    {% assign archive_projects = site.data.projects | where: "featured", false %}
+    {% for project in archive_projects %}
+    <a class="work-card archive-card" data-category="{{ project.category | slugify }}" href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">
+      <div class="card-top"><span>{{ project.category }}</span><span>{{ project.period }}</span></div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p><div class="card-bottom"><span>{{ project.contribution }}</span><span class="arrow">↗</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="experience" class="content-section split-section">
+  <div class="section-heading compact"><div><p class="eyebrow">03 / EXPERIENCE</p><h2>만드는 사람의<br><em>시간</em></h2></div></div>
+  <div class="timeline">{% for item in site.data.experience %}<article class="timeline-item"><div class="timeline-marker"></div><div class="timeline-meta"><strong>{{ item.period }}</strong><span>{{ item.location }}</span></div><div class="timeline-content"><h3>{{ item.company }}</h3><p class="role">{{ item.role }}</p><p>{{ item.summary }}</p><ul>{% for bullet in item.bullets %}<li>{{ bullet }}</li>{% endfor %}</ul></div></article>{% endfor %}</div>
+</section>
+
+<section id="research" class="content-section research-section">
+  <div class="section-heading compact"><div><p class="eyebrow">04 / RESEARCH & AWARDS</p><h2>질문을 실험으로,<br><em>결과를 증거로</em></h2></div><p class="section-intro">제품을 만들며 생긴 질문을 연구로 확장하고, 연구의 결과를 다시 구현 가능한 구조로 바꿉니다.</p></div>
+  <div class="research-layout"><div class="research-list">{% for item in site.data.research %}<article class="research-item"><div class="research-meta"><span>{{ item.period }}</span><span>{{ item.venue }}</span></div><h3>{{ item.title }}</h3><p>{{ item.summary }}</p><div class="tag-list small">{% assign tags = item.tags | split: ', ' %}{% for tag in tags %}<span>{{ tag }}</span>{% endfor %}</div></article>{% endfor %}</div><aside class="awards-panel"><p class="eyebrow">AWARDS</p>{% for item in site.data.awards %}<div class="award-item"><strong>{{ item.title }}</strong><span>{{ item.period }}</span><p>{{ item.description }}</p></div>{% endfor %}</aside></div>
+</section>
+
+<section id="about" class="content-section about-section">
+  <div class="section-heading compact"><div><p class="eyebrow">05 / ABOUT</p><h2>저는 이렇게<br><em>일합니다</em></h2></div></div>
+  <div class="about-grid"><div class="about-statement"><p>저는 데이터를 보고 끝내기보다, 그 데이터가 실제로 쓰이는 흐름을 만들고 싶습니다. 그래서 연구에서는 재현 가능한 실험을, 제품에서는 계속 운영할 수 있는 구조를 고민합니다.</p><p>문서·메일·이미지처럼 정형화하기 어려운 정보를 다루고, 모델의 한계를 제품 설계와 검증 루프로 보완해 왔습니다.</p></div><div class="skill-groups">{% for group in site.data.site.skill_groups %}<div class="skill-group"><h3>{{ group.name }}</h3><div class="tag-list small">{% assign skills = group.items | split: ', ' %}{% for skill in skills %}<span>{{ skill }}</span>{% endfor %}</div></div>{% endfor %}</div></div>
+</section>
+
+<section class="content-section credentials-section"><div class="credentials-columns"><div><p class="eyebrow">EDUCATION</p>{% for item in site.data.education %}<div class="credential-row"><strong>{{ item.school }}</strong><span>{{ item.period }}</span><p>{{ item.degree }}<br>{{ item.detail }}</p></div>{% endfor %}</div><div><p class="eyebrow">CREDENTIALS</p>{% for item in site.data.credentials %}<div class="credential-row inline"><strong>{{ item.name }}</strong><span>{{ item.period }}</span><p>{{ item.issuer }}</p></div>{% endfor %}</div></div></section>
+
+<section id="contact" class="contact-section"><p class="eyebrow">06 / CONTACT</p><h2>같이 만들 이야기가<br>있다면 <em>연락해주세요.</em></h2><a class="contact-email" href="mailto:{{ site.email }}">{{ site.email }} <span>↗</span></a><div class="contact-links"><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://jongsky.tistory.com/" target="_blank" rel="noreferrer">Blog ↗</a><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></section>

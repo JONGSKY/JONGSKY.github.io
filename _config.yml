@@ -1,114 +1,32 @@
-# Site
-repository: Git repository where your resume will be hosted, only required if you are hosting on GitHub (eg. sproogen/modern-resume-theme)
-# favicon: Directory of your favicon (eg. images/favicon.ico)(optional)
-
-# Personal info
 name: JONGHO LEE
-title: AI Engineer
-# email: ljhljh0125@gmail.com
-#phone: Your phone number (optional)
-# website: https://www.notion.so/jongsky/Jongho-Lee-40fcd70fb3384dfd923c1b8370522cb0
+title: AI Product & Research Engineer
+description: AI 모델과 업무 시스템 사이를 연결하는 AI Product & Research Engineer
+url: https://jongsky.github.io
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
 
-# Dark Mode (true/false/never)
-darkmode: false
-
-# Social links
-#twitter_username: jekyllrb
-github_username:  JONGSKY
-#stackoverflow_username: "00000001"
-#dribbble_username: jekyll
-#facebook_username: jekyll
-#flickr_username: jekyll
+email: ljhljh0125@gmail.com
+github_username: JONGSKY
 instagram_username: jongsky_data
 linkedin_username: jong-sky
-#xing_username: jekyll
-#pinterest_username: jekyll
-#youtube_username: jekyll
-#googleplus_username: +jekyll
-#orcid_username: 0000-0000-0000-0000
 
-# Additional icon links
-additional_links:
-- title: Tableau Public
-  icon: fas fa-chart-line  #Font Awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
-  url: https://public.tableau.com/profile/.19603039#!/
-# - title: another link
-#   icon: font awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
-#   url: Link url (eg. https://google.com)
-
-# Google Analytics and Tag Manager
-# Using more than one of these may cause issues with reporting
-# gtm: "GTM-0000000"
-# gtag: "UA-00000000-0"
-# google_analytics: "UA-00000000-0"
-
-# About Section
-# about_title: About Me (Use this to override about section title)
+darkmode: false
 about_profile_image: ./assets/images/profile_image.jpg
-about_content: | # this will include new lines to allow paragraphs
 
-   폭넓은 <mark>Data Analysis</mark> 및 AI 기반 데이터 처리 경험
-    (Python, Tableau, AWS, GCP 등 활용)
-    - 조선업 야드 내 IoT raw 데이터 분석 및 대시보드 시각화를 통한 생산성 향상 도모
-    - 특허 데이터의 Clustering 결과를 Echarts 및 Datatables를 활용해 시각적으로 효과적으로 표현
-    - 기상 및 교통 데이터를 수집하여 제설 분석을 위한 시각화 및 인사이트 도출
-    - 연구 주제 발굴을 위한 논문 및 포털 사이트 데이터를 수집하고, NLP 기법을 사용해 분석
-
-   <mark>자기 개발</mark>을 위한 지속적인 학습과 커뮤니티 기여
-    - 시각화 프로젝트를 수행하고 Tableau 커뮤니티와 SNS에 결과물 공유 및 피드백 수집
-    - 학습 내용을 체계적으로 정리하고 [시간의 농도](https://jongsky.tistory.com/), [Study Log](https://jongsky.github.io/Study-Log/)에 공유
-    - 논문을 읽고 텍스트 요약 후 이를 바탕으로 구현 코드 작성 및 분석
-    - 국내 대표 태블로 커뮤니티, '플랜잇 데이터 시각화 커뮤니티' 11기로 활동하며 데이터 시각화 및 인사이트 도출에 기여
-
-#  Write an awesome description about yourself here, this supports markdown, so you can add [links](http://foobar.com) and highlight things <mark>like this</mark>.
-#
-#  You can even add paragraphs by using empty lines like this and add anything else markdown supports such as
-#    - Lists
-#    - Tables
-#    - <a href="google.com">Links</a>
-#    - Images
-
-# Projects Section
-projects_title: Projects #(Use this to override about projects section title)
-
-# Experience Section
-experience_title: Experience #(Use this to override about experience section title)
-
-# Education Section
-# education_title: Education #(Use this to override about education section title)
-
-# More Section
-# more_title: A Little More About Me #(Use this to override about more section title)
-more_content: | # this will include new lines to allow paragraphs
-  If you want to know more, <a href="https://www.notion.so/jongsky/Jongho-Lee-40fcd70fb3384dfd923c1b8370522cb0"><mark>Clik Me</mark></a>.
-
-#  This is where you can write a little more about yourself. You could title this section **Interests** and include some of your other interests.
-#
-#  Or you could title it **Skills** and write a bit more about things that make you more desirable, like *leadership* or *teamwork*
-
-# Footer
-footer_show_references: false
-
-# Build settings
-# theme: modern-resume-theme (Use this is you are hosting your resume yourself)
-# remote_theme: sproogen/modern-resume-theme (Use this if you are hosting your resume on GitHub)
+plugins:
+  - jekyll-seo-tag
 
 sass:
   sass_dir: _sass
   style: compressed
 
-plugins:
- - jekyll-seo-tag
-
-exclude : [
-  "Gemfile",
-  "Gemfile.lock",
-  "node_modules",
-  "vendor/bundle/",
-  "vendor/cache/",
-  "vendor/gems/",
-  "vendor/ruby/",
-  "lib/",
-  "scripts/",
-  "docker-compose.yml",
-  ]
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - lib
+  - scripts
+  - docker-compose.yml
+  - README.md

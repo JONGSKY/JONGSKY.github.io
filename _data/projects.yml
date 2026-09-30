@@ -1,87 +1,311 @@
-# Project template
-- layout: top-middle
-  name: 창의성 계발을 위한 서술형 평가지원 AI 프로그램 개발
-  link: http://wai.best #(eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: JONGSKY/WAI-Automated-Scoring #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    - 프로젝트기간 : 2020.03 ~ 2020.12 <br>
-    - 지원기관 : <a href="https://lms.kofac.re.kr/front/main/index.do" target="_blank">한국과학창의재단</a>
-  description: | # this will include new lines to allow paragraphs
-    - 개발 프로젝트 매니저
-    - Front-end 및 Back-end 개발 전반 담당
-    - 프로젝트 DB 설계 및 화면설계서, 기능명세서 작성
-    - 주요 기술 스택 :
-      - Python : 데이터 처리 (pandas, numpy)
-      - Django : 웹 프레임워크로 활용한 Back-end 개발
-      - Bootstrap, HTML, CSS, jQuery, Ajax : Web Front-end 개발
-      - PostgreSQL : 웹 애플리케이션의 데이터베이스 설계 및 구축
-      - Docker : Web, DB, 채점 모델 등 Docker 기반 시스템 운영
-      - GCP : GCP를 활용한 웹 서버 구축 및 관리
-      
-- layout: top-middle
-  name: 빅데이터분석 및 AI 개발을 통한 생산성 향상방안 연구
-#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: TeamLab/DSME-AI-Smart-Yard #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    - 프로젝트기간 : 2019.12 ~ 2020.11 <br>
-    - 지원기관 : <a href="https://www.dsme.co.kr/pub/main/index.do" target="_blank">대우조선해양(주)</a>
-  description: | # this will include new lines to allow paragraphs
-    - 대형 대시보드 설계 및 시각화 작업 총괄
-    - 데이터 전처리 파이프라인 구축 및 실시간 시각화 대시보드 개발
-    - 지게차, 고소차 등 주요 장비의 데이터를 활용한 분석 및 시각화
-    - 주요 기술 스택 :
-      - Python : 데이터 전처리 및 파이프라인 구축 (Pandas, Numpy, MySQLConnector)
-      - 데이터 시각화 : Matplotlib, Seaborn을 사용한 시각적 데이터 표현
-      - Tableau : 기업 내 서버에서 Tableau 서버 구축 및 데이터 시각화 (WIP, 맵차트, 히트맵 등)
-      - MySQL : 데이터베이스 설계 및 서버 내 데이터 관리
-      - Docker : 모든 프로그램의 Docker화 (MySQL, Django 등)
+- slug: multi-llm-platform
+  title: 멀티 LLM AI 서비스 개발·운영
+  category: Platform & Product
+  featured: true
+  period: 2024.01 — present
+  contribution: 50%
+  accent: violet
+  summary: 채팅·이미지 생성·회의록 요약을 하나의 서비스 경험으로 묶고, 모델 호출부터 비동기 처리·배포·모니터링까지 운영 가능한 플랫폼으로 만들었습니다.
+  context: 여러 모델과 기능이 빠르게 늘어나는 서비스에서 요청 처리, 모델 교체, 장애 확인, 고객 피드백 반영을 한 흐름으로 관리해야 했습니다.
+  role:
+    - 기능 요구사항을 API와 서비스 화면의 작업 단위로 정리
+    - Kafka로 요청과 처리를 분리하고 Celery·Redis 기반 비동기 작업 구성
+    - Kubernetes 배포와 모델 서빙 환경, Prometheus·Grafana·Slack 알림 구축
+    - Gemini·GPT 계열 모델 테스트와 프롬프트·도구 호출 기능 개선
+  stack: Python, Django, FastAPI, Kafka, Redis, Celery, Docker, Kubernetes, Prometheus, Grafana
+  architecture:
+    - 사용자의 요청을 큐에 넣고 작업 유형별 consumer가 모델 호출을 처리
+    - 장시간 작업은 상태와 결과를 저장해 화면에서 진행 상황을 확인
+    - 공통 모니터링과 알림으로 배포 이후 장애를 빠르게 추적
+  outcomes:
+    - 모델과 기능이 늘어도 요청 처리 계층을 재사용할 수 있는 기반 확보
+    - 자동 배포·모니터링·고객 환경 디버깅까지 이어지는 운영 경험 축적
+  proof: 2024.01 — 2026.09 · Team Reboott 내부 서비스
 
-- layout: top-middle
-  name: 특허 검색 시스템
-#   link: http://pamplona.gachon.ac.kr/patent_search #(eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: JONGSKY/patent_search_system #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    - 프로젝트기간 : 2019.09 ~ 2019.12 <br>
-    - 지원기관 : <a href="http://theteamlab.io/" target="_blank">TEAMLAB</a>
-  description: | # this will include new lines to allow paragraphs
-    - 특허 검색 및 데이터 시각화 시스템 개발
-    - Front-end 및 Back-end 개발 전반 담당
-    - Echarts, DataTables, Wordcloud 등을 활용한 데이터 시각화
-    - 주요 기술 스택 :
-      - Python : 데이터 처리 (Pandas, Numpy) 및 자연어 처리 (Word2Vec, nltk, gensim)
-      - Django : 웹 프레임워크로 활용한 Back-end 개발
-      - Bootstrap, HTML, CSS, jQuery, Ajax : Web Front-end 개발
-      - 데이터 시각화 : TSNE, KMeans, Wordcloud로 시각적 분석 제공
-      - MySQL : 데이터베이스 설계 및 구현
+- slug: shipping-invoice-automation
+  title: 해운업 전표·인보이스 자동화
+  category: Document AI & Automation
+  featured: true
+  period: 2024.02 — 2025.03
+  contribution: 75%
+  accent: mint
+  summary: 메일과 인보이스에서 업무에 필요한 정보를 추출하고, 문서별 OCR·프롬프트·후처리와 ERP 입력 흐름까지 연결했습니다.
+  context: 선박·거래처마다 다른 문서 형식과 표현을 사람이 반복 확인하던 업무를 자동화하고, 결과를 검토 가능한 형태로 남겨야 했습니다.
+  role:
+    - 문서 유형별 추출 항목과 정답 데이터셋 정의
+    - OCR 결과와 LLM 응답을 조합하고 문서별 프롬프트·후처리 규칙 개발
+    - Kafka·FastAPI 기반 추출 API와 저장·SSE 응답 흐름 구현
+    - 고객 데이터로 오류를 재현하고 인증·네트워크·서버 환경까지 디버깅
+  stack: Python, FastAPI, Kafka, OCR, LLM, Docker, REST API, SSE
+  architecture:
+    - 메일·첨부파일을 수집해 문서 유형을 분류
+    - OCR·LLM·규칙 기반 후처리로 필드를 추출하고 검증 상태를 기록
+    - 사용자가 확인한 결과를 저장하고 ERP 입력에 활용할 수 있게 연결
+  outcomes:
+    - 문서별 품질 개선을 위한 데이터셋과 검증 루프 구축
+    - 초기 PoC부터 고객 현장 운영·추가 선박 테스트까지 확장
+  proof: 2024.02 — 2025.03 · 해운업 고객 대상 업무 자동화
 
-- layout: top-middle
-  name: 제설 관련 측정 자료 Big Data 분석 연구
-#  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  quote: >
-    - 프로젝트기간 : 2019.08 ~ 2019.12 <br>
-    - 지원기관 : <a href="http://www.sit.re.kr/home/homeIndex.do" target="_blank">서울기술연구원</a>
-  description: | # this will include new lines to allow paragraphs
-    - 기상, 교통 데이터를 수집 및 정리하여 제설 효과 분석
-    - 강설 및 기상 데이터를 기반으로 한 시계열 분석 및 상관관계 분석
-    - 기초 통계 분석을 통한 인사이트 도출 및 시각화 작업
-    - 주요 기술 스택 :
-      - Python : 데이터 수집 (Selenium, Beautifulsoup) 및 처리 (Pandas, Numpy)
-      - 데이터 시각화 : Matplotlib, Seaborn을 활용한 인사이트 시각화
--
-# - layout: top-middle
-#   name: 2020년 연구주제 발굴조사
-# #  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
-#   github: JONGSKY/snow #Github page for project (eg. sproogen/modern-resume-theme)(optional)
-#   quote: >
-#     - 프로젝트기간 : 2019.07 ~ 2019.08 <br>
-#     - 지원기관 : <a href="https://www.si.re.kr/" target="_blank">서울연구원</a>
-#   description: | # this will include new lines to allow paragraphs
-#     - 논문데이터 수집 및 정리
-#     - 데이터 기초 분석 및 LDA 분석
-#     - 상세기술
-#       - Python
-#         - 데이터 수집 : Selenium, Beautifulsoup
-#         - 데이터 분석 : Pandas, Numpy
-#         - 자연어 처리 : TfidfVectorizer, LdaModel, konlpy, nltk, gensim
-#         - 데이터 시각화 : Matplotlib, pyLDAvis
+- slug: on-prem-llm-agent
+  title: 조선업 온프레미스 LLM 에이전트
+  category: Enterprise AI
+  featured: true
+  period: 2026.02 — present
+  contribution: 30%
+  accent: orange
+  summary: 외부 반출이 어려운 기업 환경에서 문서·통합 에이전트를 사용할 수 있도록 현장 서버에 모델 서빙과 서비스를 구성했습니다.
+  context: 사내 문서와 업무 시스템을 다루면서도 접근 제한과 오픈소스 모델 조건을 지켜야 하는 PoC였습니다.
+  role:
+    - 현장 요구사항과 에이전트 사용 시나리오를 기술 작업으로 분해
+    - 컨테이너 기반 모델 서빙과 API·웹 서비스 배포 구조 구성
+    - 데이터 접근 경계와 사용자 요청 흐름을 확인하고 현장 대응
+  stack: Python, FastAPI, Docker, Kubernetes, Open-source LLM, RAG
+  architecture:
+    - 사내 네트워크 안에서 문서 검색·모델 호출·업무 도구를 분리
+    - 외부 API 의존을 줄이고 GPU 서버 자원에 맞춰 모델을 서빙
+    - PoC 결과를 다음 플랫폼 협의와 운영 작업으로 연결
+  outcomes:
+    - 온프레미스 AI 서비스의 배포·운영 조건을 실제 현장에서 검증
+    - 문서 지식과 업무 도구를 에이전트로 연결하는 기반 마련
+  proof: 2026.02 — present · 조선업 현장 PoC
+
+- slug: knowledge-wiki-chat
+  title: 기업 문서 지식 기반 위키·채팅
+  category: Enterprise AI
+  featured: true
+  period: 2026.06 — present
+  contribution: 40%
+  accent: blue
+  summary: 기업 문서를 파싱해 마크다운·텍스트 기반 위키로 정리하고, 생성된 지식을 LLM 채팅에서 질문할 수 있게 연결했습니다.
+  context: 흩어진 사내 문서를 검색 가능한 지식으로 바꾸고, 답변의 근거가 되는 문서 흐름을 사용자에게 보여줘야 했습니다.
+  role:
+    - 문서 입력·파싱·정제 단계를 설계하고 지식 단위로 변환
+    - 위키 생성 결과를 채팅 검색·답변 흐름에 연결
+    - 현장 데이터와 코드 구조를 확인하며 PoC 범위 조정
+  stack: Python, Document Parsing, Markdown, RAG, LLM, FastAPI
+  architecture:
+    - 원문 문서를 파싱하고 구조·메타데이터를 보존한 텍스트로 변환
+    - 생성된 지식을 검색 인덱스와 채팅 컨텍스트로 전달
+    - 사용자 질문과 근거 문서를 함께 관리할 수 있도록 확장
+  outcomes:
+    - 문서 정리와 질의응답을 하나의 흐름으로 묶은 지식 에이전트 기반 확보
+    - 기업 문서의 구조화와 LLM 활용 사이의 연결 지점 검증
+  proof: 2026.06 — present · 기업 지식 에이전트 과제
+
+- slug: scicap
+  title: SciCap — 학술 도표 캡션 생성
+  category: Research
+  featured: true
+  period: 2024 — 2025
+  contribution: 연구·개발
+  accent: coral
+  summary: 도표 이미지·본문·OCR·다른 도표와 캡션을 결합해 저자 문체를 반영하는 장문 캡션 생성 파이프라인을 연구했습니다.
+  context: 도표만 보는 캡션 생성에서 벗어나 논문의 문맥과 작성자의 표현을 함께 반영하고, 생성 품질을 자동으로 선별해야 했습니다.
+  role:
+    - 멀티모달 입력 조합과 데이터 전처리 파이프라인 설계
+    - Qwen2.5-VL·LLaVA 파인튜닝과 생성 결과 평가
+    - GPT 평가 샘플을 활용한 품질 필터링 모델 개발
+  stack: Python, PyTorch, Qwen2.5-VL, LLaVA, OCR, Fine-tuning, Evaluation
+  architecture:
+    - 이미지·본문·OCR·참고 캡션을 하나의 학습·추론 입력으로 구성
+    - 생성 결과를 품질 평가 모델로 필터링하고 전문가 평가로 검증
+  outcomes:
+    - IJCAI 2024 SciCap Long Caption Track 1위
+    - AAAI 2025 AI4Research 워크숍 채택
+    - COLM 2025 SciCap Quality Track 1위
+  proof: IJCAI 2024 · AAAI 2025 · COLM 2025
+
+- slug: vrd-iu
+  title: VRD-IU — 문서 레이아웃 정보 추출
+  category: Research
+  featured: true
+  period: 2024
+  contribution: 연구·개발
+  accent: yellow
+  summary: 복잡한 PDF를 영역별로 나누고 글자 정보와 좌표를 추출해 문서의 구조와 의미를 복원했습니다.
+  context: 문서의 텍스트만 추출하면 표·도형·영역 관계가 사라지므로 위치 정보와 레이아웃을 함께 다뤄야 했습니다.
+  role:
+    - YOLOv8·YOLOv10·RT-DETR·LayoutLMv3 조합 실험
+    - 누락 영역과 좌표 순서 오류를 보정하는 후처리 개발
+    - 대회 데이터셋 평가와 결과 분석
+  stack: Python, PyTorch, YOLOv8, YOLOv10, RT-DETR, LayoutLMv3, OCR
+  architecture:
+    - 페이지를 의미 영역으로 검출하고 영역별 텍스트·좌표를 추출
+    - 레이아웃 모델 결과를 후처리해 문서 순서와 누락을 보정
+  outcomes:
+    - IJCAI 2024 VRD-IU Track A·B 1위
+    - 문서 정보 추출을 모델 성능만이 아닌 후처리·검증 구조로 확장
+  proof: IJCAI 2024 VRD-IU Track A·B
+
+- slug: wa3i
+  title: 서술형 평가 지원 AI 프로그램
+  category: Earlier Work
+  featured: false
+  period: 2020.03 — 2020.12
+  contribution: 프로젝트 매니저
+  accent: blue
+  summary: 서술형 답변 자동채점 모델을 웹 서비스로 연결하고, 데이터베이스·화면·배포 환경을 함께 구축했습니다.
+  context: 연구용 자동채점 모델을 교사와 학생이 사용할 수 있는 웹 기반 학습 지원 도구로 구현했습니다.
+  role:
+    - 웹 개발 프로젝트 관리와 기능명세·화면설계
+    - Django 기반 백엔드·프론트엔드·DB 설계
+    - 채점 모델 API 연결과 Docker·GCP 배포
+  stack: Python, Django, PostgreSQL, Docker, GCP
+  architecture:
+    - 사용자 인증과 답안 입력을 웹 화면으로 제공
+    - 채점 모델 API 응답을 저장하고 결과를 조회
+  outcomes:
+    - 한국과학창의재단 지원 프로젝트 수행
+    - 관련 연구 WA3I 사례 논문으로 연결
+  proof: 2020.03 — 2020.12 · 한국과학창의재단
+
+- slug: shipyard-data
+  title: 조선업 생산 데이터 분석·시각화
+  category: Earlier Work
+  featured: false
+  period: 2019.12 — 2020.06
+  contribution: 데이터 분석·대시보드 총괄
+  accent: mint
+  summary: 조선소의 장비·공정 데이터를 전처리하고 Tableau 대시보드로 운영 현황과 예측 결과를 보여줬습니다.
+  context: 현장에 흩어진 생산 데이터를 한 화면에서 확인하고 의사결정에 사용할 수 있는 형태로 바꾸는 연구였습니다.
+  role:
+    - 데이터 전처리 및 시각화 파이프라인 구축
+    - 지게차·고소차·블록·화물창·버스·소리 대시보드 제작
+    - 사내 Tableau 서버와 데이터베이스 구성
+  stack: Python, Pandas, Numpy, MySQL, Tableau, Docker
+  architecture:
+    - 수집 데이터를 정제해 MySQL에 저장하고 시각화에 제공
+    - 지도·히트맵·시계열 차트로 장비와 공정 상태를 표현
+  outcomes:
+    - 대우조선해양 생산성 향상 연구 수행
+    - 산업 현장 데이터와 사용자용 시각화의 연결 경험 확보
+  proof: 2019.12 — 2020.06 · TEAMLAB 연구
+
+- slug: news-chatbot
+  title: 한 눈에 보자 — News Chatbot
+  category: Earlier Work
+  featured: false
+  period: 2020.09 — 2020.11
+  contribution: 데이터·챗봇 개발
+  accent: violet
+  summary: 뉴스 수집과 TextRank 요약을 카카오 i 오픈빌더 챗봇으로 제공하고 Ubuntu 서버에서 정기 실행했습니다.
+  context: 사용자가 관심 분야의 뉴스를 짧은 시간에 파악할 수 있도록 수집·요약·응답 파이프라인을 만들었습니다.
+  role:
+    - Selenium·BeautifulSoup 수집과 Pandas 전처리
+    - Flask 스킬 서버와 카카오 i 오픈빌더 시나리오 구성
+    - Crontab 기반 정기 실행과 로그 관리
+  stack: Python, Flask, TextRank, Kakao i, Ubuntu, Crontab
+  architecture:
+    - 정기 수집·전처리 후 요약 결과를 저장
+    - 챗봇 요청을 Flask 스킬 서버로 연결
+  outcomes:
+    - 교내 프로젝트 1등 수상
+    - 수집·모델·챗봇·운영을 하나의 파이프라인으로 구현
+  proof: 2020.09 — 2020.11
+
+- slug: thunder-search
+  title: Thunder Search System
+  category: Earlier Work
+  featured: false
+  period: 2020.08 — 2020.12
+  contribution: 시스템·데이터 파이프라인
+  accent: orange
+  summary: Django 검색 서비스에 MySQL·Logstash·Elasticsearch를 연결하고 모든 구성 요소를 Docker로 운영했습니다.
+  context: 검색·분석 서비스를 여러 개발자가 함께 만들 수 있도록 데이터 파이프라인과 개발 환경을 정리했습니다.
+  role:
+    - 프로젝트 진행과 업무 분담
+    - MySQL·Logstash·Elasticsearch 파이프라인 구축
+    - 개발자 Web 코드 리뷰와 GitHub 관리
+  stack: Python, Django, MySQL, Elasticsearch, Logstash, Docker
+  architecture:
+    - 원천 데이터를 수집·변환해 검색 인덱스로 전달
+    - 웹 서비스와 데이터 계층을 컨테이너로 분리
+  outcomes:
+    - 웹·모바일 시연 버전 구축
+    - 검색 시스템의 개발·운영 경계 경험
+  proof: 2020.08 — 2020.12
+
+- slug: patent-search
+  title: LaSPAM — 특허 검색 시스템
+  category: Earlier Work
+  featured: false
+  period: 2019.09 — 2019.12
+  contribution: Front-end & Back-end
+  accent: yellow
+  summary: 특허 검색 결과를 NLP와 클러스터링으로 분석하고 ECharts·DataTables·Wordcloud로 시각화했습니다.
+  context: 키워드 검색만으로는 보기 어려운 특허 데이터의 관계와 주제를 탐색할 수 있게 만들었습니다.
+  role:
+    - Django 기반 검색 시스템 개발
+    - Word2Vec·KMeans·t-SNE 기반 분석
+    - 검색 결과 시각화와 MySQL 구축
+  stack: Python, Django, MySQL, Word2Vec, KMeans, ECharts
+  architecture:
+    - 특허 데이터를 정제하고 벡터·군집 결과를 저장
+    - 검색 조건과 분석 결과를 웹 화면에서 탐색
+  outcomes:
+    - TEAMLAB 연구 프로젝트 수행
+    - 데이터 분석 결과를 제품 화면으로 전달하는 경험 확보
+  proof: 2019.09 — 2019.12
+
+- slug: snow-data
+  title: 제설 관련 측정 자료 분석
+  category: Earlier Work
+  featured: false
+  period: 2019.08 — 2019.12
+  contribution: 데이터 수집·분석
+  accent: blue
+  summary: 제설·교통·기상 데이터를 수집하고 시계열·상관관계·기초통계 분석으로 제설 효과를 살폈습니다.
+  context: 서로 다른 공공 데이터를 모아 제설 정책과 현장 판단에 필요한 패턴을 찾는 연구였습니다.
+  role:
+    - Selenium·BeautifulSoup 수집과 데이터 정리
+    - Pandas·Numpy 기반 분석
+    - Matplotlib·Seaborn 시각화
+  stack: Python, Selenium, BeautifulSoup, Pandas, Numpy, Seaborn
+  architecture:
+    - 여러 출처의 기상·교통 데이터를 시간 기준으로 정렬
+    - 분석 결과를 지도와 시계열 차트로 표현
+  outcomes:
+    - 서울기술연구원 연구 수행
+    - 공공 데이터 수집부터 인사이트 전달까지 경험
+  proof: 2019.08 — 2019.12
+
+- slug: research-topic
+  title: 2020년 연구주제 발굴조사
+  category: Earlier Work
+  featured: false
+  period: 2019.07 — 2019.08
+  contribution: 데이터 수집·NLP 분석
+  accent: coral
+  summary: 논문 데이터를 수집해 주제 분포를 분석하고 LDA로 연구 키워드를 탐색했습니다.
+  context: 다음 연구 주제를 데이터로 찾기 위해 논문·포털 데이터를 모아 자연어 처리했습니다.
+  role:
+    - Selenium·BeautifulSoup 수집
+    - TF-IDF·LDA 기반 주제 분석
+    - pyLDAvis·Matplotlib 시각화
+  stack: Python, Selenium, Pandas, LDA, Gensim, pyLDAvis
+  architecture:
+    - 논문 텍스트를 수집·정제하고 문서-주제 분포를 산출
+    - 주제 결과를 인터랙티브 시각화로 검토
+  outcomes:
+    - 서울연구원 연구주제 발굴조사 수행
+  proof: 2019.07 — 2019.08
+
+- slug: covid-viz
+  title: Dacon COVID-19 Visualization
+  category: Earlier Work
+  featured: false
+  period: 2020.07
+  contribution: 데이터 분석·시각화
+  accent: mint
+  summary: 버스·지하철·교통량 데이터를 결합해 코로나19 영향과 지역별 차이를 Tableau 대시보드로 표현했습니다.
+  context: 서로 다른 이동 데이터를 한 화면에서 비교해 시기별·지역별 변화를 읽을 수 있게 했습니다.
+  role:
+    - 외부 데이터 수집·전처리
+    - 매개변수·필터·이중축·추세선을 활용한 대시보드 제작
+  stack: Python, Pandas, Matplotlib, Tableau
+  architecture:
+    - 데이터별 기준을 정리해 분석용 테이블로 통합
+    - 대시보드 상호작용으로 사용자가 관점을 바꿔 비교
+  outcomes:
+    - Dacon COVID-19 시각화 프로젝트 참여
+  proof: 2020.07

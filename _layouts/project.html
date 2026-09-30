@@ -1,0 +1,58 @@
+---
+layout: default
+---
+{% assign project = site.data.projects | where: "slug", page.project | first %}
+{% if project %}
+<article class="project-page">
+  <a class="back-link" href="{{ '/' | relative_url }}#work">← 모든 프로젝트</a>
+  <header class="project-hero project-hero-{{ project.accent }}">
+    <div class="project-kicker"><span>{{ project.category }}</span><span>{{ project.period }}</span></div>
+    <h1>{{ project.title }}</h1>
+    <p class="project-lead">{{ project.summary }}</p>
+    <div class="project-meta-row">
+      <div><span>Contribution</span><strong>{{ project.contribution }}</strong></div>
+      <div><span>Evidence</span><strong>{{ project.proof }}</strong></div>
+    </div>
+  </header>
+
+  <section class="project-section project-outcomes">
+    <div class="section-label">01 / OUTCOMES</div>
+    <div class="outcome-list">
+      {% for outcome in project.outcomes %}<p>{{ outcome }}</p>{% endfor %}
+    </div>
+  </section>
+
+  <div class="project-detail-grid">
+    <section class="project-section">
+      <div class="section-label">02 / CONTEXT</div>
+      <h2>왜 만들었는가</h2>
+      <p class="body-copy">{{ project.context }}</p>
+    </section>
+    <section class="project-section">
+      <div class="section-label">03 / OWNERSHIP</div>
+      <h2>내가 맡은 일</h2>
+      <ul class="clean-list">{% for item in project.role %}<li>{{ item }}</li>{% endfor %}</ul>
+    </section>
+  </div>
+
+  <section class="project-section architecture-section">
+    <div class="section-label">04 / SYSTEM</div>
+    <div class="architecture-copy">
+      <div><h2>구현과 구조</h2><p class="body-copy">기능을 나열하기보다 데이터가 들어와 사용자의 결과가 되기까지의 흐름을 기준으로 정리했습니다.</p></div>
+      <ul class="clean-list">{% for item in project.architecture %}<li>{{ item }}</li>{% endfor %}</ul>
+    </div>
+  </section>
+
+  <section class="project-section stack-section">
+    <div class="section-label">05 / STACK</div>
+    <div class="tag-list">{% assign stack_items = project.stack | split: ', ' %}{% for item in stack_items %}<span>{{ item }}</span>{% endfor %}</div>
+  </section>
+
+  <footer class="project-footer">
+    <a href="{{ '/' | relative_url }}#work">← 프로젝트 목록</a>
+    <a href="{{ '/' | relative_url }}#contact">연락하기 →</a>
+  </footer>
+</article>
+{% else %}
+<div class="empty-state"><h1>Project not found</h1><a href="{{ '/' | relative_url }}">홈으로 돌아가기</a></div>
+{% endif %}

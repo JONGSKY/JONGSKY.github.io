@@ -1,0 +1,20 @@
+- title: SciCap — 학술 도표 캡션 생성
+  period: 2024 — 2025
+  venue: IJCAI 2024 · AAAI 2025 AI4Research · COLM 2025
+  summary: 도표 이미지·본문·OCR·다른 도표와 캡션을 결합해 저자 문체를 반영하는 멀티모달 캡션 생성 파이프라인을 연구했습니다.
+  tags: Multimodal, Fine-tuning, Evaluation
+- title: VRD-IU — 문서 레이아웃 정보 추출
+  period: 2024
+  venue: IJCAI 2024 VRD-IU Track A·B
+  summary: 복잡한 PDF를 영역별로 나누고 글자 정보와 좌표를 추출했습니다. 검출 모델과 레이아웃 모델, 후처리를 조합해 누락과 좌표 순서를 보정했습니다.
+  tags: OCR, YOLO, RT-DETR, LayoutLMv3
+- title: Machine learning approach for shipyard forklifts
+  period: 2021
+  venue: Computers in Industry, 133, 103544
+  summary: 불규칙하게 움직이는 조선소 지게차의 상태를 생산 데이터로 분석하는 머신러닝 연구에 참여했습니다.
+  tags: Machine Learning, Time Series, Industrial Data
+- title: ICPR 2026 — 표 구조 인식
+  period: 2026
+  venue: 공동 연구
+  summary: 문서 안의 표 구조를 인식하고 정보를 복원하는 연구 코드와 실험을 진행하고 있습니다.
+  tags: Document AI, Structure Recognition
