@@ -31,7 +31,7 @@
   <div class="work-grid featured-grid">
     {% assign featured_projects = site.data.projects | where: "featured", true %}
     {% for project in featured_projects %}
-    <a class="work-card work-card-{{ project.accent }}" href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">
+    <a class="work-card work-card-{{ project.accent }}" href="{{ '/projects/' | append: project.slug | append: '.html' | relative_url }}">
       <div class="card-top"><span>{{ project.category }}</span><span>{{ project.period }}</span></div>
       <div class="card-index">0{{ forloop.index }}</div>
       <h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
@@ -49,7 +49,7 @@
   <div class="work-grid archive-grid">
     {% assign archive_projects = site.data.projects | where: "featured", false %}
     {% for project in archive_projects %}
-    <a class="work-card archive-card" data-category="{{ project.category | slugify }}" href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">
+    <a class="work-card archive-card" data-category="{{ project.category | slugify }}" href="{{ '/projects/' | append: project.slug | append: '.html' | relative_url }}">
       <div class="card-top"><span>{{ project.category }}</span><span>{{ project.period }}</span></div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p><div class="card-bottom"><span>{{ project.contribution }}</span><span class="arrow">↗</span></div>
     </a>
     {% endfor %}

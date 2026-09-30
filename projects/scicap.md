@@ -2,5 +2,5 @@
 layout: project
 title: scicap
 project: scicap
-permalink: /projects/scicap/
+permalink: /projects/scicap.html
 ---
