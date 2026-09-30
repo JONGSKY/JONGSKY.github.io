@@ -348,6 +348,7 @@ button { color: inherit; font: inherit; }
 .credentials-section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
 .contact-section { padding-top: 6.5rem; padding-bottom: 7.5rem; }
 .contact-section h2 { font-size: clamp(2.55rem, 4.3vw, 4.8rem); }
+.project-hero h1 { max-width: 820px; font-size: clamp(2.6rem, 5vw, 5rem); line-height: 1.05; word-break: keep-all; }
 
 @media (max-width: 1000px) {
   :root { --sidebar: 185px; }
@@ -364,4 +365,5 @@ button { color: inherit; font: inherit; }
   .orbit-two { width: 210px; height: 350px; }
   .content-section, .all-work-section, .split-section, .research-section, .about-section { padding-top: 6rem; }
   .work-card { min-height: 320px; }
+  .project-hero h1 { font-size: clamp(2.4rem, 12vw, 4rem); }
 }
