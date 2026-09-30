@@ -271,3 +271,97 @@ button { color: inherit; font: inherit; }
   .outcome-list p { min-height: auto; }
   .project-section { margin-top: 4.5rem; }
 }
+
+/* Editorial pass: quieter surfaces, a lighter first impression, and more room
+   for the work itself. These overrides keep the existing content structure
+   while bringing the visual hierarchy closer to a portfolio case-study site. */
+:root {
+  --bg: #f8f8f5;
+  --surface: #ffffff;
+  --surface-soft: #f0f1f3;
+  --ink: #171a20;
+  --muted: #70757f;
+  --line: rgba(23, 26, 32, .13);
+  --accent: #315dcc;
+  --accent-soft: #dce6ff;
+  --sidebar: 210px;
+  --max: 1160px;
+  --shadow: 0 18px 42px rgba(21, 31, 52, .10);
+}
+
+[data-theme="dark"] {
+  --bg: #17191d;
+  --surface: #202329;
+  --surface-soft: #292d34;
+  --ink: #f4f6f8;
+  --muted: #a8adb7;
+  --line: rgba(244, 246, 248, .16);
+  --accent: #9db7ff;
+  --accent-soft: #303e64;
+  --shadow: 0 18px 42px rgba(0, 0, 0, .30);
+}
+
+.site-nav { padding: 2rem 1.6rem 1.5rem; }
+.brand { letter-spacing: .06em; }
+.brand-mark { width: 34px; height: 34px; background: var(--accent); color: #fff; }
+.nav-links { margin-top: 4rem; gap: .7rem; }
+.nav-links a { letter-spacing: .08em; }
+.hero-section { min-height: 650px; padding: 8rem 0 5.5rem; grid-template-columns: 1.12fr .88fr; gap: 2rem; }
+.hero-copy h1 { max-width: 620px; font-size: clamp(3.1rem, 5.1vw, 5.35rem); font-weight: 600; letter-spacing: -.07em; line-height: 1.06; word-break: keep-all; }
+.hero-lead { max-width: 500px; margin-top: 1.7rem; font-size: .95rem; line-height: 1.85; }
+.hero-actions { margin-top: 2rem; }
+.availability { margin-top: 2.4rem; }
+.hero-visual { min-height: 380px; }
+.visual-card { width: min(300px, 66%); transform: translate(-48%, -50%) rotate(2deg); padding: 1rem; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.profile-frame { margin-top: .75rem; }
+.visual-orbit { opacity: .42; }
+.orbit-one { width: 360px; height: 360px; }
+.orbit-two { width: 250px; height: 420px; opacity: .22; }
+.visual-note { font-size: .56rem; letter-spacing: .13em; }
+.note-top { top: 13%; right: 8%; }
+.note-bottom { bottom: 9%; left: 8%; }
+.signal-strip > div { min-height: 130px; padding-top: 1.45rem; padding-bottom: 1.45rem; }
+.content-section { padding-top: 7.5rem; }
+.section-heading { margin-bottom: 2.5rem; }
+.section-heading h2 { font-size: clamp(2.15rem, 3.5vw, 3.55rem); letter-spacing: -.065em; }
+.work-grid { gap: .85rem; }
+.work-card { min-height: 360px; padding: 1.25rem 1.3rem 1.1rem; border-radius: 2px; }
+.work-card:hover { transform: translateY(-4px); }
+.card-index { top: 2.1rem; right: 1.3rem; color: rgba(49, 93, 204, .18); font-size: 3.1rem; }
+.work-card h3 { font-size: clamp(1.35rem, 2vw, 2rem); }
+.card-bottom { margin-top: 1.8rem; }
+.work-card-violet, .work-card-mint, .work-card-orange, .work-card-blue, .work-card-coral, .work-card-yellow { background: var(--surface); }
+.work-card-violet { border-top: 2px solid #6e64d9; }
+.work-card-mint { border-top: 2px solid #369e7b; }
+.work-card-orange { border-top: 2px solid #d97945; }
+.work-card-blue { border-top: 2px solid #3e78d5; }
+.work-card-coral { border-top: 2px solid #c66068; }
+.work-card-yellow { border-top: 2px solid #b69335; }
+.metric-band { margin-top: 5rem; padding: 1.5rem 0; }
+.all-work-section, .split-section, .research-section, .about-section { padding-top: 7.5rem; }
+.archive-card { min-height: 275px; }
+.timeline { margin-left: 6.7rem; }
+.timeline-item { grid-template-columns: 165px 1fr; padding-top: 1.8rem; padding-bottom: 2rem; }
+.timeline-marker { left: -6.65rem; }
+.research-layout { gap: 3.2rem; }
+.awards-panel { padding: 1.35rem; }
+.credentials-section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+.contact-section { padding-top: 6.5rem; padding-bottom: 7.5rem; }
+.contact-section h2 { font-size: clamp(2.55rem, 4.3vw, 4.8rem); }
+
+@media (max-width: 1000px) {
+  :root { --sidebar: 185px; }
+  .hero-section { padding-top: 7rem; }
+}
+
+@media (max-width: 720px) {
+  :root { --sidebar: 0px; }
+  .hero-section { padding: 5rem 0 4rem; gap: 3rem; }
+  .hero-copy h1 { font-size: clamp(2.9rem, 14vw, 5rem); line-height: 1.04; }
+  .hero-visual { min-height: 315px; }
+  .visual-card { width: min(260px, 74%); }
+  .orbit-one { width: 300px; height: 300px; }
+  .orbit-two { width: 210px; height: 350px; }
+  .content-section, .all-work-section, .split-section, .research-section, .about-section { padding-top: 6rem; }
+  .work-card { min-height: 320px; }
+}

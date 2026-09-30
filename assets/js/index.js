@@ -2,7 +2,9 @@
   var root = document.documentElement;
   var toggle = document.querySelector('[data-theme-toggle]');
   var label = document.querySelector('[data-theme-label]');
-  var stored = localStorage.getItem('jongho-theme');
+  // Keep the first visit calm and editorial. A previous version stored a dark
+  // preference under the old key, so use a new key for this visual system.
+  var stored = localStorage.getItem('jongho-theme-v2');
 
   function setTheme(theme) {
     if (theme === 'dark') {
@@ -14,10 +16,10 @@
     }
   }
 
-  setTheme(stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  setTheme(stored || 'light');
   if (toggle) toggle.addEventListener('click', function () {
     var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('jongho-theme', next);
+    localStorage.setItem('jongho-theme-v2', next);
     setTheme(next);
   });
 
