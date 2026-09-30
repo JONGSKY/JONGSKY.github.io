@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f4ef">
-  {% if page.project %}{% assign seo_project = site.data.projects | where: "slug", page.project | first %}{% endif %}
+  {% if page.project != nil and page.project != "" %}{% assign seo_project = site.data.projects | where: "slug", page.project | first %}{% endif %}
   <title>{% if seo_project %}{{ seo_project.title }}{% else %}{{ page.title | default: site.title }}{% endif %} · {{ site.name }}</title>
   {%- seo -%}
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
