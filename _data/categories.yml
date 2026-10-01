@@ -1,18 +1,6 @@
-- id: ai-product
-  title: AI Product & Engineering
-  icon: "💻"
-  url: /projects/ai-product.html
-  description: 멀티 LLM 서비스 개발·운영, 기업 문서 자동화, 온프레미스 에이전트와 지식 기반 채팅
-  period: "2024 ~ 현재"
-- id: research
-  title: AI Research
-  icon: "🔬"
-  url: /projects/research.html
-  description: 학술 도표 캡션 생성과 복잡한 문서의 레이아웃·정보 추출 연구
-  period: "2024 ~ 2025"
-- id: earlier-work
-  title: Student & Earlier Work
-  icon: "🎓"
-  url: /projects/earlier-work.html
-  description: TEAMLAB 연구와 데이터 분석·시각화, NLP, 웹 서비스 개발 프로젝트
-  period: "2019 ~ 2020"
+- id: ai-engineer
+  title: AI Engineer
+  icon: "🧠"
+  url: /projects/ai-engineer.html
+  description: 모델 연구부터 데이터·API·아키텍처 설계, 산업 현장 배포와 운영까지 AI를 제품으로 연결한 프로젝트
+  period: "2019 ~ 현재"

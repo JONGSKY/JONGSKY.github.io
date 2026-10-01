@@ -1,6 +1,6 @@
 # JONGSKY.github.io
 
-이종호의 AI Product & Research 포트폴리오입니다. GitHub Pages에서 Jekyll로 빌드되며, 포트폴리오·경력·연구·자격 정보를 한 곳에서 관리합니다.
+이종호의 AI Engineer 포트폴리오입니다. GitHub Pages에서 Jekyll로 빌드되며, 모델 연구부터 AI 제품 개발·배포·운영까지의 경험을 한 곳에서 관리합니다.
 
 ## 구조
 

@@ -2,7 +2,7 @@
 layout: page
 ---
 {% assign category = site.data.categories | where: "id", page.group | first %}
-<a href="{{ '/' | relative_url }}#projects" class="back-to-list">← 프로젝트 분야</a>
+<a href="{{ '/' | relative_url }}#projects" class="back-to-list">← 프로젝트 목록</a>
 <p>{{ category.description }}</p>
 <hr>
 {% assign projects = site.data.projects | where: "group", page.group %}

@@ -57,7 +57,7 @@ headline_skills:
 
 ---
 
-## Projects
+## Projects · AI Engineer
 
 <div class="project-category-list">
 {% for category in site.data.categories %}

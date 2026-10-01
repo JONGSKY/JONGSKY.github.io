@@ -1,6 +1,6 @@
 name: JONGHO LEE
 title: "Jongho's Career"
-description: AI 서비스 개발·운영과 문서 자동화, 멀티모달 연구 경험을 정리한 이종호의 포트폴리오입니다.
+description: 모델 연구부터 AI 서비스 개발·배포·운영까지의 경험을 정리한 이종호의 AI Engineer 포트폴리오입니다.
 url: https://jongsky.github.io
 baseurl: ""
 lang: ko
@@ -13,7 +13,7 @@ about_profile_image: /assets/images/profile_image.jpg
 author:
   name: 이종호
   avatar: /assets/images/profile_image.jpg
-  bio: AI Product & Research Engineer
+  bio: AI Engineer
   links:
     - label: GitHub
       url: https://github.com/JONGSKY
