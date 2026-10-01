@@ -1,28 +1,30 @@
-- company: Team Reboott
-  role: AI Team · Founding member / Director
-  period: 2023.08 — present
-  location: Busan, Korea
-  summary: 창립 초기부터 네트워크와 서버실 구축, AI 서비스 기획·개발·배포·운영까지 맡고 있습니다.
-  bullets:
-    - 멀티 LLM 채팅·이미지 생성·회의록 요약 서비스 개발
-    - 문서·메일·인보이스를 다루는 B2B 업무 자동화와 고객 환경 배포
-    - Kubernetes·Kafka 기반 요청 처리와 온프레미스 모델 서빙 구성
-    - Prometheus·Grafana·Slack 알림을 연결한 운영 체계 구축
-
 - company: TEAMLAB
   role: Undergraduate Researcher
   period: 2018.07 — 2021.02
   location: Gachon University
-  summary: 데이터 수집·분석·시각화 연구와 학부 프로젝트를 수행했습니다.
+  summary: 학부 연구원으로 산업 데이터와 문헌 데이터를 수집·분석하고, 연구 결과를 검색 시스템과 대시보드로 구현했습니다.
   bullets:
-    - 조선업 생산 데이터와 특허·논문 데이터 분석
-    - Django 기반 검색 시스템과 Tableau 대시보드 개발
-    - 연구 결과를 발표 자료와 논문으로 정리
+    - 조선업 생산 데이터와 특허·논문 데이터를 정제하고 분석
+    - Django·MySQL·Elasticsearch 기반 검색 시스템과 Tableau 대시보드 개발
+    - NLP·시각화 결과를 발표 자료와 연구 산출물로 정리
 
-- company: WizLive
-  role: Coding Tutor
-  period: 2020.11 — 2021.02
-  location: Korea
-  summary: 데이터 수집·분석·프로그래밍을 바탕으로 학생의 문제 해결과 컴퓨팅 사고를 가르쳤습니다.
+- company: Republic of Korea Army
+  role: 육군 중위 · 정보통신장교
+  period: 2021.03 — 2023.06
+  location: 대한민국 육군
+  summary: 정보통신장교로 부대 정보통신망과 장비를 관리하고, 정보보호 기준에 따른 통신지원과 운영 업무를 수행했습니다.
   bullets:
-    - 학습자의 수준에 맞춘 실습과 문제 해결 피드백
+    - 부대 정보통신망과 장비의 운용 상태를 점검하고 장애 대응
+    - 보안 기준에 맞춘 정보보호·접근 관리와 통신지원 업무 수행
+    - 제한된 환경에서 여러 부서와 일정을 조율하며 안정적인 통신체계 유지
+
+- company: Team Reboott
+  role: AI Team · Founding member / Director
+  period: 2023.08 — present
+  location: Busan, Korea
+  summary: 초기 멤버로 네트워크·서버실 구축부터 AI 서비스의 기획·개발·배포·운영까지 제품의 전체 흐름을 맡고 있습니다.
+  bullets:
+    - 멀티 LLM 채팅·이미지 생성·회의록 요약 서비스의 API와 비동기 처리 개발
+    - 문서·메일·인보이스를 다루는 B2B 업무 자동화와 고객 환경 배포
+    - Kubernetes·Kafka 기반 요청 처리와 온프레미스 모델 서빙 구성
+    - Prometheus·Grafana·Slack 알림을 연결해 배포 이후 운영 상태를 관리
