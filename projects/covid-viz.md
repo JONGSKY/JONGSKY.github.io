@@ -1,6 +1,6 @@
 ---
 layout: project
-title: covid-viz
+title: Dacon COVID-19 Visualization
 project: covid-viz
 permalink: /projects/covid-viz.html
 ---

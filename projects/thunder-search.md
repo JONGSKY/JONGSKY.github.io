@@ -1,6 +1,6 @@
 ---
 layout: project
-title: thunder-search
+title: Thunder Search System
 project: thunder-search
 permalink: /projects/thunder-search.html
 ---
