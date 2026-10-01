@@ -21,7 +21,7 @@
   outcomes:
     - 모델과 기능이 늘어도 요청 처리 계층을 재사용할 수 있는 기반 확보
     - 자동 배포·모니터링·고객 환경 디버깅까지 이어지는 운영 경험 축적
-  proof: 2024.01 — 2026.09 · Team Reboott 내부 서비스
+  proof: 2024.01 — 2026.09 · 팀리부뜨 내부 서비스
 
 - slug: shipping-invoice-automation
   group: ai-product

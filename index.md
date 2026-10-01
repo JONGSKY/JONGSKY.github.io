@@ -2,7 +2,7 @@
 layout: page
 title: Portfolio
 tagline: "LLM 서비스와 문서 자동화를 개발하고, 멀티모달 연구를 제품과 운영 환경에 연결합니다. API 개발부터 모델 서빙, 배포와 모니터링까지 함께 다룹니다."
-current_role: "Team Reboott AI Team · Founding member / Director · 2023.08 ~"
+current_role: "팀리부뜨 AI팀 · 초기 멤버 / Director · 2023.08 ~"
 headline_skills:
   - LLM / RAG
   - Document AI
@@ -15,8 +15,8 @@ headline_skills:
 
 안녕하세요, **이종호(Jongho Lee)**입니다.
 
-- **Team Reboott AI Team · 창립 멤버 / Director (2023.08 ~ 현재)**
-- **대한민국 육군 · 정보통신장교 / 중위 (2021.03 ~ 2023.06)**
+- **팀리부뜨 AI팀 · 초기 멤버 / Director (2023.08 ~ 현재)**
+- **육군 · 정보통신병과 중위 / 운용소대장 (2021.03 ~ 2023.06)**
 - 부경대학교 산업데이터공학 석사 · 가천대학교 산업경영공학 학사
 - 멀티 LLM 서비스 개발·운영, 기업 문서·메일 자동화, 온프레미스 AI 시스템 구축
 - SciCap 도표 캡션 생성과 VRD-IU 문서 정보 추출 연구
