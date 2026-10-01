@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo -%}
   {%- include head/custom.html -%}
+  {%- if page.project -%}
+    {%- assign document_project = site.data.projects | where: "slug", page.project | first -%}
+    <title>{{ document_project.title }} · {{ site.name }}</title>
+  {%- elsif page.title -%}
+    <title>{{ page.title }} · {{ site.name }}</title>
+  {%- endif -%}
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
