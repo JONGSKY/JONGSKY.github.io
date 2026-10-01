@@ -1,0 +1,519 @@
+/* ── 전역 베이스 ────────────────────────────────────────────────
+   minimal-mistakes를 걷어내면서, 테마가 제공하던 리셋과 요소 단위 기본
+   타이포(문단·목록·표·인용구·코드·이미지·폼)를 이 파일이 직접 책임진다.
+
+   원칙: 이번 작업은 "제거"지 "재디자인"이 아니다. 따라서 수치(루트 폰트
+   사다리, line-height, 여백, 스케일)는 테마가 만들던 값을 그대로 옮기고,
+   색만 토큰으로 바꿨다. 색을 정의하는 곳은 _tokens.scss 하나뿐이며,
+   유일한 예외는 파일 끝의 rouge(코드 하이라이트) 팔레트다. */
+
+
+/* ══════════════════════════════════════════════════════════════
+   1. 리셋
+   ══════════════════════════════════════════════════════════════ */
+
+/* 셸(헤더 52px·아이콘 버튼 34px)과 레일의 px 크기 계산이 전부 border-box
+   전제다. 테마의 _reset.scss가 `* { box-sizing: border-box }`를 깔아 주던
+   것을, ::before/::after까지 포함해 직접 선언한다. */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* 브라우저 기본 [hidden]이 항상 이기도록 명시한다 (rail-toc가 비었을 때
+   hidden 속성으로 숨는다). 원래는 테마의 HTML5 shiv(nav 등에 display:block)
+   를 이기기 위한 규칙이었고, shiv가 사라진 뒤에도 안전장치로 남긴다. */
+[hidden] { display: none; }
+
+/* 루트 폰트 사다리 — 이 사이트의 rem 값(.rail 13rem, 본문 캡 42rem)이 모두
+   여기에 매달려 있다. 테마가 정의하던 16/18/20/22px 사다리를 그대로 옮긴다.
+   미디어쿼리 단위도 테마와 같은 em(=16px 기준 768/1024/1400px)을 유지한다.
+   이 값을 16px 고정으로 낮추면 넓은 화면에서 레일이 286px→208px,
+   본문 캡이 924px→672px로 줄어 레이아웃이 통째로 좁아진다. */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+  @media (min-width: 48em)   { font-size: 18px; }
+  @media (min-width: 64em)   { font-size: 20px; }
+  @media (min-width: 87.5em) { font-size: 22px; }
+
+  /* 테마의 _base.scss가 html에 걸던 폰트 스무딩. 이게 빠지면 macOS/Safari·
+     Chrome에서 본문 글자가 눈에 띄게 두꺼워진다 — 눈에 보이는 차이라 그대로
+     옮긴다. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 테마의 _reset.scss는 html에 스킨 배경색(air 스킨의 옅은 회색)을 칠했다.
+     html에 배경이 있으면 body 배경이 캔버스로 전파되지 않으므로, 오버스크롤
+     영역·문서보다 짧은 페이지의 여백은 html 배경이 보인다. 테마가 사라지면
+     body → 캔버스 전파에 의존하게 되는데, 그 규칙을 암묵적으로 두지 않고
+     여기서 토큰으로 명시한다 (다크에서도 자동으로 검정이 된다). */
+  background-color: rgb(var(--bg));
+}
+
+/* 테마의 _reset.scss는 선택 영역을 "흰 글자 + 검은 배경"으로 하드코딩했다.
+   hex를 쓰지 않고 같은 결과를 얻기 위해 fg/bg를 뒤집는다 — 라이트에서는
+   테마와 사실상 동일하고(--fg 29 29 31 / --bg 흰색), 다크에서는 테마처럼
+   검은 배경에 묻히지 않고 알아서 반전된다. */
+::selection {
+  color: rgb(var(--bg));
+  background: rgb(var(--fg));
+}
+::-moz-selection {
+  color: rgb(var(--bg));
+  background: rgb(var(--fg));
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  /* 테마의 sticky-footer 셸을 그대로 유지한다 */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   2. 요소 단위 타이포
+   ══════════════════════════════════════════════════════════════ */
+
+/* 제목: font-family를 지정하지 않아 body의 --font-sans(Pretendard)를
+   상속한다. 테마는 여기에 자체 시스템 스택을 박아 넣어 제목만 Pretendard가
+   아니었는데, head/custom.html이 Pretendard를 굳이 불러오는 의도를 따른다. */
+h1, h2, h3, h4, h5, h6 {
+  margin: 2em 0 0.5em;
+  line-height: 1.2;
+  font-weight: bold;
+}
+h1 { margin-top: 0; font-size: 1.563em; }
+h2 { font-size: 1.25em; }
+h3 { font-size: 1.125em; }
+h4 { font-size: 1.0625em; }
+h5 { font-size: 1.03125em; }
+h6 { font-size: 1em; }
+
+p { margin-bottom: 1.3em; }
+
+ul li,
+ol li { margin-bottom: 0.5em; }
+
+li ul,
+li ol { margin-top: 0.5em; }
+
+/* 내비게이션(레일 목차·카테고리, 홈 페이저)은 목록 장식과 밑줄을 뗀다 */
+nav ul { margin: 0; padding: 0; }
+nav li { list-style: none; margin-bottom: 0; }
+nav li ul,
+nav li ol { margin-top: 0; }
+nav a { text-decoration: none; }
+
+/* 링크: 테마는 하드코딩된 진회색이라 다크 모드에서 배경에 묻혔다.
+   _post.scss의 캡션 주석이 "전역 a 규칙(accent 색)"을 전제로 쓰여 있어
+   그 의도대로 accent로 통일한다. 밑줄은 브라우저 기본을 그대로 두어
+   본문 링크가 색 외에도 구분되게 한다(테마도 밑줄을 지우지 않았다). */
+a { color: rgb(var(--accent)); }
+
+/* 테마는 전역 `a:hover`에 $link-color-hover(= 링크색을 25% 어둡게 섞은 값)를
+   지정했다. 그 값을 그대로 옮기면 다크 모드에서 링크가 배경 쪽으로 더 어두워져
+   대비가 나빠지므로, 색은 --accent로 두고 "호버에도 accent를 유지한다"만
+   재현한다. 실제로 이 규칙이 유일하게 무언가를 바꾸는 곳은 헤더 로고다:
+   .header-logo는 muted(0,1,0)인데 테마의 a:hover(0,1,1)가 이겨서 지금도
+   호버하면 링크색으로 변한다. 이 규칙을 빼면 그 동작이 조용히 사라진다.
+   본문·레일·푸터 링크는 각자 더 구체적인 호버 규칙이 있어 영향받지 않는다. */
+a:hover { color: rgb(var(--accent)); }
+
+/* ── 방문한 링크 색 고정 ─────────────────────────────────
+   minimal-mistakes가 `a:visited`에 회색을 지정했다. 그 결과 이미 방문한
+   프로젝트 카드만 회색으로 바뀌어, 목록에서 한 항목만 비활성처럼 보였다.
+   포트폴리오에서 방문 여부는 전달할 정보가 아니므로 링크 색을 통일한다.
+
+   테마를 걷어낸 뒤에도 이 규칙은 반드시 유지한다 — 브라우저 UA 스타일시트가
+   여전히 자체 :visited(보라/회색)를 적용하기 때문에, 지우면 테마가 있던
+   때와 똑같은 증상이 브라우저 기본값으로 되돌아온다.
+
+   (원래 이 블록은 파일 맨 끝, rouge 예외 구간의 닫는 마커 뒤에 있었다.
+   그 구간이 파일의 격리된 꼬리가 되도록 링크 규칙들 옆으로 옮겼다 —
+   선택자가 겹치는 규칙이 사이에 없어 캐스케이드 결과는 동일하다.
+   마커 문자열 자체는 이 파일에서 각각 한 번만 나와야 한다: 주석에서도
+   그대로 적지 않는 이유이고, __tests__/shell.test.js가 이를 검사한다.) */
+a:visited {
+  color: inherit;
+}
+
+.post-body a:visited,
+.page-doc a:visited,
+.project-card a:visited,
+.hero-link:visited {
+  color: rgb(var(--accent));
+}
+
+/* 테마의 `u, ins` / `del a` 규칙. 본문이 아직 <u>/<ins>/<del>을 쓰지 않지만,
+   쓰는 순간 밑줄이 링크와 헷갈리지 않도록 하는 규칙이라 함께 옮긴다. */
+u,
+ins {
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--fg));
+
+  a { color: inherit; }
+}
+del a { color: inherit; }
+
+/* 테마의 abbr 규칙. 아래 @media print 블록이 `abbr[title]::after`를 지우는
+   것을 전제로 쓰여 있는데, 그 짝이 되는 표시 규칙은 테마가 갖고 있었다. */
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: none;
+  cursor: help;
+  border-bottom: 1px dotted rgb(var(--fg));
+}
+
+/* 키보드 포커스 링 (테마의 outline 규칙을 토큰으로) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+hr {
+  display: block;
+  margin: 1em 0;
+  border: 0;
+  border-top: 1px solid rgb(var(--line));
+}
+
+blockquote {
+  margin: 2em 1em 2em 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-style: italic;
+  border-left: 0.25em solid rgb(var(--accent));
+}
+blockquote cite { font-style: italic; }
+blockquote cite::before { content: "—"; padding-right: 5px; }
+
+sub, sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+small { font-size: 0.75em; }
+
+
+/* ══════════════════════════════════════════════════════════════
+   3. 이미지 · figure
+   ══════════════════════════════════════════════════════════════ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+figure {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+figure > a { display: block; }
+figure img { width: 100%; border-radius: 4px; }
+figure img,
+figure iframe { margin-bottom: 1em; }
+figcaption {
+  margin-bottom: 0.5em;
+  color: rgb(var(--muted));
+  font-size: 0.75em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   4. 표
+   ══════════════════════════════════════════════════════════════ */
+
+table {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  font-size: 0.75em;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+table + table { margin-top: 1em; }
+
+thead {
+  background-color: rgb(var(--subtle));
+  border-bottom: 2px solid rgb(var(--line));
+}
+th {
+  padding: 0.5em;
+  font-weight: bold;
+  text-align: left;
+}
+td {
+  padding: 0.5em;
+  border-bottom: 1px solid rgb(var(--line));
+}
+tr, td, th { vertical-align: middle; }
+
+
+/* ══════════════════════════════════════════════════════════════
+   5. 폼 컨트롤
+   ══════════════════════════════════════════════════════════════
+   이 사이트에 실제로 렌더되는 폼 요소는 헤더/레일의 아이콘 버튼
+   (.icon-btn) 뿐이다 — 검색 기능이 없어 input이 전혀 나오지 않는다.
+   그래서 테마의 두꺼운 폼 스킨(width:100% · 그림자 · radius)과
+   input[type=search] 관련 벤더 규칙은 소비자가 없어 옮기지 않고,
+   UA 기본값을 정리하는 최소한만 남긴다. */
+button, input, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: normal;
+  vertical-align: middle;
+}
+textarea { overflow: auto; resize: vertical; vertical-align: top; }
+
+/* 테마의 폼 리셋 중 실제로 우리 버튼에 걸리던 두 가지.
+   cursor는 _shell.scss의 .icon-btn이 이미 지정하지만, 테마가 button 전반에
+   보장하던 값이라 요소 수준에서도 유지한다. ::-moz-focus-inner는 파이어폭스가
+   버튼 안쪽에 그리는 점선 테두리/여분 패딩을 없앤다(원형 아이콘 버튼이라
+   이게 남으면 테두리가 이중으로 보인다). */
+button { cursor: pointer; }
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   6. 코드
+   ══════════════════════════════════════════════════════════════ */
+
+tt, code, kbd, samp, pre { font-family: var(--font-mono); }
+
+/* 긴 코드 줄은 페이지가 아니라 코드블록이 스크롤한다 */
+pre { overflow-x: auto; }
+
+/* 인라인 코드 — 본문 안에서만 칩 형태로 구분한다.
+   (테마도 같은 자리에 옅은 배경 칩을 그렸다) */
+.post-body :not(pre) > code {
+  background: rgb(var(--subtle));
+  border: 1px solid rgb(var(--line) / 0.6);
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+  font-size: 0.8em;
+}
+
+/* 좁은 화면에서는 코드 글자를 줄여 가로 스크롤을 줄인다 */
+@media (max-width: 768px) {
+  .post-body pre { font-size: 0.78em; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   7. Mermaid 다이어그램
+   ══════════════════════════════════════════════════════════════
+   이 사이트는 mermaid를 로드하지 않는다(assets/js/mermaid-init.js 없음,
+   after_footer_scripts에도 없음) — 아키텍처 그림은 전부
+   assets/images/slides/*.jpg 이미지다. 규칙 자체는 좁은 화면에서 넘치는
+   블록을 가로 스크롤시키는 한 줄뿐이고 매칭되는 요소가 없으면 무해하므로,
+   지우기보다 남겨 둔다(블로그와 파티셜을 계속 맞춰 갈 여지도 남는다). */
+@media (max-width: 768px) {
+  .mermaid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   8. notice 박스 (kramdown의 {: .notice--info} 등)
+   ══════════════════════════════════════════════════════════════
+   테마가 제공하던 컴포넌트다. 이 저장소의 26개 페이지는 아직 {: .notice--*}
+   IAL을 쓰지 않지만(grep 0건), kramdown 저자용 관용구라 페이지가 하나
+   추가되는 순간 다시 필요해진다. 지우는 대신 토큰으로 옮겨 둔다 — 색은
+   --accent / --ok / --warn / --danger 로 합성해 라이트·다크 양쪽에서
+   자동으로 대비가 맞는다. */
+.notice,
+.notice--primary,
+.notice--info,
+.notice--warning,
+.notice--success,
+.notice--danger {
+  margin: 2em 0 !important;
+  padding: 1em;
+  color: rgb(var(--fg));
+  font-size: 0.75em !important;
+  font-style: normal;
+  border-radius: 4px;
+}
+.notice p:last-child,
+.notice--primary p:last-child,
+.notice--info p:last-child,
+.notice--warning p:last-child,
+.notice--success p:last-child,
+.notice--danger p:last-child { margin-bottom: 0 !important; }
+
+.notice            { background-color: rgb(var(--muted) / 0.12); }
+.notice--primary,
+.notice--info      { background-color: rgb(var(--accent) / 0.10); }
+.notice--warning   { background-color: rgb(var(--warn) / 0.14); }
+.notice--success   { background-color: rgb(var(--ok) / 0.14); }
+.notice--danger    { background-color: rgb(var(--danger) / 0.12); }
+
+blockquote.notice          { border-left-color: rgb(var(--muted)); }
+blockquote.notice--primary,
+blockquote.notice--info    { border-left-color: rgb(var(--accent)); }
+blockquote.notice--warning { border-left-color: rgb(var(--warn)); }
+blockquote.notice--success { border-left-color: rgb(var(--ok)); }
+blockquote.notice--danger  { border-left-color: rgb(var(--danger)); }
+
+
+/* ══════════════════════════════════════════════════════════════
+   9. 인쇄
+   ══════════════════════════════════════════════════════════════ */
+/* 테마가 base에 전역으로 걸어 둔 orphans/widows. 페이지 분할(인쇄·다단)에서만
+   효과가 있는 속성이라 미디어쿼리 없이 테마와 같은 자리·같은 값으로 옮긴다.
+   이력서는 인쇄/PDF로 저장될 가능성이 높아 실제로 의미가 있다. */
+p, pre, blockquote,
+ul, ol, dl,
+figure, table, fieldset {
+  orphans: 3;
+  widows: 3;
+}
+
+@media print {
+  /* 링크 뒤에 URL을 덧붙이지 않는다 */
+  a[href]::after,
+  abbr[title]::after { content: none !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   10. 코드 하이라이트 (rouge)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ROUGE-EXCEPTION-START
+   여기서만 hex 리터럴을 쓴다.
+
+   이유: 구문 강조 팔레트는 "어두운 코드 배경 위에서 서로 구별되는 12색"이
+   목적이고, 각 색은 다른 색과의 대비로 의미를 갖는다. 사이트 토큰
+   (--fg/--muted/--line/--accent)의 알파 합성으로는 표현할 수 없고,
+   토큰을 늘리면 팔레트 전체를 토큰 파일에 복제하는 꼴이 된다.
+   또 코드블록 배경은 라이트/다크와 무관하게 항상 어둡게 유지해야 하므로
+   테마 토큰을 따라가면 안 된다 (라이트 모드에서 밝은 글자가 사라진다).
+   minimal-mistakes가 쓰던 base16 Material 팔레트를 그대로 옮겼다.
+   jest의 hex 검사는 이 마커 구간을 건너뛴다. */
+
+div.highlighter-rouge,
+figure.highlight {
+  position: relative;
+  margin-bottom: 1em;
+  background: #263238;
+  color: #eeffff;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  line-height: 1.8;
+  border-radius: 10px;
+}
+
+div.highlighter-rouge > pre,
+div.highlighter-rouge pre.highlight,
+figure.highlight > pre,
+figure.highlight pre.highlight { margin: 0; padding: 1em; }
+
+/* 줄번호 표 — 위쪽 전역 table 규칙(테두리·여백·0.75em)을 되돌린다 */
+.highlight table { margin-bottom: 0; font-size: 1em; border: 0; }
+.highlight table td { padding: 0; width: calc(100% - 1em); border: 0; }
+.highlight table td.gutter,
+.highlight table td.rouge-gutter {
+  padding-right: 1em;
+  width: 1em;
+  color: #b2ccd6;
+  border-right: 1px solid #b2ccd6;
+  text-align: right;
+}
+.highlight table td.code,
+.highlight table td.rouge-code { padding-left: 1em; }
+.highlight table pre { margin: 0; }
+.highlight pre { width: 100%; }
+
+.highlight .hll { background-color: #eeffff; }
+.highlight .c   { color: #b2ccd6; } /* Comment */
+.highlight .err { color: #f07178; } /* Error */
+.highlight .k   { color: #c792ea; } /* Keyword */
+.highlight .l   { color: #f78c6c; } /* Literal */
+.highlight .n   { color: #eeffff; } /* Name */
+.highlight .o   { color: #89ddff; } /* Operator */
+.highlight .p   { color: #eeffff; } /* Punctuation */
+.highlight .cm  { color: #b2ccd6; } /* Comment.Multiline */
+.highlight .cp  { color: #b2ccd6; } /* Comment.Preproc */
+.highlight .c1  { color: #b2ccd6; } /* Comment.Single */
+.highlight .cs  { color: #b2ccd6; } /* Comment.Special */
+.highlight .gd  { color: #f07178; } /* Generic.Deleted */
+.highlight .ge  { font-style: italic; }
+.highlight .gh  { color: #eeffff; font-weight: bold; }
+.highlight .gi  { color: #c3e88d; } /* Generic.Inserted */
+.highlight .gp  { color: #b2ccd6; font-weight: bold; }
+.highlight .gs  { font-weight: bold; }
+.highlight .gu  { color: #89ddff; font-weight: bold; }
+.highlight .kc  { color: #c792ea; }
+.highlight .kd  { color: #c792ea; }
+.highlight .kn  { color: #89ddff; }
+.highlight .kp  { color: #c792ea; }
+.highlight .kr  { color: #c792ea; }
+.highlight .kt  { color: #ffcb6b; }
+.highlight .ld  { color: #c3e88d; }
+.highlight .m   { color: #f78c6c; } /* Literal.Number */
+.highlight .s   { color: #c3e88d; } /* Literal.String */
+.highlight .na  { color: #82aaff; }
+.highlight .nb  { color: #eeffff; }
+.highlight .nc  { color: #ffcb6b; }
+.highlight .no  { color: #f07178; }
+.highlight .nd  { color: #89ddff; }
+.highlight .ni  { color: #eeffff; }
+.highlight .ne  { color: #f07178; }
+.highlight .nf  { color: #82aaff; }
+.highlight .nl  { color: #eeffff; }
+.highlight .nn  { color: #ffcb6b; }
+.highlight .nx  { color: #82aaff; }
+.highlight .py  { color: #eeffff; }
+.highlight .nt  { color: #89ddff; }
+.highlight .nv  { color: #f07178; }
+.highlight .ow  { color: #89ddff; }
+.highlight .w   { color: #eeffff; }
+.highlight .mf  { color: #f78c6c; }
+.highlight .mh  { color: #f78c6c; }
+.highlight .mi  { color: #f78c6c; }
+.highlight .mo  { color: #f78c6c; }
+.highlight .sb  { color: #c3e88d; }
+.highlight .sc  { color: #eeffff; }
+.highlight .sd  { color: #b2ccd6; }
+.highlight .s2  { color: #c3e88d; }
+.highlight .se  { color: #f78c6c; }
+.highlight .sh  { color: #c3e88d; }
+.highlight .si  { color: #f78c6c; }
+.highlight .sx  { color: #c3e88d; }
+.highlight .sr  { color: #c3e88d; }
+.highlight .s1  { color: #c3e88d; }
+.highlight .ss  { color: #c3e88d; }
+.highlight .bp  { color: #eeffff; }
+.highlight .vc  { color: #f07178; }
+.highlight .vg  { color: #f07178; }
+.highlight .vi  { color: #f07178; }
+.highlight .il  { color: #f78c6c; }
+/* ROUGE-EXCEPTION-END */

@@ -1,0 +1,12 @@
+- name: "🤖 AI & LLM"
+  items: [LLM, RAG, Prompt Engineering, Fine-tuning, Evaluation]
+- name: "🔬 Multimodal & Document AI"
+  items: [Multimodal AI, OCR, Document Parsing, Layout Analysis]
+- name: "💻 Development"
+  items: [Python, Django, FastAPI, REST API]
+- name: "☁️ Platform & Infrastructure"
+  items: [Docker, Kubernetes, AWS, Azure, Model Serving]
+- name: "🗄️ Data & Processing"
+  items: [PostgreSQL, MySQL, Redis, Kafka, Celery, Pandas]
+- name: "📊 Monitoring & Analytics"
+  items: [Prometheus, Grafana, Tableau, Data Visualization]

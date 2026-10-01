@@ -1,0 +1,290 @@
+/* ── 재사용 컴포넌트 (세미나 HTML 이식) ─────────────────
+   사용법: 마크다운 안에서 <div class="..." markdown="1">
+
+   원래 .page__content 하위로 스코프돼 있었는데, 그 컨테이너는 테마
+   레이아웃에서만 나오던 것이라 우리 셸에서는 아무 것도 매칭하지 않았다.
+   전부 명시적으로 붙이는 opt-in 클래스이므로 스코프를 떼어 어디서든
+   (post.html이 직접 찍는 .post-tags.chips 포함) 동작하게 한다. */
+
+/* 콜아웃 */
+.callout {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 22px;
+  margin: 18px 0;
+  background: rgb(var(--subtle));
+  border: 1px solid rgb(var(--line) / 0.6);
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+
+  p { margin: 0 0 0.5em; }
+  p:last-child { margin-bottom: 0; }
+}
+
+/* 카드 + 그리드 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3열 변형(번호 카드 그리드용) — .card-grid와 함께 붙인다:
+   <div class="card-grid card-grid--3">. 두 클래스 조합(특이성 0,2,0)이라
+   위 기본 .card-grid 미디어쿼리(0,1,0)를 이겨 3열을 유지하므로, 좁은
+   화면에서도 접히도록 여기서 다시 미디어쿼리를 선언한다. */
+.card-grid.card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid rgb(var(--line));
+  border-radius: 12px;
+  padding: 24px;
+  background: rgb(var(--bg));
+
+  /* 첫 문단의 strong = 카드 제목 */
+  p:first-child strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: rgb(var(--fg));
+  }
+  p {
+    margin: 0 0 0.5em;
+    font-size: 14px;
+    color: rgb(var(--fg) / 0.7);
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* 반전(강조) 카드 */
+  &.dk {
+    background: rgb(var(--fg));
+    border-color: transparent;
+
+    p { color: rgb(var(--bg) / 0.65); }
+    p:first-child strong { color: rgb(var(--bg)); }
+  }
+}
+
+/* 카드 안 원형 번호 배지. 마크다운에서 카드 맨 위에 <span class="card-num">
+   숫자를 그대로 적는다: <span class="card-num">1</span> */
+.card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+  border: 1.5px solid rgb(var(--line));
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(var(--muted));
+}
+
+/* 카드 안 모노 eyebrow ("PART ONE" 류). kramdown IAL로 붙인다:
+   PART ONE
+   {: .card-kicker} */
+.card-kicker {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(var(--muted));
+}
+
+/* card-kicker 바로 다음 문단의 strong = 카드 제목. .card p:first-child strong과
+   같은 자리이지만, 카드가 번호/eyebrow로 시작할 때는 첫 자식이 더 이상 p가
+   아니므로 별도로 지정한다. */
+.card-kicker + p strong {
+  display: block;
+  font-size: 16px;
+  margin-top: 2px;
+  color: rgb(var(--fg));
+}
+
+/* 알파벳(A/B/C…) 채번 목록. 평범한 마크다운 목록에 IAL만 붙이면 된다:
+   - 항목 하나
+   - 항목 둘
+   {: .card-list}
+   글자는 CSS 카운터가 매기므로 저자가 A/B/C를 직접 타이핑하지 않는다. */
+.card-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  counter-reset: card-list-item;
+}
+.card-list li {
+  counter-increment: card-list-item;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgb(var(--fg) / 0.75);
+}
+.card-list li:last-child { margin-bottom: 0; }
+.card-list li::before {
+  content: counter(card-list-item, upper-alpha);
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgb(var(--accent));
+}
+
+/* 칩 */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 11px;
+  border: 1px solid rgb(var(--line));
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(var(--muted));
+}
+
+/* 비교 (그린필드 vs 브라운필드 레이아웃) */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.compare-good,
+.compare-bad {
+  border-radius: 12px;
+  padding: 22px;
+  font-size: 14px;
+
+  p:first-child strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+
+    li { margin-bottom: 6px; }
+  }
+}
+
+.compare-good {
+  border: 1px solid rgb(var(--accent) / 0.45);
+
+  li::before {
+    content: "✓ ";
+    color: rgb(var(--accent));
+    font-weight: 600;
+  }
+}
+
+.compare-bad {
+  border: 1px solid rgb(var(--line));
+  color: rgb(var(--fg) / 0.75);
+
+  li::before {
+    content: "✕ ";
+    color: rgb(var(--muted));
+    font-weight: 600;
+  }
+}
+
+/* 모노 eyebrow (섹션용). 파란 모노 라벨 + 옅은 보조 설명 한 줄.
+   <p class="kicker"><span class="kicker-label">AGENDA</span> 오늘 이야기할 두 가지</p>
+   순수 인라인 HTML이라 markdown="1"도 필요 없다. */
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: rgb(var(--muted));
+}
+.kicker-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--accent));
+}
+
+/* 고스트 넘버 풀블리드 섹션. fg/bg를 반전한 슬랩 뒤로 data-n의 숫자를
+   크게 흐리게 그린다. 컬럼을 꽉 채우는 블록 요소(div)라 .post-body의
+   42rem 문단 캡을 받지 않는다.
+   <div class="ghost-block" data-n="01" markdown="1">
+   ## 제목
+   본문…
+   </div>
+   markdown="1"이 있어야 안의 ##/문단이 마크다운으로 해석된다. */
+.ghost-block {
+  position: relative;
+  overflow: hidden;
+  margin: 32px 0;
+  padding: 48px 40px;
+  border-radius: 14px;
+  background: rgb(var(--fg));
+  color: rgb(var(--bg));
+
+  h1, h2, h3 {
+    position: relative;
+    margin: 0 0 12px;
+    color: rgb(var(--bg));
+  }
+  p {
+    position: relative;
+    max-width: 34rem;
+    color: rgb(var(--bg) / 0.6);
+  }
+  /* 안에서 .chips/.chip을 재사용할 때 반전 배경에 맞게 톤을 낮춘다 */
+  .chips { position: relative; margin-top: 20px; }
+  .chip {
+    border-color: rgb(var(--bg) / 0.25);
+    color: rgb(var(--bg) / 0.55);
+  }
+}
+.ghost-block::before {
+  content: attr(data-n);
+  position: absolute;
+  top: 20px;
+  right: 32px;
+  z-index: 0;
+  font-family: var(--font-mono);
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgb(var(--bg) / 0.07);
+  pointer-events: none;
+}

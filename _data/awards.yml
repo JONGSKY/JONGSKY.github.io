@@ -1,15 +1,15 @@
 - title: 제8회 공군 해커톤 지정공모 장려상
-  period: 2026.09
+  period: "2026.09"
   description: 공군정비백과를 제안해 정비 자료 디지털화와 지식·정비 계획 에이전트를 하나의 플랫폼으로 구성했습니다.
 - title: AI TOP 100 최종 은상
-  period: 2025.11
+  period: "2025.11"
   description: 3,000여 명의 예선을 통과해 본선 100인에 선발되고 멀티모달 문제 해결 역량을 겨뤘습니다.
 - title: COLM 2025 SciCap Quality Track 1위
-  period: 2025.10
+  period: "2025.10"
   description: 저자 문체를 반영하는 학술 도표 캡션 생성과 품질 평가 모델을 개발했습니다.
 - title: IJCAI 2024 SciCap Long Caption Track 1위
-  period: 2024.08
+  period: "2024.08"
   description: 도표의 시각 정보와 본문·OCR을 결합한 장문 캡션 생성 프레임워크를 개발했습니다.
 - title: IJCAI 2024 VRD-IU Track A·B 1위
-  period: 2024.07
+  period: "2024.07"
   description: 복잡한 PDF에서 정보의 내용과 위치를 추출하는 모델·후처리 구조를 구현했습니다.

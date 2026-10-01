@@ -1,0 +1,173 @@
+/* ── 포트폴리오 컴포넌트 ─────────────────────────────────────────
+   index.md와 projects/**.md가 마크다운 안에서 직접 class="…"로 붙이는
+   컴포넌트들이다 (career-timeline · skills-grid · project-card ·
+   back-to-list). 원래 assets/css/main.scss 진입 파일 안에 인라인으로
+   있었는데, 테마 임포트를 걷어내면서 진입 파일을 임포트 매니페스트로만
+   남기기 위해 파티셜로 옮겼다.
+
+   규칙 자체는 한 줄도 바꾸지 않은 그대로의 이동이며, main.scss에서 이
+   파티셜을 마지막에 임포트해 컴파일 결과의 소스 순서(캐스케이드)도
+   이전과 동일하게 유지한다. */
+
+/* ── Career Timeline (index.md에서 직접 사용하는 커스텀 컴포넌트) ── */
+.career-timeline {
+  position: relative;
+  padding-left: 2em;
+  border-left: 2px solid rgb(var(--accent));
+}
+
+.career-item {
+  position: relative;
+  margin-bottom: 1.8em;
+  padding-left: 1em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -2.35em;
+    top: 0.35em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+    border: 2px solid rgb(var(--bg));
+  }
+}
+
+.career-date {
+  font-size: 0.8em;
+  color: rgb(var(--muted));
+  font-weight: 600;
+  margin-bottom: 0.2em;
+}
+
+.career-content h4 {
+  margin: 0 0 0.2em;
+  font-size: 1em;
+}
+
+.career-role {
+  font-size: 0.85em;
+  color: rgb(var(--accent));
+  font-weight: 600;
+  margin: 0 0 0.3em;
+}
+
+.career-content p:last-child {
+  font-size: 0.85em;
+  color: rgb(var(--muted));
+  margin: 0;
+}
+
+/* ── Skills Grid ── */
+.skills-grid {
+  display: grid;
+  /* 고정 3열. auto-fill 은 화면 폭에 따라 열 수가 바뀌어 마지막 줄에
+     빈 칸이 생기고 카드 폭도 들쭉날쭉해진다. 카테고리를 6개로 맞췄으므로
+     3×2 로 고정하는 편이 항상 가지런하다. */
+  grid-template-columns: repeat(3, 1fr);
+  /* 내용이 적은 카드가 행 높이만큼 늘어나 빈 공간이 생기는 것을 막는다 */
+  align-items: start;
+  gap: 1.2em;
+}
+
+.skill-category {
+  background: rgb(var(--subtle));
+  border-radius: 10px;
+  padding: 1.2em;
+  border: 1px solid rgb(var(--line));
+  /* 항목 수가 달라도 카드 높이가 심하게 차이 나지 않도록 최소 높이만 준다 */
+  min-height: 9.5em;
+}
+
+.skill-category h4 {
+  margin: 0 0 0.8em;
+  font-size: 0.95em;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.25em 0.7em;
+  background: rgb(var(--accent) / 0.15);
+  color: rgb(var(--fg) / 0.75);
+  border-radius: 14px;
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+/* ── Project Cards ── */
+.project-card {
+  background: rgb(var(--subtle));
+  border-radius: 10px;
+  padding: 1.4em;
+  margin-bottom: 1.2em;
+  border: 1px solid rgb(var(--line));
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 12px rgb(var(--fg) / 0.06);
+  }
+
+  h4 {
+    margin: 0 0 0.3em;
+    font-size: 1.05em;
+  }
+}
+
+.project-meta {
+  font-size: 0.8em;
+  color: rgb(var(--muted));
+  margin: 0 0 0.6em;
+}
+
+.project-card > p {
+  font-size: 0.88em;
+  line-height: 1.6;
+  color: rgb(var(--fg) / 0.75);
+}
+
+.project-result {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: rgb(var(--ok));
+  margin-top: 0.6em;
+}
+
+/* ── 모바일 ── */
+@media (max-width: 1100px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .career-timeline { padding-left: 1.5em; }
+}
+
+/* ── 뒤로가기 버튼 (제목 위, assets/js/back-button.js가 .page-title 앞으로 옮긴다) ── */
+.back-to-list {
+  display: inline-block;
+  padding: 0.3em 0.85em;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: rgb(var(--muted));
+  background: transparent;
+  border: 1px solid rgb(var(--line));
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: -0.02em;
+  margin-bottom: 1em;
+
+  &:hover {
+    background: rgb(var(--accent) / 0.1);
+    border-color: rgb(var(--accent));
+    color: rgb(var(--fg));
+    text-decoration: none;
+  }
+}

@@ -1,9 +1,33 @@
-<div class="container footer-container">
-  <p>
-    {{ site.name | escape }} -
-    <a href="mailto:{{ site.email }}" target="_blank">{{ site.email | escape }}</a>
-    {%- if site.footer_show_references -%}
-      &nbsp;- {{ site.references_title | default: "References on request" }}
-    {%- endif -%}
-  </p>
+<div class="page__footer-inner">
+
+  <!-- 프로젝트 카테고리 바로가기 -->
+  <div class="footer-categories">
+    <h4>Projects</h4>
+    <ul>
+      {%- for c in site.data.categories -%}
+      <li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <!-- 바로가기 -->
+  <div class="footer-links">
+    <h4>Links</h4>
+    <ul>
+      <li><a href="{{ '/' | relative_url }}">Portfolio Home</a></li>
+      {%- for link in site.author.links -%}
+      <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <!-- 소개 -->
+  <div class="footer-about">
+    <h4>About</h4>
+    <p>{{ site.description }}</p>
+    <p><a href="{{ '/profile.html' | relative_url }}">Research · Awards · Education</a></p>
+  </div>
+
 </div>
+
+<div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} <a href="{{ site.copyright_url | default: site.url }}">{{ site.copyright | default: site.title | escape_once | strip }}</a>. All rights reserved.</div>

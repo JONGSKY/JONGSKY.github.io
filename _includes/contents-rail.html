@@ -1,0 +1,28 @@
+<aside class="rail" id="contents-rail">
+  <div class="rail-label">Contents</div>
+
+  <nav class="rail-toc" id="rail-toc" aria-label="목차" hidden></nav>
+
+  <nav class="rail-nav" id="rail-nav" aria-label="카테고리">
+    <div class="rail-part">Categories</div>
+    <ul>
+      {%- for c in site.data.categories -%}
+      <li>
+        <a href="{{ c.url | relative_url }}"{% if page.url contains c.url %} class="act"{% endif %}>
+          <span class="n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ c.title }}
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  <div class="rail-footer">
+    <button class="icon-btn theme-toggle" type="button" aria-label="테마 전환">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 2.8v10.4A5.2 5.2 0 008 2.8z" fill="currentColor"/>
+      </svg>
+    </button>
+    <span>Theme</span>
+  </div>
+</aside>

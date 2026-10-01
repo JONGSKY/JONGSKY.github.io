@@ -1,0 +1,14 @@
+---
+layout: page
+title: Research, Awards & Education
+permalink: /profile.html
+---
+<a href="{{ '/' | relative_url }}#about-me" class="back-to-list">← About Me</a>
+<h2 id="research">Research</h2>
+{% for item in site.data.research %}<div class="project-card"><h4>{{ item.title }}</h4><p class="project-meta">{{ item.period }} · {{ item.venue }}</p><p>{{ item.summary }}</p></div>{% endfor %}
+<h2 id="awards">Awards</h2>
+{% for item in site.data.awards %}<div class="project-card"><h4>{{ item.title }}</h4><p class="project-meta">{{ item.period }}</p><p>{{ item.description }}</p></div>{% endfor %}
+<h2 id="education">Education</h2>
+{% for item in site.data.education %}<div class="project-card"><h4>{{ item.school }}</h4><p class="project-meta">{{ item.period }}</p><p>{{ item.degree }}<br>{{ item.detail }}</p></div>{% endfor %}
+<h2 id="credentials">Credentials</h2>
+<table><thead><tr><th>자격</th><th>취득</th><th>발급기관</th></tr></thead><tbody>{% for item in site.data.credentials %}<tr><td>{{ item.name }}</td><td>{{ item.period }}</td><td>{{ item.issuer }}</td></tr>{% endfor %}</tbody></table>

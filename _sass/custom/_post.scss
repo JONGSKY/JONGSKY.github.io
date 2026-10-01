@@ -1,0 +1,144 @@
+/* ── 홈 히어로 (Job 2) ──────────────────────────────────────────
+   레일에 있던 저자 사진을 여기로 옮겼다: 이 사이트는 이력서라 방문자의
+   첫 인상이 블로그보다 더 중요하다는 판단. 헤어라인 위주·무거운 배경 없는
+   세미나 톤을 유지하고, 1440px에서 스크롤 없이 한 화면에 들어오도록
+   여백을 절제한다. _layouts/page.html에서 page.url == "/"일 때만 렌더. */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 0 40px;
+  border-bottom: 1px solid rgb(var(--line) / .4);
+  margin-bottom: 40px;
+}
+
+/* 프로필 사진은 스튜디오 세로 인물사진이다. 원형으로 자르면 얼굴만 남고
+   구도가 사라지므로, 원본 비율(3382:4228 ≈ 4:5)을 그대로 살리는 세로
+   프레임에 넣는다. 사진을 잘라 줄이는 대신 사진이 차지할 공간을 키운 것. */
+.hero-avatar {
+  flex: none;
+  width: 240px;
+  aspect-ratio: 4 / 5;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid rgb(var(--line));
+}
+
+/* 좁은 화면에서는 세로로 쌓고 사진도 함께 줄인다 */
+@media (max-width: 720px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .hero-avatar { width: 168px; }
+}
+.hero-body { min-width: 0; }
+.hero-name {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: rgb(var(--fg));
+}
+.hero-name .hero-role {
+  margin-left: 12px;
+  font-size: 0.5em;
+  font-weight: 600;
+  color: rgb(var(--muted));
+  vertical-align: middle;
+}
+.hero-tagline {
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(var(--fg) / .85);
+  max-width: 42rem;
+}
+.hero-current-role {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: rgb(var(--accent));
+}
+.hero-skills { margin: 0 0 16px; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(var(--accent));
+}
+.hero-link:hover { text-decoration: none; }
+
+@media (max-width: 640px) {
+  .hero { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0 32px; }
+  .hero-avatar { width: 96px; height: 96px; }
+}
+
+
+/* ── 페이지 헤더 ── */
+.page-head {
+  padding: 64px 0 32px;
+  border-bottom: 1px solid rgb(var(--line) / .4);
+  margin-bottom: 36px;
+}
+.page-title {
+  font-size: clamp(26px, 3.2vw, 38px); font-weight: 800;
+  line-height: 1.15; letter-spacing: -.025em;
+  color: rgb(var(--fg)); margin: 0;
+}
+.page-sub { margin-top: 10px; color: rgb(var(--muted)); font-size: 15px; }
+
+
+/* ── 본문 폭: 문장형 요소만 읽기 좋은 폭으로, 나머지는 컬럼 전체 폭 ──
+   .post-body 자체는 캡을 두지 않는다(넓은 모니터 요구사항 유지) — 캡은
+   문단/목록/인용/제목처럼 "읽는" 요소에만 걸고, 표·이미지 같은 "보는"
+   블록은 컬럼 폭을 그대로 쓴다. */
+.post-body > p,
+.post-body > ul,
+.post-body > ol,
+.post-body > dl,
+.post-body > blockquote,
+.post-body > h1,
+.post-body > h2,
+.post-body > h3,
+.post-body > h4,
+.post-body > h5,
+.post-body > h6 {
+  max-width: 42rem;
+}
+
+/* kramdown은 단독 이미지 한 줄을 <p><img></p>로 감싼다 — 이건 사진이지
+   글이 아니므로 컬럼 전체 폭을 쓴다. 이미지 다음 줄에 빈 줄 없이
+   *캡션*을 적으면 kramdown이 이미지와 <em>캡션을 같은 <p> 안에 묶으므로,
+   이 문단은 세로로 쌓아 이미지 먼저·캡션은 그 아래·왼쪽 정렬로 강제한다. */
+.post-body > p:has(img) {
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.post-body > p:has(img) img {
+  display: block;
+}
+
+.post-body > p:has(img) em {
+  display: block;
+  margin-top: 10px;
+  color: rgb(var(--muted));
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+/* 표는 컬럼 전체 폭을 쓰되, 컬럼보다 넓어지면 페이지가 아니라 표 자체가
+   가로로 스크롤된다 (모바일 등 좁은 화면에서 특히 중요) */
+.post-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

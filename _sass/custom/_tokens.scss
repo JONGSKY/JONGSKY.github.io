@@ -1,0 +1,60 @@
+/* ── 디자인 토큰 ────────────────────────────────────────
+   이 파일이 색을 정의하는 유일한 곳이다.
+   다른 SCSS는 rgb(var(--…)) 형태로만 색을 참조한다.
+   농담이 필요하면 새 색을 만들지 말고 알파로 합성한다:
+     rgb(var(--accent) / .08)
+
+   예외는 딱 하나, rouge(코드 하이라이트) 팔레트다. _base.scss 끝의
+   ROUGE-EXCEPTION-START … ROUGE-EXCEPTION-END 마커 구간 안에서만 hex를
+   쓰며, 왜 알파 합성으로 대체할 수 없는지는 그 주석에 적어 뒀다.
+
+   스타일시트 밖(assets/js/*.js)에는 색을 들고 있는 파일이 하나도 없다.
+   JS에서는 CSS 커스텀 프로퍼티가 해석되지 않으므로 "rgb(var(--accent))"
+   같은 문자열을 JS로 넘기면 안 되며, 굳이 토큰 값을 읽어야 한다면
+   getComputedStyle로 읽어야 한다.
+
+   이 규칙들은 __tests__/shell.test.js 의 "색상 규칙" describe가 강제한다. */
+
+:root {
+  --bg: 255 255 255;
+  --fg: 29 29 31;
+  --muted: 122 122 122;
+  --subtle: 245 245 247;
+  --line: 224 224 224;
+  --accent: 0 102 204;
+
+  --ok: 52 199 89;
+  --warn: 255 149 0;
+  --danger: 255 59 48;
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "SF Pro Text", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* 기본(선택 없음) = 항상 라이트. OS가 다크를 선호해도 방문자가 테마
+     버튼으로 명시적으로 고르기 전까지는 라이트를 보여준다. */
+  color-scheme: light;
+}
+
+@mixin dark-tokens {
+  --bg: 0 0 0;
+  --fg: 245 245 247;
+  --muted: 134 134 139;
+  --subtle: 28 28 30;
+  --line: 52 52 54;
+  --accent: 41 151 255;
+
+  --ok: 48 209 88;
+  --warn: 255 159 10;
+  --danger: 255 69 58;
+}
+
+/* 명시적 다크는 항상 이긴다. OS 선호를 자동으로 따르는 경로는 없다 —
+   저장된 선택이 없으면 위 :root 기본값(라이트)이 그대로 유지된다. */
+:root[data-theme="dark"] {
+  @include dark-tokens;
+  color-scheme: dark;
+}
+
+/* 명시적 라이트는 :root 기본값을 그대로 쓴다 (선택자 존재 자체가 테스트 대상). */
+:root[data-theme="light"] { color-scheme: light; }

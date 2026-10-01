@@ -1,0 +1,185 @@
+/* ── 셸: 헤더 · 레이아웃 · 레일 · 푸터 ──
+   블로그(martinmlops.github.io)에서 이식. 레일 상단의 저자 사진 블록
+   (.rail-author/.rail-avatar*)은 이 사이트에서는 들고 오지 않는다 — 사진은
+   레일이 아니라 홈 히어로(_layouts/page.html의 .hero)로 옮겼다. 검색
+   패널(.search-*) 규칙도 이 사이트에는 검색 기능이 없어 이관하지 않는다. */
+
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 52px;
+  background: rgb(var(--bg) / .88);
+  backdrop-filter: blur(18px) saturate(1.8);
+  border-bottom: 1px solid rgb(var(--line) / .55);
+}
+.header-logo { font-size: 13px; font-weight: 600; color: rgb(var(--muted)); }
+.header-logo b { color: rgb(var(--fg)); font-weight: 700; }
+.header-right { display: flex; align-items: center; gap: 14px; }
+.header-meta {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgb(var(--muted));
+}
+
+.icon-btn {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1px solid rgb(var(--line));
+  background: transparent; color: rgb(var(--muted));
+  cursor: pointer; transition: color .15s, border-color .15s;
+}
+.icon-btn:hover { color: rgb(var(--fg)); border-color: rgb(var(--fg) / .3); }
+.icon-btn[aria-expanded="true"] { color: rgb(var(--fg)); border-color: rgb(var(--fg) / .35); }
+
+/* 테마 버튼(.icon-btn.theme-toggle)만 호버에서 살짝 커진다. */
+.theme-toggle:hover { transform: scale(1.2); }
+
+/* 레일 토글 아이콘: 사각형(패널) + 왼쪽 분할선. 채워진 왼쪽 칸 = 패널이
+   보이는 상태(aria-expanded="true"), 빈 칸 = 접힌/닫힌 상태를 그대로 보여준다. */
+.icon-btn.rail-open[aria-expanded="false"] .rail-icon-fill { opacity: 0; }
+
+.layout {
+  /* 큰 모니터를 채우되, 텍스트가 창 가장자리에 닿지 않도록 최소 여백을
+     유지하고 아주 넓은 화면에서는 계속 늘어나는 대신 가운데 정렬로 캡을 둔다 */
+  max-width: min(1800px, 100% - 5rem); margin: 0 auto; padding: 0 28px 120px;
+  display: grid; grid-template-columns: 13rem 1fr; gap: 0 56px;
+  align-items: start;
+  transition: grid-template-columns .22s ease, gap .22s ease;
+}
+.content { min-width: 0; }
+
+.rail {
+  position: sticky; top: 68px; align-self: start; padding-top: 40px;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity .16s ease;
+}
+.rail-label {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: rgb(var(--muted)); margin-bottom: 14px;
+}
+.rail-part {
+  font-size: 10px; font-weight: 700; color: rgb(var(--muted));
+  letter-spacing: .06em; text-transform: uppercase;
+  margin: 18px 0 7px; padding-top: 12px;
+  border-top: 1px solid rgb(var(--line) / .5);
+}
+.rail ul { list-style: none; margin: 0; padding: 0; }
+.rail li { margin-bottom: 1px; }
+.rail a {
+  display: flex; align-items: baseline; gap: 9px;
+  padding: 4px 0; font-size: 12.5px; line-height: 1.35;
+  color: rgb(var(--muted)); transition: color .13s;
+}
+.rail a:hover, .rail a.act { color: rgb(var(--fg)); }
+.rail a .n {
+  font-family: var(--font-mono); font-size: 9px;
+  color: rgb(var(--accent)); min-width: 18px;
+}
+.rail a.sub { padding-left: 27px; font-size: 12px; }
+.rail-footer {
+  margin-top: 24px; padding-top: 14px;
+  border-top: 1px solid rgb(var(--line) / .5);
+  display: flex; align-items: center; gap: 8px;
+}
+.rail-footer span { font-size: 11px; color: rgb(var(--muted)); }
+
+/* rail-open 버튼은 모든 너비에서 보인다: 데스크톱에서는 레일 접기/펼치기,
+   1024px 이하에서는 오프캔버스 드로어 열기/닫기로 역할이 바뀐다 (JS가 판단) */
+
+/* 데스크톱: 레일 접기 — .rail은 DOM에 그대로 남겨(TOC 노드·스크롤 트래킹 보존)
+   grid 트랙만 0으로 줄이면 .content가 남은 1fr을 자연히 차지한다 */
+@media (min-width: 1025px) {
+  html.rail-collapsed .layout { grid-template-columns: 0rem 1fr; gap: 0 0; }
+  html.rail-collapsed .rail { opacity: 0; pointer-events: none; }
+}
+
+/* 모바일: 레일을 드로어로 */
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; }
+  .rail {
+    position: fixed; inset: 52px auto 0 0; z-index: 90;
+    width: 16rem; padding: 24px 20px;
+    background: rgb(var(--bg));
+    border-right: 1px solid rgb(var(--line));
+    overflow-y: auto;
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+  }
+  .rail.open { transform: translateX(0); }
+}
+
+.site-footer {
+  border-top: 1px solid rgb(var(--line));
+  background: rgb(var(--subtle));
+  padding: 56px 28px 40px;
+}
+
+/* ── 푸터 내부 (_includes/footer.html) ── */
+.page__footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  padding: 2em 1em 1em;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.page__footer-inner > div { flex: 1; min-width: 180px; }
+.page__footer-inner h4 {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.6em;
+  color: rgb(var(--fg) / .75);
+}
+.page__footer-inner ul { list-style: none; margin: 0; padding: 0; }
+.page__footer-inner li { margin: 0.3em 0; }
+.page__footer-inner a {
+  font-size: 0.85em;
+  color: rgb(var(--muted));
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.page__footer-inner a:hover { color: rgb(var(--accent)); }
+
+.footer-about p {
+  font-size: 0.82em;
+  color: rgb(var(--muted));
+  line-height: 1.5;
+  margin: 0 0 0.5em;
+}
+
+.footer-motto {
+  font-size: 1.1em !important;
+  font-weight: 600;
+  color: rgb(var(--fg)) !important;
+  letter-spacing: 0.15em;
+  margin-top: 0.6em !important;
+}
+.footer-motto span {
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgb(var(--muted)) !important;
+}
+
+.page__footer-copyright {
+  text-align: center;
+  padding: 1em;
+  font-size: 0.78em;
+  color: rgb(var(--muted));
+  border-top: 1px solid rgb(var(--line));
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .page__footer-inner {
+    flex-direction: column;
+    gap: 1.2em;
+    padding: 1.5em 1em 0.5em;
+  }
+  .page__footer-inner > div { min-width: 100%; }
+}

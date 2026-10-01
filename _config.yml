@@ -1,26 +1,38 @@
 name: JONGHO LEE
-title: AI Product & Research Engineer
-description: AI 모델과 업무 시스템 사이를 연결하는 AI Product & Research Engineer
+title: "Jongho's Career"
+description: AI 서비스 개발·운영과 문서 자동화, 멀티모달 연구 경험을 정리한 이종호의 포트폴리오입니다.
 url: https://jongsky.github.io
 baseurl: ""
 lang: ko
+locale: ko-KR
 timezone: Asia/Seoul
-
 email: ljhljh0125@gmail.com
 github_username: JONGSKY
-instagram_username: jongsky_data
 linkedin_username: jong-sky
-
-darkmode: false
-about_profile_image: ./assets/images/profile_image.jpg
-
+about_profile_image: /assets/images/profile_image.jpg
+author:
+  name: 이종호
+  avatar: /assets/images/profile_image.jpg
+  bio: AI Product & Research Engineer
+  links:
+    - label: GitHub
+      url: https://github.com/JONGSKY
+    - label: Tech Blog
+      url: https://jongsky.tistory.com/
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/jong-sky/
+    - label: Email
+      url: mailto:ljhljh0125@gmail.com
 plugins:
   - jekyll-seo-tag
-
+markdown: kramdown
 sass:
   sass_dir: _sass
   style: compressed
-
+after_footer_scripts:
+  - /assets/js/theme-toggle.js
+  - /assets/js/contents-rail.js
+  - /assets/js/back-button.js
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -30,3 +42,4 @@ exclude:
   - scripts
   - docker-compose.yml
   - README.md
+  - UPSTREAM.md

@@ -1,4 +1,5 @@
 - slug: multi-llm-platform
+  group: ai-product
   title: 멀티 LLM AI 서비스 개발·운영
   category: Platform & Product
   featured: true
@@ -23,6 +24,7 @@
   proof: 2024.01 — 2026.09 · Team Reboott 내부 서비스
 
 - slug: shipping-invoice-automation
+  group: ai-product
   title: 해운업 전표·인보이스 자동화
   category: Document AI & Automation
   featured: true
@@ -47,6 +49,7 @@
   proof: 2024.02 — 2025.03 · 해운업 고객 대상 업무 자동화
 
 - slug: on-prem-llm-agent
+  group: ai-product
   title: 조선업 온프레미스 LLM 에이전트
   category: Enterprise AI
   featured: true
@@ -70,6 +73,7 @@
   proof: 2026.02 — present · 조선업 현장 PoC
 
 - slug: knowledge-wiki-chat
+  group: ai-product
   title: 기업 문서 지식 기반 위키·채팅
   category: Enterprise AI
   featured: true
@@ -93,6 +97,7 @@
   proof: 2026.06 — present · 기업 지식 에이전트 과제
 
 - slug: scicap
+  group: research
   title: SciCap — 학술 도표 캡션 생성
   category: Research
   featured: true
@@ -116,6 +121,7 @@
   proof: IJCAI 2024 · AAAI 2025 · COLM 2025
 
 - slug: vrd-iu
+  group: research
   title: VRD-IU — 문서 레이아웃 정보 추출
   category: Research
   featured: true
@@ -138,6 +144,7 @@
   proof: IJCAI 2024 VRD-IU Track A·B
 
 - slug: wa3i
+  group: earlier-work
   title: 서술형 평가 지원 AI 프로그램
   category: Earlier Work
   featured: false
@@ -160,6 +167,7 @@
   proof: 2020.03 — 2020.12 · 한국과학창의재단
 
 - slug: shipyard-data
+  group: earlier-work
   title: 조선업 생산 데이터 분석·시각화
   category: Earlier Work
   featured: false
@@ -182,6 +190,7 @@
   proof: 2019.12 — 2020.06 · TEAMLAB 연구
 
 - slug: news-chatbot
+  group: earlier-work
   title: 한 눈에 보자 — News Chatbot
   category: Earlier Work
   featured: false
@@ -204,6 +213,7 @@
   proof: 2020.09 — 2020.11
 
 - slug: thunder-search
+  group: earlier-work
   title: Thunder Search System
   category: Earlier Work
   featured: false
@@ -226,6 +236,7 @@
   proof: 2020.08 — 2020.12
 
 - slug: patent-search
+  group: earlier-work
   title: LaSPAM — 특허 검색 시스템
   category: Earlier Work
   featured: false
@@ -248,6 +259,7 @@
   proof: 2019.09 — 2019.12
 
 - slug: snow-data
+  group: earlier-work
   title: 제설 관련 측정 자료 분석
   category: Earlier Work
   featured: false
@@ -270,6 +282,7 @@
   proof: 2019.08 — 2019.12
 
 - slug: research-topic
+  group: earlier-work
   title: 2020년 연구주제 발굴조사
   category: Earlier Work
   featured: false
@@ -291,6 +304,7 @@
   proof: 2019.07 — 2019.08
 
 - slug: covid-viz
+  group: earlier-work
   title: Dacon COVID-19 Visualization
   category: Earlier Work
   featured: false

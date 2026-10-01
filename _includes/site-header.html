@@ -1,0 +1,21 @@
+<header class="site-header">
+  <a class="header-logo" href="{{ '/' | relative_url }}">
+    {{ site.author.name }} · <b>{{ site.title }}</b>
+  </a>
+  <div class="header-right">
+    <span class="header-meta">{{ site.title }} · {{ site.time | date: '%Y' }}</span>
+    <button class="icon-btn rail-open" type="button" title="레일 접기/펼치기" aria-label="레일 접기/펼치기" aria-expanded="true">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <rect x="1.5" y="2.5" width="13" height="11" rx="1.6" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M6.2 2.5v11" stroke="currentColor" stroke-width="1.4"/>
+        <rect class="rail-icon-fill" x="2.4" y="3.4" width="2.8" height="9.2" rx="0.8" fill="currentColor"/>
+      </svg>
+    </button>
+    <button class="icon-btn theme-toggle" type="button" aria-label="테마 전환">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 2.8v10.4A5.2 5.2 0 008 2.8z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</header>
