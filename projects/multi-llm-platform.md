@@ -1,6 +1,6 @@
 ---
 layout: project
-title: 올인원 AI 업무 워크스페이스 구축·운영
+title: AI 업무 플랫폼 아키텍처 설계·구축
 project: multi-llm-platform
 permalink: /projects/multi-llm-platform.html
 ---

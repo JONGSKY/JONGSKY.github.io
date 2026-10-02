@@ -1,24 +1,27 @@
 - slug: multi-llm-platform
   group: ai-engineer
-  title: 올인원 AI 업무 워크스페이스 구축·운영
-  category: AI Product Platform
+  title: AI 업무 플랫폼 아키텍처 설계·구축
+  category: AI Engineering · Platform Architecture
   featured: true
   period: 2024.01 — present
-  contribution: Technical Lead · AI 서비스 개발·운영
+  contribution: Technical Lead · AI 엔지니어링 및 플랫폼 아키텍처 리딩
   accent: violet
-  summary: 멀티 LLM 채팅, AI 검색·딥리서치, 회의록, 번역, 이미지 생성·편집, 문서 관리를 하나의 업무 흐름으로 연결한 올인원 AI 워크스페이스를 구축·운영했습니다.
-  context: 개인 사용자가 바로 시작할 수 있는 생산성 기능에서 출발해, 팀 공유·기업 문서·권한·온프레미스 환경까지 확장 가능한 제품 구조를 만들어야 했습니다.
+  summary: 멀티 LLM·검색·문서·음성·이미지 기능을 실제 제품에서 동작하는 AI 서비스로 구현하고, API·오케스트레이션·비동기 처리·온프레미스 GPU 서빙을 연결하는 플랫폼 아키텍처를 설계·구축했습니다.
+  context: 멀티 LLM 채팅, AI 검색·딥리서치, 회의록, 번역, 이미지 생성·편집, 문서 관리 기능을 하나의 업무 흐름으로 제공하면서도 팀 공유·기업 문서·권한·온프레미스 환경까지 확장할 수 있는 기반이 필요했습니다.
   role:
-    - 서비스 유닛의 Technical Lead로 기술 방향과 제품 단위 실행을 조율
+    - 서비스 유닛의 Technical Lead로 기술 방향과 플랫폼 단위 실행을 조율
     - 기능 요구사항을 API·화면·운영 작업으로 분해하고 초기 서비스 구축부터 출시까지 리딩
-    - 멀티 LLM·검색·문서·음성·이미지 기능을 공통 orchestration layer로 연결
+    - 멀티 LLM·검색·문서·음성·이미지 기능을 공통 orchestration layer로 연결하고 제품 기능으로 서비스화
+    - 모델 호출·스트리밍·장시간 작업의 실행 흐름을 설계하고 기능별 AI consumer로 분리
     - FastAPI 기반 서비스 API·Agent Proxy·Workspace 백엔드와 Kafka consumer 구조 구축
     - Kafka로 요청과 처리를 분리하고 Redis lock·pub/sub, MongoDB 저장 구조 구성
     - 온프레미스 네트워크·Nginx·TLS·컨테이너 실행 환경과 Kubernetes 배포 체계 구축
-    - GPU 서버 토폴로지와 자원에 맞춘 vLLM 모델 서빙, Prometheus·Grafana·OTel 모니터링 구성
+    - GPU 서버 토폴로지와 자원에 맞춘 vLLM 모델 서빙 및 추론 엔드포인트 구성
+    - Prometheus·Grafana·OTel 기반으로 AI 서비스와 모델 서빙 상태를 관측
   stack: Python, FastAPI, Pydantic, Kafka, Redis, MongoDB, Docker, Kubernetes, vLLM, GPU Serving, Nginx, Prometheus, Grafana, OpenTelemetry, GitHub Actions
   architecture:
     - 멀티 LLM·검색·문서·음성·이미지 기능을 공통 workspace와 orchestration layer로 연결
+    - 기능별 모델 호출과 장시간 추론 작업을 Kafka topic·consumer 단위로 분리
     - 개인 사용자와 기업 고객의 요청을 공통 API·작업 큐로 수렴
     - 문서·지식 엔티티·시각 정보를 함께 검색할 수 있도록 multimodal·hybrid RAG 구조로 확장
     - FastAPI API가 인증·워크스페이스·업무 요청을 받고 Kafka topic별 consumer가 기능을 처리
@@ -27,12 +30,12 @@
     - 장시간 작업은 상태와 결과를 저장해 화면에서 진행 상황을 확인
     - 공통 모니터링과 알림으로 배포 이후 장애를 빠르게 추적
   outcomes:
-    - 초기 서비스 구축부터 배포·운영·고객 피드백 반영까지 전 과정 리딩
+    - 초기 서비스 구축부터 배포·운영·고객 피드백 반영까지 기술 실행 전반 리딩
     - 약 4,000명 사용자 기반과 MAU 2~3천 명대 서비스 운영 경험
     - 개인 생산성 기능에서 팀 공유·기업 맞춤·온프레미스 도입으로 확장 가능한 기반 확보
-    - 네트워크 설계·GPU 모델 서빙·Kubernetes 배포·관측성까지 이어지는 운영 기반 구축
+    - AI 기능 구현부터 네트워크 설계·GPU 모델 서빙·Kubernetes 배포·관측성까지 이어지는 운영 기반 구축
     - 모델과 기능이 늘어도 요청 처리 계층을 재사용할 수 있는 기반 확보
-  proof: 2024.01 — 현재 · 올인원 AI 업무 워크스페이스
+  proof: 2024.01 — 현재 · AI 업무 플랫폼 아키텍처 설계·구축
 
 - slug: shipping-invoice-automation
   group: ai-engineer
