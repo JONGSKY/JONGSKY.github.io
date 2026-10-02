@@ -12,21 +12,25 @@
     - 서비스 유닛의 Technical Lead로 기술 방향과 제품 단위 실행을 조율
     - 기능 요구사항을 API·화면·운영 작업으로 분해하고 초기 서비스 구축부터 출시까지 리딩
     - 멀티 LLM·검색·문서·음성·이미지 기능을 공통 orchestration layer로 연결
-    - Kafka로 요청과 처리를 분리하고 Celery·Redis 기반 비동기 작업 구성
-    - Kubernetes 배포와 모델 서빙 환경, Prometheus·Grafana·Slack 알림 구축
-    - Gemini·GPT 계열 모델 테스트와 프롬프트·도구 호출 기능 개선
-  stack: Python, Django, FastAPI, Kafka, Redis, Celery, Docker, Kubernetes, Prometheus, Grafana
+    - FastAPI 기반 서비스 API·Agent Proxy·Workspace 백엔드와 Kafka consumer 구조 구축
+    - Kafka로 요청과 처리를 분리하고 Redis lock·pub/sub, MongoDB 저장 구조 구성
+    - 온프레미스 네트워크·Nginx·TLS·컨테이너 실행 환경과 Kubernetes 배포 체계 구축
+    - GPU 서버 토폴로지와 자원에 맞춘 vLLM 모델 서빙, Prometheus·Grafana·OTel 모니터링 구성
+  stack: Python, FastAPI, Pydantic, Kafka, Redis, MongoDB, Docker, Kubernetes, vLLM, GPU Serving, Nginx, Prometheus, Grafana, OpenTelemetry, GitHub Actions
   architecture:
     - 멀티 LLM·검색·문서·음성·이미지 기능을 공통 workspace와 orchestration layer로 연결
     - 개인 사용자와 기업 고객의 요청을 공통 API·작업 큐로 수렴
     - 문서·지식 엔티티·시각 정보를 함께 검색할 수 있도록 multimodal·hybrid RAG 구조로 확장
-    - 사용자의 요청을 큐에 넣고 작업 유형별 consumer가 모델 호출을 처리
+    - FastAPI API가 인증·워크스페이스·업무 요청을 받고 Kafka topic별 consumer가 기능을 처리
+    - 온프레미스 환경은 네트워크 경계·Nginx·백엔드·AI/MCP 서비스를 분리해 배포
+    - GPU 서버에서는 vLLM OpenAI-compatible endpoint를 구성하고 모델·GPU 토폴로지에 맞춰 서빙
     - 장시간 작업은 상태와 결과를 저장해 화면에서 진행 상황을 확인
     - 공통 모니터링과 알림으로 배포 이후 장애를 빠르게 추적
   outcomes:
     - 초기 서비스 구축부터 배포·운영·고객 피드백 반영까지 전 과정 리딩
     - 약 4,000명 사용자 기반과 MAU 2~3천 명대 서비스 운영 경험
     - 개인 생산성 기능에서 팀 공유·기업 맞춤·온프레미스 도입으로 확장 가능한 기반 확보
+    - 네트워크 설계·GPU 모델 서빙·Kubernetes 배포·관측성까지 이어지는 운영 기반 구축
     - 모델과 기능이 늘어도 요청 처리 계층을 재사용할 수 있는 기반 확보
   proof: 2024.01 — 현재 · 올인원 AI 업무 워크스페이스
 
