@@ -64,6 +64,29 @@
     items.forEach(function (it) { observer.observe(it.heading); });
   }
 
+  function trackProgress(progressEl) {
+    var fill = document.getElementById("rail-progress-fill");
+    var value = document.getElementById("rail-progress-value");
+    if (!fill || !value) return;
+
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var percent = max > 0 ? Math.round((window.scrollY / max) * 100) : 100;
+      percent = Math.max(0, Math.min(100, percent));
+      fill.style.width = percent + "%";
+      value.textContent = percent + "%";
+      progressEl.setAttribute("aria-valuenow", String(percent));
+    }
+
+    progressEl.hidden = false;
+    progressEl.setAttribute("role", "progressbar");
+    progressEl.setAttribute("aria-valuemin", "0");
+    progressEl.setAttribute("aria-valuemax", "100");
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
   // rail-open 버튼은 두 역할을 겸한다:
   //  - 1024px 초과(데스크톱): 레일 전체를 접고/펼치고, .content가 grid로 자연히 넓어진다
   //  - 1024px 이하(모바일): 오프캔버스 드로어를 열고/닫는다 (기존 동작 그대로)
@@ -151,6 +174,7 @@
     var rail = document.getElementById("contents-rail");
     var tocEl = document.getElementById("rail-toc");
     var navEl = document.getElementById("rail-nav");
+    var progressEl = document.getElementById("rail-progress");
     if (!main || !rail || !tocEl || !navEl) return;
 
     wireRailToggle(rail);
@@ -160,6 +184,9 @@
     // 카테고리 내비 대신 가짜 목차가 뜬다 (post/page만 .post-body를 가짐).
     var body = document.querySelector(".post-body");
     var items = body ? buildToc(body, tocEl, navEl) : null;
-    if (items) trackScroll(items);
+    if (items) {
+      trackScroll(items);
+      if (progressEl) trackProgress(progressEl);
+    }
   });
 })();

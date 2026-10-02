@@ -77,6 +77,28 @@
   color: rgb(var(--accent)); min-width: 18px;
 }
 .rail a.sub { padding-left: 27px; font-size: 12px; }
+.rail-progress {
+  margin-top: 26px; padding-top: 14px;
+  border-top: 1px solid rgb(var(--line) / .5);
+}
+.rail-progress-track {
+  height: 8px; overflow: hidden;
+  background: repeating-linear-gradient(90deg, rgb(var(--line) / .8) 0 2px, transparent 2px 4px);
+}
+.rail-progress-track span {
+  display: block; width: 0; height: 100%;
+  background: repeating-linear-gradient(90deg, rgb(var(--fg)) 0 2px, transparent 2px 4px);
+  transition: width .12s linear;
+}
+.rail-progress-meta {
+  display: flex; justify-content: space-between; margin-top: 7px;
+  font-family: var(--font-mono); font-size: 10px; color: rgb(var(--muted));
+}
+.rail-progress-meta span:first-child { color: rgb(var(--fg)); }
+.rail-progress-hint {
+  margin-top: 14px; font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .08em; text-transform: uppercase; color: rgb(var(--muted));
+}
 .rail-footer {
   margin-top: 24px; padding-top: 14px;
   border-top: 1px solid rgb(var(--line) / .5);

@@ -7,25 +7,51 @@ layout: default
   <header class="page-head"><h1 class="page-title">{{ project.title }}</h1></header>
   <div class="post-body">
     <a class="back-to-list" href="{{ category.url | relative_url }}">← {{ category.title }}</a>
+    <section class="project-intro" aria-label="프로젝트 소개">
+      <p class="project-intro-label">{{ project.category }}</p>
+      <p class="project-intro-copy">{{ project.summary }}</p>
+      <div class="project-metrics">
+        {% for metric in project.metrics %}
+        <div><span>{{ metric.label }}</span><strong>{{ metric.value }}</strong></div>
+        {% endfor %}
+      </div>
+    </section>
+
     <h2 id="overview">프로젝트 개요</h2>
-    <table><thead><tr><th>항목</th><th>내용</th></tr></thead><tbody>
-      <tr><td>작업 기간</td><td>{{ project.period }}</td></tr>
-      <tr><td>기여도 / 역할</td><td>{{ project.contribution }}</td></tr>
-      <tr><td>프로젝트 내용</td><td>{{ project.summary }}</td></tr>
-      <tr><td>사용 환경</td><td>{{ project.stack }}</td></tr>
-      <tr><td>관련 이력</td><td>{{ project.proof }}</td></tr>
-    </tbody></table>
+    <div class="project-overview">
+      <div><span>서비스</span><p>{{ project.summary }}</p></div>
+      <div><span>내 역할</span><p>{{ project.contribution }}</p></div>
+      <div><span>기간</span><p>{{ project.period }}</p></div>
+      <div><span>운영 범위</span><p>{{ project.proof }}</p></div>
+    </div>
     <hr>
     <h2 id="context">프로젝트 배경</h2><p>{{ project.context }}</p>
     <hr>
-    <h2 id="role">주요 업무 및 상세 역할</h2>
-    <ul>{% for item in project.role %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h2 id="role">내가 맡은 일</h2>
+    <ul class="role-list">{% for item in project.role %}<li>{{ item }}</li>{% endfor %}</ul>
+    <hr>
+    <h2 id="contribution">핵심 기여</h2>
+    <div class="contribution-cases">
+      {% for item in project.cases %}
+      <article class="contribution-case">
+        <div class="case-heading"><span class="case-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><h3>{{ item.title }}</h3></div>
+        <div class="case-grid">
+          <div><span>문제</span><p>{{ item.problem }}</p></div>
+          <div><span>내가 한 일</span><p>{{ item.work }}</p></div>
+          <div class="case-change"><span>달라진 점</span><p>{{ item.change }}</p></div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
     <hr>
     <h2 id="architecture">구현과 구조</h2>
-    <ul>{% for item in project.architecture %}<li>{{ item }}</li>{% endfor %}</ul>
+    <div class="architecture-list">
+      {% for item in project.architecture %}<div><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><p>{{ item }}</p></div>{% endfor %}
+    </div>
     {% if project.images %}{% for image in project.images %}<figure><img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy"><figcaption>{{ image.alt }}</figcaption></figure>{% endfor %}{% endif %}
     <hr>
-    <h2 id="outcomes">결과</h2><ul>{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h2 id="outcomes">결과와 변화</h2><ul class="outcome-list">{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% if project.learning %}<hr><h2 id="learning">배운 점과 다음 기준</h2><ul class="learning-list">{% for item in project.learning %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
     <hr>
     <h2 id="stack">기술 스택</h2><div class="skill-tags">{% assign skills = project.stack | split: ', ' %}{% for item in skills %}<span class="skill-tag">{{ item }}</span>{% endfor %}</div>
     {{ content }}
