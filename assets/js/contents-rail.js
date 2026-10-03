@@ -17,6 +17,7 @@
     var items = [];
 
     Array.prototype.forEach.call(heads, function (h) {
+      if (h.classList.contains("toc-skip") || h.closest("[data-toc=\"skip\"]")) return;
       if (!h.id) h.id = slugify(h.textContent);
       var a = document.createElement("a");
       a.href = "#" + h.id;

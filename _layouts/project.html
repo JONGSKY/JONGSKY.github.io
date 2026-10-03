@@ -31,7 +31,7 @@ layout: default
       {% for item in project.ownership %}
       <article class="ownership-card">
         <span class="ownership-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-        <h3>{{ item.title }}</h3>
+        <h3 class="toc-skip">{{ item.title }}</h3>
         <p>{{ item.summary }}</p>
       </article>
       {% endfor %}
@@ -66,7 +66,7 @@ layout: default
     {% if project.images %}{% for image in project.images %}<figure><img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy"><figcaption>{{ image.alt }}</figcaption></figure>{% endfor %}{% endif %}
     <hr>
     <h2 id="outcomes">결과와 변화</h2><ul class="outcome-list">{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
-    {% if project.evidence %}<div class="evidence-block"><h3>공개 가능한 근거</h3><table class="evidence-table"><thead><tr><th>지표</th><th>값</th><th>범위와 기준</th></tr></thead><tbody>{% for item in project.evidence %}<tr><td>{{ item.metric }}</td><td><strong>{{ item.value }}</strong></td><td>{{ item.note }}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
+    {% if project.evidence %}<div class="evidence-block"><h3 class="toc-skip">공개 가능한 근거</h3><table class="evidence-table"><thead><tr><th>지표</th><th>값</th><th>범위와 기준</th></tr></thead><tbody>{% for item in project.evidence %}<tr><td>{{ item.metric }}</td><td><strong>{{ item.value }}</strong></td><td>{{ item.note }}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
     {% if project.learning %}<hr><h2 id="learning">배운 점과 다음 기준</h2><ul class="learning-list">{% for item in project.learning %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
     {% if project.limitations %}<hr><h2 id="limits">공개 범위와 한계</h2><ul class="learning-list">{% for item in project.limitations %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
     <hr>
