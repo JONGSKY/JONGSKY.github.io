@@ -67,11 +67,14 @@
   function trackProgress(progressEl) {
     var fill = document.getElementById("rail-progress-fill");
     var value = document.getElementById("rail-progress-value");
-    if (!fill || !value) return;
+    var article = document.querySelector(".post-body");
+    if (!fill || !value || !article) return;
 
     function update() {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      var percent = max > 0 ? Math.round((window.scrollY / max) * 100) : 100;
+      var start = article.getBoundingClientRect().top + window.scrollY;
+      var end = start + article.offsetHeight - window.innerHeight;
+      var range = end - start;
+      var percent = range > 0 ? Math.round(((window.scrollY - start) / range) * 100) : 100;
       percent = Math.max(0, Math.min(100, percent));
       fill.style.width = percent + "%";
       value.textContent = percent + "%";
