@@ -19,7 +19,6 @@ layout: default
 
     <h2 id="overview">프로젝트 개요</h2>
     <div class="project-overview">
-      <div><span>서비스</span><p>{{ project.summary }}</p></div>
       <div><span>내 역할</span><p>{{ project.contribution }}</p></div>
       <div><span>기간</span><p>{{ project.period }}</p></div>
       <div><span>운영 범위</span><p>{{ project.proof }}</p></div>
@@ -27,31 +26,49 @@ layout: default
     <hr>
     <h2 id="context">프로젝트 배경</h2><p>{{ project.context }}</p>
     <hr>
-    <h2 id="role">내가 맡은 일</h2>
-    <ul class="role-list">{% for item in project.role %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h2 id="role">내가 맡은 범위</h2>
+    <div class="ownership-grid">
+      {% for item in project.ownership %}
+      <article class="ownership-card">
+        <span class="ownership-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.summary }}</p>
+      </article>
+      {% endfor %}
+    </div>
     <hr>
-    <h2 id="contribution">핵심 기여</h2>
+    <h2 id="contribution">기술적 결정과 변화</h2>
     <div class="contribution-cases">
       {% for item in project.cases %}
       <article class="contribution-case">
         <div class="case-heading"><span class="case-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><h3>{{ item.title }}</h3></div>
         <div class="case-grid">
           <div><span>문제</span><p>{{ item.problem }}</p></div>
-          <div><span>내가 한 일</span><p>{{ item.work }}</p></div>
+          <div><span>핵심 판단</span><p>{{ item.decision }}</p></div>
+          <div class="case-work"><span>내가 한 일</span><p>{{ item.work }}</p></div>
           <div class="case-change"><span>달라진 점</span><p>{{ item.change }}</p></div>
         </div>
       </article>
       {% endfor %}
     </div>
     <hr>
-    <h2 id="architecture">구현과 구조</h2>
+    <h2 id="architecture">시스템 구조</h2>
+    {% if project.flow %}
+    <div class="system-flow" aria-label="AI 요청 처리 흐름">
+      {% for item in project.flow %}
+      <div class="flow-node"><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><strong>{{ item }}</strong></div>{% unless forloop.last %}<div class="flow-arrow" aria-hidden="true">→</div>{% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
     <div class="architecture-list">
       {% for item in project.architecture %}<div><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><p>{{ item }}</p></div>{% endfor %}
     </div>
     {% if project.images %}{% for image in project.images %}<figure><img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy"><figcaption>{{ image.alt }}</figcaption></figure>{% endfor %}{% endif %}
     <hr>
     <h2 id="outcomes">결과와 변화</h2><ul class="outcome-list">{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% if project.evidence %}<div class="evidence-block"><h3>공개 가능한 근거</h3><table class="evidence-table"><thead><tr><th>지표</th><th>값</th><th>범위와 기준</th></tr></thead><tbody>{% for item in project.evidence %}<tr><td>{{ item.metric }}</td><td><strong>{{ item.value }}</strong></td><td>{{ item.note }}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
     {% if project.learning %}<hr><h2 id="learning">배운 점과 다음 기준</h2><ul class="learning-list">{% for item in project.learning %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
+    {% if project.limitations %}<hr><h2 id="limits">공개 범위와 한계</h2><ul class="learning-list">{% for item in project.limitations %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
     <hr>
     <h2 id="stack">기술 스택</h2><div class="skill-tags">{% assign skills = project.stack | split: ', ' %}{% for item in skills %}<span class="skill-tag">{{ item }}</span>{% endfor %}</div>
     {{ content }}

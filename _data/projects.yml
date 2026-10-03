@@ -15,6 +15,13 @@
       value: MAU 2~3천 명대
     - label: 서비스 범위
       value: 개인·팀·기업
+  ownership:
+    - title: 제품·기술 방향
+      summary: 제품 요구사항을 AI 기능·플랫폼·운영 작업으로 분해하고, 서비스 유닛의 Technical Lead로 초기 구축부터 배포·운영까지 기술 실행을 조율했습니다.
+    - title: AI 서비스 엔지니어링
+      summary: 멀티 LLM·검색·문서·음성·이미지 기능을 공통 orchestration layer와 기능별 consumer로 연결해 실제 제품 기능으로 서비스화했습니다.
+    - title: 플랫폼·인프라
+      summary: FastAPI·Kafka·Redis·MongoDB 기반 실행 흐름과 온프레미스 네트워크·Kubernetes·vLLM GPU 서빙·관측성 환경을 구축했습니다.
   role:
     - 서비스 유닛의 Technical Lead로 제품 요구사항을 AI 기능·플랫폼·운영 작업으로 분해하고 기술 방향을 조율
     - 초기 서비스 기획·구축부터 배포·운영·고객 피드백 반영까지 실행을 리딩
@@ -24,18 +31,43 @@
     - 온프레미스 네트워크·Kubernetes·vLLM GPU 서빙·관측성 환경 구축
   stack: Python, FastAPI, Pydantic, Kafka, Redis, MongoDB, Docker, Kubernetes, vLLM, GPU Serving, Nginx, Prometheus, Grafana, OpenTelemetry, GitHub Actions
   cases:
-    - title: 여러 AI 기능을 하나의 제품 경험으로 통합
+    - title: 통합 실행 계층으로 AI 기능 연결
       problem: 채팅·검색·문서·회의·번역·이미지 기능마다 모델과 입력·출력 형식이 달라 기능이 늘수록 API와 실행 흐름이 분산될 수 있었습니다.
+      decision: 기능마다 별도 API와 배포 경로를 만드는 대신, 공통 workspace와 orchestration layer를 제품의 중심에 두기로 했습니다.
       work: 공통 workspace와 orchestration layer를 두고 모델 호출·스트리밍·결과 저장을 기능별 consumer로 연결했습니다. 사용자는 기능별 내부 구현을 알 필요 없이 하나의 워크스페이스에서 같은 흐름으로 사용할 수 있게 했습니다.
       change: 새로운 AI 기능을 별도 제품으로 만들지 않고 기존 요청·작업·결과 흐름에 연결할 수 있는 기반을 만들었습니다.
-    - title: 긴 작업도 끊기지 않는 실행·응답 구조 설계
+    - title: 긴 작업을 비동기 실행으로 분리
       problem: 딥리서치·문서 처리·회의록처럼 처리 시간이 긴 작업을 일반 동기 API처럼 다루면 요청이 오래 붙잡히고 사용자가 현재 상태를 알기 어려웠습니다.
+      decision: 요청을 받은 API와 실제 AI 작업을 분리하고, 작업 상태를 제품의 첫 화면에서 확인할 수 있게 하기로 했습니다.
       work: FastAPI API가 요청을 받고 Kafka topic·consumer가 작업을 처리하도록 분리했습니다. Redis lock·pub/sub과 MongoDB 상태 저장을 조합하고, 스트리밍과 진행 상태·결과 조회 흐름을 구현했습니다.
       change: 사용자는 작업이 진행 중인지, 완료됐는지, 결과를 다시 확인할 수 있게 되었고 기능별 처리 시간이 달라도 동일한 제품 경험을 유지할 수 있었습니다.
-    - title: 기업 환경에서 AI를 운영할 수 있는 기반 구축
+    - title: 온프레미스 GPU 운영을 제품 범위로 확장
       problem: 기업 문서와 업무 데이터를 외부로 보내기 어려운 환경에서는 모델·API·네트워크를 현장 조건에 맞게 직접 구성해야 했습니다.
+      decision: 클라우드 전용 기능으로 제한하지 않고, 네트워크 경계와 GPU 자원을 제품 아키텍처의 일부로 설계하기로 했습니다.
       work: 온프레미스 네트워크 경계와 Nginx·TLS·컨테이너·Kubernetes 배포 구조를 구성하고, GPU 서버 토폴로지와 자원에 맞춰 vLLM OpenAI-compatible endpoint를 구축했습니다. Prometheus·Grafana·OpenTelemetry로 서비스와 모델 상태를 관측했습니다.
       change: 개인용 기능에서 출발한 서비스를 기업 맞춤·온프레미스 환경까지 확장하고 운영할 수 있는 기반을 확보했습니다.
+  flow:
+    - 사용자 요청
+    - FastAPI API
+    - Kafka 작업 큐
+    - 기능별 AI consumer
+    - 모델·검색·문서 처리
+    - 상태·결과 저장
+    - 스트리밍·결과 응답
+  evidence:
+    - metric: 사용자 기반
+      value: 약 4,000명
+      note: 서비스에 가입·사용한 누적 사용자 기준
+    - metric: 월간 활성 사용자
+      value: MAU 2~3천 명대
+      note: 내부 운영 기록에서 확인한 월간 활성 규모
+    - metric: 서비스 적용 범위
+      value: 개인·팀·기업
+      note: 개인 생산성 기능에서 팀 공유·기업 맞춤·온프레미스까지 확장
+  limitations:
+    - 제품명과 고객사·내부 시스템의 상세 정보는 공개하지 않고 서비스 범위와 기술 역할 중심으로 설명했습니다.
+    - 처리 시간·비용·모델 품질의 전후 수치는 당시 측정 기준이 일관되게 보존된 자료만 추가할 예정입니다.
+    - 공개 저장소와 포트폴리오에는 보안상 내부 주소·인증 정보·배포 세부값을 포함하지 않았습니다.
   architecture:
     - FastAPI API가 인증·워크스페이스·업무 요청을 받고 Kafka topic별 consumer가 기능을 처리
     - Redis lock·pub/sub과 MongoDB 상태 저장으로 동시 요청과 장시간 작업을 관리
