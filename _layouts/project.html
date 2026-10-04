@@ -3,7 +3,7 @@ layout: default
 ---
 {% assign project = site.data.projects | where: "slug", page.project | first %}
 {% assign category = site.data.categories | where: "id", project.group | first %}
-<article class="page-doc">
+<article class="page-doc project-doc">
   <header class="page-head"><h1 class="page-title">{{ project.title }}</h1></header>
   <div class="post-body">
     <a class="back-to-list" href="{{ category.url | relative_url }}">← {{ category.title }}</a>
