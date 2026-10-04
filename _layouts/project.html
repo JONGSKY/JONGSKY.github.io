@@ -15,6 +15,7 @@ layout: default
         <div><span>{{ metric.label }}</span><strong>{{ metric.value }}</strong></div>
         {% endfor %}
       </div>
+      {% if project.public_note %}<p class="project-public-note"><span>PUBLIC SCOPE</span>{{ project.public_note }}</p>{% endif %}
     </section>
 
     <h2 id="overview">프로젝트 개요</h2>

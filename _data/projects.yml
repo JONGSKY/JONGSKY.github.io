@@ -6,7 +6,8 @@
   period: 2024.01 — present
   contribution: Technical Lead · AI 엔지니어링 및 플랫폼 아키텍처 리딩
   accent: violet
-  summary: 개인과 팀이 사용하는 올인원 AI 업무 워크스페이스로, 멀티 LLM 채팅·AI 검색·딥리서치·회의록·번역·이미지 생성·문서 관리를 하나의 서비스에서 제공했습니다.
+  summary: 개인 사용자를 위한 B2C 기능과 팀·기업을 위한 B2B 업무 기능을 하나의 AI 업무 워크스페이스로 연결했습니다. 멀티 LLM 채팅·AI 검색·딥리서치·회의록·번역·이미지 생성·문서 관리를 하나의 서비스에서 제공했습니다.
+  public_note: 제품명과 고객별 구성은 공개하지 않고, 요청 처리 흐름과 내가 책임진 기술 경계만 일반화해 설명했습니다.
   context: 초기 서비스 기획과 구축부터 시작해 개인 생산성 기능을 팀 공유·기업 문서·권한·온프레미스 환경으로 확장해야 했습니다. 기능마다 다른 모델과 처리 시간이 필요한 상황에서도 사용자는 하나의 업무 흐름으로 이용할 수 있어야 했습니다.
   metrics:
     - label: 사용자 기반
@@ -44,7 +45,7 @@
     - title: 온프레미스 GPU 운영을 제품 범위로 확장
       problem: 기업 문서와 업무 데이터를 외부로 보내기 어려운 환경에서는 모델·API·네트워크를 현장 조건에 맞게 직접 구성해야 했습니다.
       decision: 클라우드 전용 기능으로 제한하지 않고, 네트워크 경계와 GPU 자원을 제품 아키텍처의 일부로 설계하기로 했습니다.
-      work: 온프레미스 네트워크 경계와 Nginx·TLS·컨테이너·Kubernetes 배포 구조를 구성하고, GPU 서버 토폴로지와 자원에 맞춰 vLLM OpenAI-compatible endpoint를 구축했습니다. Prometheus·Grafana·OpenTelemetry로 서비스와 모델 상태를 관측했습니다.
+      work: 온프레미스 네트워크 경계와 Nginx·TLS·컨테이너·Kubernetes 배포 구조를 구성하고, GPU 자원 조건에 맞춰 vLLM OpenAI-compatible endpoint를 구축했습니다. Prometheus·Grafana·OpenTelemetry로 서비스와 모델 상태를 관측했습니다.
       change: 개인용 기능에서 출발한 서비스를 기업 맞춤·온프레미스 환경까지 확장하고 운영할 수 있는 기반을 확보했습니다.
   flow:
     - 사용자 요청
@@ -60,7 +61,7 @@
       note: 서비스에 가입·사용한 누적 사용자 기준
     - metric: 월간 활성 사용자
       value: MAU 2~3천 명대
-      note: 내부 운영 기록에서 확인한 월간 활성 규모
+      note: 공개 가능한 범위에서 반올림한 월간 활성 규모
     - metric: 서비스 적용 범위
       value: 개인·팀·기업
       note: 개인 생산성 기능에서 팀 공유·기업 맞춤·온프레미스까지 확장
@@ -72,7 +73,7 @@
     - FastAPI API가 인증·워크스페이스·업무 요청을 받고 Kafka topic별 consumer가 기능을 처리
     - Redis lock·pub/sub과 MongoDB 상태 저장으로 동시 요청과 장시간 작업을 관리
     - 문서·지식 엔티티·시각 정보를 함께 검색할 수 있도록 multimodal·hybrid RAG 구조로 확장
-    - 온프레미스 환경은 네트워크 경계·Nginx·백엔드·AI/MCP 서비스를 분리해 배포
+    - 온프레미스 환경은 네트워크 경계와 백엔드·AI 서비스를 분리해 배포
     - GPU 서버에서는 vLLM OpenAI-compatible endpoint를 구성하고 공통 모니터링으로 운영 상태를 추적
   outcomes:
     - 약 4,000명 사용자 기반과 MAU 2~3천 명대의 AI 업무 서비스 운영
