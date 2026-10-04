@@ -15,6 +15,7 @@
 .header-logo { font-size: 13px; font-weight: 600; color: rgb(var(--muted)); }
 .header-logo b { color: rgb(var(--fg)); font-weight: 700; }
 .header-right { display: flex; align-items: center; gap: 14px; }
+.mobile-rail-open { display: none; }
 .header-meta {
   font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
   text-transform: uppercase; color: rgb(var(--muted));
@@ -53,6 +54,16 @@
   opacity: 1;
   transition: opacity .16s ease;
 }
+.rail-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.rail-header .rail-label { margin-bottom: 0; }
+.rail-toggle {
+  display: inline-flex; align-items: center; gap: 5px; height: 27px; padding: 0 8px;
+  border: 1px solid rgb(var(--line)); border-radius: 14px; background: rgb(var(--subtle));
+  color: rgb(var(--muted)); cursor: pointer; font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .05em; transition: color .15s, border-color .15s, background .15s;
+}
+.rail-toggle:hover { color: rgb(var(--fg)); border-color: rgb(var(--fg) / .35); background: rgb(var(--bg)); }
+.rail-toggle svg { flex: none; }
 .rail-label {
   font-family: var(--font-mono); font-size: 9px; font-weight: 700;
   letter-spacing: .13em; text-transform: uppercase;
@@ -95,16 +106,6 @@
   font-family: var(--font-mono); font-size: 10px; color: rgb(var(--muted));
 }
 .rail-progress-meta span:first-child { color: rgb(var(--fg)); }
-.rail-progress-hint {
-  margin-top: 14px; font-family: var(--font-mono); font-size: 9px;
-  letter-spacing: .08em; text-transform: uppercase; color: rgb(var(--muted));
-}
-.rail-footer {
-  margin-top: 24px; padding-top: 14px;
-  border-top: 1px solid rgb(var(--line) / .5);
-  display: flex; align-items: center; gap: 8px;
-}
-.rail-footer span { font-size: 11px; color: rgb(var(--muted)); }
 
 /* rail-open 버튼은 모든 너비에서 보인다: 데스크톱에서는 레일 접기/펼치기,
    1024px 이하에서는 오프캔버스 드로어 열기/닫기로 역할이 바뀐다 (JS가 판단) */
@@ -113,11 +114,17 @@
    grid 트랙만 0으로 줄이면 .content가 남은 1fr을 자연히 차지한다 */
 @media (min-width: 1025px) {
   html.rail-collapsed .layout { grid-template-columns: 0rem 1fr; gap: 0 0; }
-  html.rail-collapsed .rail { opacity: 0; pointer-events: none; }
+  html.rail-collapsed .rail { opacity: 1; overflow: visible; pointer-events: none; }
+  html.rail-collapsed .rail > :not(.rail-header) { visibility: hidden; }
+  html.rail-collapsed .rail-header { position: fixed; top: 68px; left: 28px; z-index: 95; pointer-events: auto; }
+  html.rail-collapsed .rail-header .rail-label { display: none; }
+  html.rail-collapsed .rail-toggle { box-shadow: 0 5px 18px rgb(var(--fg) / .12); }
 }
 
 /* 모바일: 레일을 드로어로 */
 @media (max-width: 1024px) {
+  .mobile-rail-open { display: flex; }
+  .rail-header .rail-toggle { display: none; }
   .layout { grid-template-columns: 1fr; }
   .rail {
     position: fixed; inset: 52px auto 0 0; z-index: 90;

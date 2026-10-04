@@ -1,12 +1,21 @@
 <aside class="rail" id="contents-rail">
-  <div class="rail-label">Contents</div>
+  <div class="rail-header">
+    <div class="rail-label">Contents</div>
+    <button class="rail-toggle rail-open" type="button" title="목차 접기" aria-label="목차 접기" aria-expanded="true">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <rect x="1.5" y="2.5" width="13" height="11" rx="1.6" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M6.2 2.5v11" stroke="currentColor" stroke-width="1.4"/>
+        <path d="m4.6 6.1-1.7 1.9 1.7 1.9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="rail-toggle-label">접기</span>
+    </button>
+  </div>
 
   <nav class="rail-toc" id="rail-toc" aria-label="목차" hidden></nav>
 
   <div class="rail-progress" id="rail-progress" hidden>
     <div class="rail-progress-track" aria-hidden="true"><span id="rail-progress-fill"></span></div>
-    <div class="rail-progress-meta"><span id="rail-progress-value">0%</span><span>읽는 중</span></div>
-    <div class="rail-progress-hint">↑ / ↓ 로 이동</div>
+    <div class="rail-progress-meta"><span id="rail-progress-value">0%</span><span>페이지 진행률</span></div>
   </div>
 
   <nav class="rail-nav" id="rail-nav" aria-label="카테고리">
@@ -21,14 +30,4 @@
       {%- endfor -%}
     </ul>
   </nav>
-
-  <div class="rail-footer">
-    <button class="icon-btn theme-toggle" type="button" aria-label="테마 전환">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M8 2.8v10.4A5.2 5.2 0 008 2.8z" fill="currentColor"/>
-      </svg>
-    </button>
-    <span>Theme</span>
-  </div>
 </aside>

@@ -121,6 +121,8 @@
         btn.setAttribute("aria-label", label);
         // title도 같은 문구로 갱신해 마우스 오버 시 상태에 맞는 설명이 뜨게 한다.
         btn.setAttribute("title", label);
+        var text = btn.querySelector(".rail-toggle-label");
+        if (text) text.textContent = desktop ? (expanded ? "접기" : "펼치기") : "목차";
       });
     }
 
@@ -134,7 +136,8 @@
       document.documentElement.classList.toggle("rail-collapsed", collapsed);
       // 접힌 동안에는 폭이 0이라도 키보드/스크린리더가 레일에 들어가지 않도록 한다.
       // TOC/카테고리 DOM 노드 자체는 그대로 두어 펼쳤을 때 다시 동작하게 한다.
-      rail.toggleAttribute("inert", collapsed);
+      rail.classList.toggle("is-collapsed", collapsed);
+      rail.removeAttribute("inert");
       updateButtons();
     }
 
@@ -142,10 +145,10 @@
       if (isDesktop()) {
         // 모바일 드로어의 open 상태는 데스크톱 그리드와 무관하므로 정리한다.
         rail.classList.remove("open");
-        rail.toggleAttribute("inert", isCollapsed());
+        rail.classList.toggle("is-collapsed", isCollapsed());
       } else {
         // 데스크톱에서 접힌 채로 좁아지면, 드로어가 다시 열릴 수 있어야 한다.
-        rail.removeAttribute("inert");
+        rail.classList.remove("is-collapsed");
       }
       updateButtons();
     }
@@ -169,7 +172,7 @@
 
     // 첫 페인트 전 스크립트가 <html>에 이미 rail-collapsed를 찍어 두었을 수 있으므로
     // DOM 준비 시점에 inert·aria 상태를 실제 클래스와 맞춘다.
-    if (isDesktop()) rail.toggleAttribute("inert", isCollapsed());
+    if (isDesktop()) rail.classList.toggle("is-collapsed", isCollapsed());
     updateButtons();
   }
 
