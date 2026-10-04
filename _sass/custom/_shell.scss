@@ -15,7 +15,7 @@
 .header-logo { font-size: 13px; font-weight: 600; color: rgb(var(--muted)); }
 .header-logo b { color: rgb(var(--fg)); font-weight: 700; }
 .header-right { display: flex; align-items: center; gap: 14px; }
-.mobile-rail-open { display: none; }
+.icon-btn.mobile-rail-open { display: none; }
 .header-meta {
   font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
   text-transform: uppercase; color: rgb(var(--muted));
@@ -123,7 +123,7 @@
 
 /* 모바일: 레일을 드로어로 */
 @media (max-width: 1024px) {
-  .mobile-rail-open { display: flex; }
+  .icon-btn.mobile-rail-open { display: flex; }
   .rail-header .rail-toggle { display: none; }
   .layout { grid-template-columns: 1fr; }
   .rail {

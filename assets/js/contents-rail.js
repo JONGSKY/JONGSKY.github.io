@@ -114,7 +114,7 @@
       var desktop = isDesktop();
       var expanded = desktop ? !isCollapsed() : rail.classList.contains("open");
       var label = desktop
-        ? (expanded ? "레일 접기" : "레일 펼치기")
+        ? (expanded ? "목차 접기" : "목차 펼치기")
         : (expanded ? "목차 닫기" : "목차 열기");
       Array.prototype.forEach.call(toggles, function (btn) {
         btn.setAttribute("aria-expanded", expanded ? "true" : "false");
