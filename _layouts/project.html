@@ -7,71 +7,94 @@ layout: default
   <header class="page-head"><h1 class="page-title">{{ project.title }}</h1></header>
   <div class="post-body">
     <a class="back-to-list" href="{{ category.url | relative_url }}">← {{ category.title }}</a>
+
+    <h2 id="overview">한눈에 보기</h2>
     <section class="project-intro" aria-label="프로젝트 소개">
       <p class="project-intro-label">{{ project.category }}</p>
       <p class="project-intro-copy">{{ project.summary }}</p>
-      <div class="project-metrics">
+      {% if project.metrics %}<div class="project-metrics">
         {% for metric in project.metrics %}
         <div><span>{{ metric.label }}</span><strong>{{ metric.value }}</strong></div>
         {% endfor %}
-      </div>
-      {% if project.public_note %}<p class="project-public-note"><span>PUBLIC SCOPE</span>{{ project.public_note }}</p>{% endif %}
+      </div>{% endif %}
     </section>
 
-    <h2 id="overview">프로젝트 개요</h2>
-    <div class="project-overview">
+    <div class="project-facts">
       <div><span>내 역할</span><p>{{ project.contribution }}</p></div>
       <div><span>기간</span><p>{{ project.period }}</p></div>
-      <div><span>운영 범위</span><p>{{ project.proof }}</p></div>
+      {% if project.ownership_summary %}<div class="project-ownership"><span>담당 범위</span><p>{{ project.ownership_summary }}</p></div>{% endif %}
     </div>
-    <hr>
-    <h2 id="context">프로젝트 배경</h2><p>{{ project.context }}</p>
-    <hr>
-    <h2 id="role">내가 맡은 범위</h2>
-    <div class="ownership-grid">
-      {% for item in project.ownership %}
-      <article class="ownership-card">
-        <span class="ownership-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-        <h3 class="toc-skip">{{ item.title }}</h3>
-        <p>{{ item.summary }}</p>
-      </article>
-      {% endfor %}
+    <div class="overview-lead">
+      <span>문제와 목표</span>
+      <p>{{ project.context }}</p>
     </div>
+
     <hr>
-    <h2 id="contribution">기술적 결정과 변화</h2>
+    <h2 id="architecture">시스템 구조</h2>
+    <p class="section-lead">{% if project.architecture_lead %}{{ project.architecture_lead }}{% else %}주요 요청·처리·저장 경계를 공개 가능한 수준에서 정리했습니다.{% endif %}</p>
+    {% if project.architecture_layers %}
+    <figure class="architecture-map" aria-label="AI 서비스의 논리적 구성">
+      <div class="architecture-entry">개인·팀·기업 사용자 <span>요청 ↓ · ↑ 진행 상태와 결과</span></div>
+      <div class="architecture-boundary">
+        <p class="architecture-caption">내 설계·구축 범위 <span>팀과 함께 개발·운영한 서비스의 기술 구성</span></p>
+        <ol class="architecture-layers">
+          {% for layer in project.architecture_layers %}
+          <li><span class="layer-label">{{ layer.label }}</span><strong>{{ layer.title }}</strong><p>{{ layer.detail }}</p></li>
+          {% endfor %}
+        </ol>
+        <div class="architecture-support">
+          {% for item in project.architecture_support %}<div><strong>{{ item.title }}</strong><p>{{ item.detail }}</p></div>{% endfor %}
+        </div>
+        <p class="architecture-operations">배포·운영 · 온프레미스 네트워크 / Kubernetes / GPU 서빙 / 관측성</p>
+      </div>
+      <figcaption>요청은 API → 작업 큐 → AI 실행으로 전달됩니다. 상태·결과 저장과 모델 서빙은 실행 계층에 연결되며, 진행 상태와 결과는 사용자에게 반환됩니다. 실제 배포 토폴로지를 단순화한 논리 구조입니다.</figcaption>
+    </figure>
+    {% else %}
+    <ol class="architecture-steps">{% for item in project.architecture %}<li>{{ item }}</li>{% endfor %}</ol>
+    {% endif %}
+    {% if project.images %}{% for image in project.images %}<figure><img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy"><figcaption>{{ image.alt }}</figcaption></figure>{% endfor %}{% endif %}
+
+    {% if project.cases %}
+    <hr>
+    <h2 id="contribution">핵심 기여</h2>
+    {% if project.contribution_intro %}<p class="section-lead">{{ project.contribution_intro }}</p>{% endif %}
     <div class="contribution-cases">
       {% for item in project.cases %}
       <article class="contribution-case">
         <div class="case-heading"><span class="case-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><h3>{{ item.title }}</h3></div>
-        <div class="case-grid">
-          <div><span>문제</span><p>{{ item.problem }}</p></div>
-          <div><span>핵심 판단</span><p>{{ item.decision }}</p></div>
-          <div class="case-work"><span>내가 한 일</span><p>{{ item.work }}</p></div>
-          <div class="case-change"><span>달라진 점</span><p>{{ item.change }}</p></div>
+        <div class="case-story">
+          <p class="case-context">{{ item.problem }}</p>
+          <p><strong>{{ item.decision }}</strong></p>
+          <p>{{ item.work }}</p>
+          <p class="case-result"><span>달라진 점</span>{{ item.change }}</p>
         </div>
       </article>
       {% endfor %}
     </div>
+    {% elsif project.role %}
     <hr>
-    <h2 id="architecture">시스템 구조</h2>
-    {% if project.flow %}
-    <div class="system-flow" aria-label="AI 요청 처리 흐름">
-      {% for item in project.flow %}
-      <div class="flow-node"><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><strong>{{ item }}</strong></div>{% unless forloop.last %}<div class="flow-arrow" aria-hidden="true">→</div>{% endunless %}
-      {% endfor %}
-    </div>
+    <h2 id="contribution">핵심 기여</h2>
+    <ul class="role-list">{% for item in project.role %}<li>{{ item }}</li>{% endfor %}</ul>
     {% endif %}
-    <div class="architecture-list">
-      {% for item in project.architecture %}<div><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><p>{{ item }}</p></div>{% endfor %}
-    </div>
-    {% if project.images %}{% for image in project.images %}<figure><img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy"><figcaption>{{ image.alt }}</figcaption></figure>{% endfor %}{% endif %}
+
     <hr>
-    <h2 id="outcomes">결과와 변화</h2><ul class="outcome-list">{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h2 id="outcomes">결과와 근거</h2>
+    <ul class="outcome-list">{% for item in project.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% if project.outcome_note %}<p class="outcome-note">{{ project.outcome_note }}</p>{% endif %}
     {% if project.evidence %}<div class="evidence-block"><h3 class="toc-skip">공개 가능한 근거</h3><table class="evidence-table"><thead><tr><th>지표</th><th>값</th><th>범위와 기준</th></tr></thead><tbody>{% for item in project.evidence %}<tr><td>{{ item.metric }}</td><td><strong>{{ item.value }}</strong></td><td>{{ item.note }}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
-    {% if project.learning %}<hr><h2 id="learning">배운 점과 다음 기준</h2><ul class="learning-list">{% for item in project.learning %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
-    {% if project.limitations %}<hr><h2 id="limits">공개 범위와 한계</h2><ul class="learning-list">{% for item in project.limitations %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
+
+    {% if project.learning %}
     <hr>
-    <h2 id="stack">기술 스택</h2><div class="skill-tags">{% assign skills = project.stack | split: ', ' %}{% for item in skills %}<span class="skill-tag">{{ item }}</span>{% endfor %}</div>
+    <h2 id="learning">배운 점과 다음 기준</h2>
+    <ul class="learning-list">{% for item in project.learning %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% endif %}
+
+    <div class="project-stack" data-toc="skip">
+    <h3 id="stack">사용 기술</h3>
+    <div class="skill-tags">{% assign skills = project.stack | split: ', ' %}{% for item in skills %}<span class="skill-tag">{{ item }}</span>{% endfor %}</div>
+    </div>
     {{ content }}
+
+    {% if project.public_note %}<p class="project-security-note">※ {{ project.public_note }}</p>{% endif %}
   </div>
 </article>
