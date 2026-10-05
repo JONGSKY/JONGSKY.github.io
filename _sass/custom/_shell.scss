@@ -48,6 +48,17 @@
 }
 .content { min-width: 0; }
 
+/* 넓은 화면에서는 레일의 반대편에도 같은 폭의 여백을 둔다. 레일이 있는
+   레이아웃 전체가 아니라 본문 컬럼을 화면 중앙에 놓아, 제목·본문·도표의
+   시선이 한 축으로 정렬되도록 한다. */
+@media (min-width: 1280px) {
+  .layout {
+    grid-template-columns: 11rem minmax(0, 1fr) 11rem;
+    gap: 0 32px;
+  }
+  .layout > .content { grid-column: 2; }
+}
+
 .rail {
   position: sticky; top: 68px; align-self: start; padding-top: 40px;
   overflow: hidden;
@@ -128,6 +139,10 @@
   html.rail-collapsed .rail-header { position: fixed; top: 68px; left: 28px; z-index: 95; pointer-events: auto; }
   html.rail-collapsed .rail-header .rail-label { display: none; }
   html.rail-collapsed .rail-toggle { box-shadow: 0 5px 18px rgb(var(--fg) / .12); }
+}
+
+@media (min-width: 1280px) {
+  html.rail-collapsed .layout { grid-template-columns: 0rem minmax(0, 1fr) 0rem; }
 }
 
 /* 모바일: 레일을 드로어로 */
