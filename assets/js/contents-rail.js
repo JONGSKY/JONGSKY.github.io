@@ -78,7 +78,7 @@
       var percent = range > 0 ? Math.round(((window.scrollY - start) / range) * 100) : 100;
       percent = Math.max(0, Math.min(100, percent));
       fill.style.width = percent + "%";
-      value.textContent = percent + "%";
+      value.textContent = (percent < 10 ? "0" : "") + percent + "%";
       progressEl.setAttribute("aria-valuenow", String(percent));
     }
 
@@ -89,6 +89,22 @@
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+
+    // 이미지 레퍼런스의 키보드 힌트와 실제 동작을 일치시킨다. 입력창이나
+    // 편집 가능한 영역에서는 사용자의 커서 이동을 가로채지 않는다.
+    window.addEventListener("keydown", function (event) {
+      var target = event.target;
+      var tag = target && target.tagName ? target.tagName.toLowerCase() : "";
+      if (tag === "input" || tag === "textarea" || tag === "select" ||
+          (target && target.isContentEditable)) return;
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+      event.preventDefault();
+      var distance = Math.max(window.innerHeight * 0.72, 360);
+      window.scrollBy({
+        top: event.key === "ArrowDown" ? distance : -distance,
+        behavior: "smooth"
+      });
+    });
   }
 
   // rail-open 버튼은 두 역할을 겸한다:

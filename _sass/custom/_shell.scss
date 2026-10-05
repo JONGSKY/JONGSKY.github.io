@@ -92,6 +92,10 @@
   margin-top: 26px; padding-top: 14px;
   border-top: 1px solid rgb(var(--line) / .5);
 }
+.rail-progress-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center; gap: 10px;
+}
 .rail-progress-track {
   height: 8px; overflow: hidden;
   background: repeating-linear-gradient(90deg, rgb(var(--line) / .8) 0 2px, transparent 2px 4px);
@@ -101,11 +105,16 @@
   background: repeating-linear-gradient(90deg, rgb(var(--fg)) 0 2px, transparent 2px 4px);
   transition: width .12s linear;
 }
-.rail-progress-meta {
-  display: flex; justify-content: space-between; margin-top: 7px;
-  font-family: var(--font-mono); font-size: 10px; color: rgb(var(--muted));
+.rail-progress-value {
+  font-family: var(--font-mono); font-size: 10px; line-height: 1;
+  color: rgb(var(--fg)); font-variant-numeric: tabular-nums;
 }
-.rail-progress-meta span:first-child { color: rgb(var(--fg)); }
+.rail-progress-hint {
+  margin: 11px 0 0; font-family: var(--font-mono); font-size: 9px;
+  line-height: 1.3; letter-spacing: .08em; color: rgb(var(--muted));
+  white-space: nowrap;
+}
+.rail-progress-hint span { color: rgb(var(--fg)); }
 
 /* rail-open 버튼은 모든 너비에서 보인다: 데스크톱에서는 레일 접기/펼치기,
    1024px 이하에서는 오프캔버스 드로어 열기/닫기로 역할이 바뀐다 (JS가 판단) */
