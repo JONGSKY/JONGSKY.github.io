@@ -34,8 +34,7 @@
 /* 테마 버튼(.icon-btn.theme-toggle)만 호버에서 살짝 커진다. */
 .theme-toggle:hover { transform: scale(1.2); }
 
-/* 레일 토글 아이콘: 사각형(패널) + 왼쪽 분할선. 채워진 왼쪽 칸 = 패널이
-   보이는 상태(aria-expanded="true"), 빈 칸 = 접힌/닫힌 상태를 그대로 보여준다. */
+/* 모바일 목차 버튼의 아이콘 상태 */
 .icon-btn.rail-open[aria-expanded="false"] .rail-icon-fill { opacity: 0; }
 
 .layout {
@@ -47,13 +46,13 @@
 }
 .content { min-width: 0; }
 
-/* 넓은 화면에서는 레일의 반대편에도 같은 폭의 여백을 둔다. 레일이 있는
-   레이아웃 전체가 아니라 본문 컬럼을 화면 중앙에 놓아, 제목·본문·도표의
-   시선이 한 축으로 정렬되도록 한다. */
-@media (min-width: 1280px) {
+/* 데스크톱에서는 목차와 본문을 하나의 중앙 캔버스에 배치한다. 좌우에 같은
+   보정 폭을 두어 목차가 있어도 본문 축이 화면 중앙에서 벗어나지 않는다. */
+@media (min-width: 1025px) {
   .layout {
-    grid-template-columns: 11rem minmax(0, 1fr) 11rem;
-    gap: 0 32px;
+    grid-template-columns: 12rem minmax(0, 840px) 12rem;
+    gap: 0 36px;
+    justify-content: center;
   }
   .layout > .content { grid-column: 2; }
 }
@@ -66,14 +65,6 @@
 }
 .rail-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
 .rail-header .rail-label { margin-bottom: 0; }
-.rail-toggle {
-  display: inline-flex; align-items: center; gap: 5px; height: 27px; padding: 0 8px;
-  border: 1px solid rgb(var(--line)); border-radius: 14px; background: rgb(var(--subtle));
-  color: rgb(var(--muted)); cursor: pointer; font-family: var(--font-mono); font-size: 9px;
-  letter-spacing: .05em; transition: color .15s, border-color .15s, background .15s;
-}
-.rail-toggle:hover { color: rgb(var(--fg)); border-color: rgb(var(--fg) / .35); background: rgb(var(--bg)); }
-.rail-toggle svg { flex: none; }
 .rail-label {
   font-family: var(--font-mono); font-size: 9px; font-weight: 700;
   letter-spacing: .13em; text-transform: uppercase;
@@ -126,22 +117,9 @@
 }
 .rail-progress-hint span { color: rgb(var(--fg)); }
 
-/* rail-open 버튼은 모든 너비에서 보인다: 데스크톱에서는 레일 접기/펼치기,
-   1024px 이하에서는 오프캔버스 드로어 열기/닫기로 역할이 바뀐다 (JS가 판단) */
-
-/* 데스크톱: 목차의 자리와 그리드 폭은 유지하고 내용만 숨긴다.
-   본문 위치·줄바꿈·스크롤 높이와 토글 버튼의 위치가 접기 전후에 유지된다. */
-@media (min-width: 1025px) {
-  html.rail-collapsed .rail { pointer-events: none; }
-  html.rail-collapsed .rail > :not(.rail-header) { visibility: hidden; }
-  html.rail-collapsed .rail-header .rail-label { visibility: hidden; }
-  html.rail-collapsed .rail-toggle { pointer-events: auto; }
-}
-
 /* 모바일: 레일을 드로어로 */
 @media (max-width: 1024px) {
   .icon-btn.mobile-rail-open { display: flex; }
-  .rail-header .rail-toggle { display: none; }
   .layout { grid-template-columns: 1fr; }
   .rail {
     position: fixed; inset: 52px auto 0 0; z-index: 90;

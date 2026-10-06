@@ -107,76 +107,35 @@
     });
   }
 
-  // rail-open 버튼은 두 역할을 겸한다:
-  //  - 1024px 초과(데스크톱): 본문과 레일의 폭을 유지하며 목차 내용만 숨기거나 표시한다
-  //  - 1024px 이하(모바일): 오프캔버스 드로어를 열고/닫는다 (기존 동작 그대로)
-  // 접힘 상태는 localStorage에 저장하고, 첫 페인트 전에는 head/custom.html의
-  // 인라인 스크립트가 같은 값을 읽어 <html>에 미리 클래스를 찍어 깜빡임을 막는다.
+  // 데스크톱 목차는 항상 표시하고, 모바일에서만 오프캔버스 드로어로 연다.
   var DESKTOP_QUERY = "(min-width: 1025px)";
 
   function wireRailToggle(rail) {
-    var toggles = document.querySelectorAll(".rail-open");
+    var toggles = document.querySelectorAll(".mobile-rail-open");
     var mql = window.matchMedia(DESKTOP_QUERY);
 
-    function isDesktop() {
-      return mql.matches;
-    }
-
-    function isCollapsed() {
-      return document.documentElement.classList.contains("rail-collapsed");
-    }
-
     function updateButtons() {
-      var desktop = isDesktop();
-      var expanded = desktop ? !isCollapsed() : rail.classList.contains("open");
-      var label = desktop
-        ? (expanded ? "목차 접기" : "목차 펼치기")
-        : (expanded ? "목차 닫기" : "목차 열기");
+      var expanded = rail.classList.contains("open");
+      var label = expanded ? "목차 닫기" : "목차 열기";
       Array.prototype.forEach.call(toggles, function (btn) {
         btn.setAttribute("aria-expanded", expanded ? "true" : "false");
         btn.setAttribute("aria-label", label);
         // title도 같은 문구로 갱신해 마우스 오버 시 상태에 맞는 설명이 뜨게 한다.
         btn.setAttribute("title", label);
-        var text = btn.querySelector(".rail-toggle-label");
-        if (text) text.textContent = desktop ? (expanded ? "접기" : "펼치기") : "목차";
       });
     }
 
-    function setCollapsed(collapsed) {
-      // localStorage 기록을 가장 먼저 한다: 이후의 DOM 조작(classList, inert,
-      // aria 갱신)에서 예외가 나더라도 사용자의 선택은 이미 저장되어 있어야
-      // 다음 방문 시 head/custom.html의 프리페인트 스크립트가 같은 값을 읽는다.
-      try {
-        localStorage.setItem("jongho-rail-collapsed", collapsed ? "true" : "false");
-      } catch (e) {}
-      document.documentElement.classList.toggle("rail-collapsed", collapsed);
-      // CSS visibility로 목차를 숨겨 자리와 DOM은 보존한다.
-      // 다시 펼치는 버튼은 접근할 수 있도록 레일 전체에는 inert를 적용하지 않는다.
-      rail.classList.toggle("is-collapsed", collapsed);
-      rail.removeAttribute("inert");
-      updateButtons();
-    }
-
     function handleBreakpointChange() {
-      if (isDesktop()) {
-        // 모바일 드로어의 open 상태는 데스크톱 그리드와 무관하므로 정리한다.
+      if (mql.matches) {
         rail.classList.remove("open");
-        rail.classList.toggle("is-collapsed", isCollapsed());
-      } else {
-        // 데스크톱에서 접힌 채로 좁아지면, 드로어가 다시 열릴 수 있어야 한다.
-        rail.classList.remove("is-collapsed");
       }
       updateButtons();
     }
 
     Array.prototype.forEach.call(toggles, function (btn) {
       btn.addEventListener("click", function () {
-        if (isDesktop()) {
-          setCollapsed(!isCollapsed());
-        } else {
-          rail.classList.toggle("open");
-          updateButtons();
-        }
+        rail.classList.toggle("open");
+        updateButtons();
       });
     });
 
@@ -186,9 +145,6 @@
       mql.addListener(handleBreakpointChange);
     }
 
-    // 첫 페인트 전 스크립트가 <html>에 이미 rail-collapsed를 찍어 두었을 수 있으므로
-    // DOM 준비 시점에 inert·aria 상태를 실제 클래스와 맞춘다.
-    if (isDesktop()) rail.classList.toggle("is-collapsed", isCollapsed());
     updateButtons();
   }
 

@@ -10,10 +10,5 @@
         document.documentElement.setAttribute("data-theme", t);
       }
     } catch (e) {}
-    try {
-      if (localStorage.getItem("jongho-rail-collapsed") === "true" && window.innerWidth > 1024) {
-        document.documentElement.classList.add("rail-collapsed");
-      }
-    } catch (e) {}
   })();
 </script>
