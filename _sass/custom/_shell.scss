@@ -44,7 +44,6 @@
   max-width: min(1800px, 100% - 5rem); margin: 0 auto; padding: 0 28px 120px;
   display: grid; grid-template-columns: 13rem 1fr; gap: 0 56px;
   align-items: start;
-  transition: grid-template-columns .22s ease, gap .22s ease;
 }
 .content { min-width: 0; }
 
@@ -130,19 +129,13 @@
 /* rail-open 버튼은 모든 너비에서 보인다: 데스크톱에서는 레일 접기/펼치기,
    1024px 이하에서는 오프캔버스 드로어 열기/닫기로 역할이 바뀐다 (JS가 판단) */
 
-/* 데스크톱: 레일 접기 — .rail은 DOM에 그대로 남겨(TOC 노드·스크롤 트래킹 보존)
-   grid 트랙만 0으로 줄이면 .content가 남은 1fr을 자연히 차지한다 */
+/* 데스크톱: 목차의 자리와 그리드 폭은 유지하고 내용만 숨긴다.
+   본문 위치·줄바꿈·스크롤 높이와 토글 버튼의 위치가 접기 전후에 유지된다. */
 @media (min-width: 1025px) {
-  html.rail-collapsed .layout { grid-template-columns: 0rem 1fr; gap: 0 0; }
-  html.rail-collapsed .rail { opacity: 1; overflow: visible; pointer-events: none; }
+  html.rail-collapsed .rail { pointer-events: none; }
   html.rail-collapsed .rail > :not(.rail-header) { visibility: hidden; }
-  html.rail-collapsed .rail-header { position: fixed; top: 68px; left: 28px; z-index: 95; pointer-events: auto; }
-  html.rail-collapsed .rail-header .rail-label { display: none; }
-  html.rail-collapsed .rail-toggle { box-shadow: 0 5px 18px rgb(var(--fg) / .12); }
-}
-
-@media (min-width: 1280px) {
-  html.rail-collapsed .layout { grid-template-columns: 0rem minmax(0, 1fr) 0rem; }
+  html.rail-collapsed .rail-header .rail-label { visibility: hidden; }
+  html.rail-collapsed .rail-toggle { pointer-events: auto; }
 }
 
 /* 모바일: 레일을 드로어로 */

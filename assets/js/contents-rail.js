@@ -108,7 +108,7 @@
   }
 
   // rail-open 버튼은 두 역할을 겸한다:
-  //  - 1024px 초과(데스크톱): 레일 전체를 접고/펼치고, .content가 grid로 자연히 넓어진다
+  //  - 1024px 초과(데스크톱): 본문과 레일의 폭을 유지하며 목차 내용만 숨기거나 표시한다
   //  - 1024px 이하(모바일): 오프캔버스 드로어를 열고/닫는다 (기존 동작 그대로)
   // 접힘 상태는 localStorage에 저장하고, 첫 페인트 전에는 head/custom.html의
   // 인라인 스크립트가 같은 값을 읽어 <html>에 미리 클래스를 찍어 깜빡임을 막는다.
@@ -150,8 +150,8 @@
         localStorage.setItem("jongho-rail-collapsed", collapsed ? "true" : "false");
       } catch (e) {}
       document.documentElement.classList.toggle("rail-collapsed", collapsed);
-      // 접힌 동안에는 폭이 0이라도 키보드/스크린리더가 레일에 들어가지 않도록 한다.
-      // TOC/카테고리 DOM 노드 자체는 그대로 두어 펼쳤을 때 다시 동작하게 한다.
+      // CSS visibility로 목차를 숨겨 자리와 DOM은 보존한다.
+      // 다시 펼치는 버튼은 접근할 수 있도록 레일 전체에는 inert를 적용하지 않는다.
       rail.classList.toggle("is-collapsed", collapsed);
       rail.removeAttribute("inert");
       updateButtons();
